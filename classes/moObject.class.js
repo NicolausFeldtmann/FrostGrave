@@ -1,6 +1,6 @@
 class MoObject {
     x = 120;
-    y = 250;
+    y = 300;
     img;
     height = 150;
     width = 100;
