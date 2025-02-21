@@ -1,8 +1,15 @@
 class Walker extends MoObject{
 
-    constructor() {
-        super().loadImg('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png');
+    constructor(imagePath, x) {
+        super().loadImg(imagePath, x);
 
         this.x = 200 + Math.random() * 500;
+        this.moveLeft();
+    }
+
+    moveLeft() {
+        setInterval(() => {
+            this.x -= 0.6;
+        }, 1000 / 60);
     }
 }

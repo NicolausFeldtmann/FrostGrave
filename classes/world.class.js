@@ -2,9 +2,9 @@ class World {
 
     char = new Char();
     enemies = [
-        new Walker(),
-        new Walker(),
-        new Walker(),
+        new Walker('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png'),
+        new Walker('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png'),
+        new Walker('img/enemys/Zombie_Villager_2/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png'),
     ];
     clouds = [
         new Clouds(),
@@ -19,7 +19,11 @@ class World {
         new SkyBox('img/objects/sky/2.png', 0),
     ];
     forntObj = [
-        new FrontObj('img/backgrounds/3/9.png'),
+        new FrontObj('img/backgrounds/3/9.png',170, 120),
+        new FrontObj('img/backgrounds/3/9.png',170, 250),
+        new FrontObj('img/backgrounds/3/9.png',170, 2950),
+        new FrontObj('img/backgrounds/3/9.png',170, 600),
+        new FrontObj('img/backgrounds/3/9.png',170, 700),
     ];
     canvas;
     ctx;

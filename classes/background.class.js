@@ -1,7 +1,7 @@
 class Background extends MoObject {
 
     width = 720;
-    height = 440;
+    height = 340;
 
     constructor(imagePath, x) {
         super().loadImg(imagePath);
