@@ -4,7 +4,7 @@ class MoObject {
     img;
     height = 150;
     width = 100;
-    imgCache = [];
+    imgCache = {};
 
     loadImg(path) {
         this.img = new Image();
@@ -12,10 +12,10 @@ class MoObject {
     }
 
     loadImages(arr) {
-        arr.forEach(path => {
-        let img = new Image();
-        img.src = path;
-        this.imgCache[path] = path;
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imgCache[path] = img;
         });
     }
 
