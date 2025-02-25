@@ -12,6 +12,7 @@ const level1 = new Level(
         new Walker('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png'),
         new Walker('img/enemys/Zombie_Villager_2/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png'),
     ],
+ 
     [
         new Clouds(),
         new Clouds(),

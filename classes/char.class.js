@@ -29,18 +29,18 @@ class Char extends MoObject{
     animate() {
         
         setInterval(() => {
-            if(this.world.keyboard.RIGHT) {
+            if(this.world.keyboard.RIGHT && this.x < 5040) { // noch mit leve.level_end_x zum laufen bringen.
                 this.x += this.speed;
                 this.otherDirection = false;
             }
         }, 30)
 
         setInterval(() => {
-            if(this.world.keyboard.LEFT) {
+            if(this.world.keyboard.LEFT && this.x > 110) {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
-            this.world.camera_x = -this.x;
+            this.world.camera_x = -this.x + 100;
         }, 30)
 
         setInterval(() => {
