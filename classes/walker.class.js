@@ -22,7 +22,8 @@ class Walker extends MoObject{
 
         this.x = 200 + Math.random() * 500;
         this.moveLeft();
-        this.reanimate()
+        this.reanimate();
+        this.otherDirection = true;
     }
 
     reanimate() {

@@ -16,23 +16,39 @@ class Char extends MoObject{
     ];
     currentImage = 0;
     world;
+    speed = 8;
 
     constructor() {
         super().loadImg('img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Running/0_Skeleton_Warrior_Running_000.png');
         this.loadImages(this.IMAGES_WALKING);
-        this.moveRight();
+        
         this.animate();
     }
 
     animate() {
         
         setInterval(() => {
-            
+            if(this.world.keyboard.RIGHT) {
+                this.x += this.speed;
+                this.otherDirection = false;
+            }
+        }, 30)
+
+        setInterval(() => {
+            if(this.world.keyboard.LEFT) {
+                this.x -= this.speed;
+                this.otherDirection = true;
+            }
+        }, 30)
+
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             let i = this.currentImage % this.IMAGES_WALKING.length;
             let path = this.IMAGES_WALKING[i];
             this.img = this.imgCache[path];
             this.currentImage++;
-        }, 60);
+            }
+        }, 40);
     }
 
     moveRight() {

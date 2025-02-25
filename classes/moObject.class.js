@@ -5,6 +5,7 @@ class MoObject {
     height = 150;
     width = 100;
     imgCache = {};
+    otherDirection = false;
 
     loadImg(path) {
         this.img = new Image();

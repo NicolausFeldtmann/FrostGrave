@@ -43,14 +43,12 @@ constructor(canvas, keyboard) {
     
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        
         this.addObjToMap(this.blueSky);
         this.addObjToMap(this.backgrounds);
         this.addToMap(this.char);
         this.addObjToMap(this.clouds);
         this.addObjToMap(this.enemies);
         this.addObjToMap(this.forntObj);
-
         let self = this;
         requestAnimationFrame(function() {
             self.draw();
@@ -64,6 +62,16 @@ constructor(canvas, keyboard) {
     }
 
     addToMap(mo) {
+        if(mo.otherDirection) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1, 1);
+            mo.x = mo.x * -1;
+        }
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+        if(mo.otherDirection) {
+            mo.x = mo.x * -1;
+            this.ctx.restore();
+        }
     }
 }
