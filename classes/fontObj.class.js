@@ -2,9 +2,10 @@ class FrontObj extends MoObject {
 
     width = 800;
     height = 300;
-    constructor(imagePath, y, x) {
+    y = 170;
+    constructor(imagePath, y) {
         super().loadImg(imagePath);
         this.y = y;
-        this.x = x;
+        this.x = 200 + Math.random() * 5040;
     }
 }

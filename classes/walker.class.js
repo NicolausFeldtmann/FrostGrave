@@ -1,5 +1,7 @@
 class Walker extends MoObject{
 
+    x = 150;
+
     IMAGES_WALKING = [
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png',
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_001.png',
@@ -20,7 +22,7 @@ class Walker extends MoObject{
         super().loadImg(imagePath, x);
         this.loadImages(this.IMAGES_WALKING);
 
-        this.x = 200 + Math.random() * 500;
+        this.x = 200 + Math.random() * 5040;
         this.moveLeft();
         this.reanimate();
         this.otherDirection = true;
