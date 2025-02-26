@@ -20,6 +20,13 @@ class MoObject {
         });
     }
 
+    playAnimation(images) {
+        let i = this.currentImage % this.IMAGES_WALKING.length;
+        let path = images[i];
+        this.img = this.imgCache[path];
+        this.currentImage++;
+    }
+
     moveRight() {
         console.log('move Right');
     }

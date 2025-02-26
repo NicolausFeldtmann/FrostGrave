@@ -29,14 +29,14 @@ class Char extends MoObject{
     animate() {
         
         setInterval(() => {
-            if(this.world.keyboard.RIGHT && this.x < 5040) { // noch mit leve.level_end_x zum laufen bringen.
+            if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // noch mit leve.level_end_x zum laufen bringen.
                 this.x += this.speed;
                 this.otherDirection = false;
             }
         }, 30)
 
         setInterval(() => {
-            if(this.world.keyboard.LEFT && this.x > 110) {
+            if(this.world.keyboard.LEFT && this.x > 100) {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
@@ -45,10 +45,7 @@ class Char extends MoObject{
 
         setInterval(() => {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-            let i = this.currentImage % this.IMAGES_WALKING.length;
-            let path = this.IMAGES_WALKING[i];
-            this.img = this.imgCache[path];
-            this.currentImage++;
+            this.playAnimation(this.IMAGES_WALKING);
             }
         }, 40);
     }

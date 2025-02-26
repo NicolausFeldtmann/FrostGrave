@@ -4,7 +4,7 @@ class Boss extends MoObject {
     width = 400;
     y = 35;
 
-    IMAGE_IDLE = [
+    IMAGES_WALKING = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_001.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_002.png',
@@ -24,21 +24,20 @@ class Boss extends MoObject {
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_016.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_017.png',
     ];
+    currentImage = 0;
 
     constructor() {
         super().loadImg('img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png');
-        this.x = 5040;
-        this.loadImages(this.IMAGE_IDLE);
+        this.loadImages(this.IMAGES_WALKING);
         this.animate();
+        this.x = 5040;
+        this.otherDirection = true;
     }
 
-    animate() { 
+    animate() {
         setInterval(() => {
-            let i = this.currentImage % this.IMAGE_IDLE.length;
-            let path = this.IMAGE_IDLE[i];
-            this.img = this.imgCache[path];
-            this.currentImage++;
-        })
+            this.playAnimation(this.IMAGES_WALKING);
+        }, 60)
     }
 
 }
