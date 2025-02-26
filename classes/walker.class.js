@@ -21,22 +21,18 @@ class Walker extends MoObject{
     constructor(imagePath, x) {
         super().loadImg(imagePath, x);
         this.loadImages(this.IMAGES_WALKING);
-
         this.x = 200 + Math.random() * 5040;
-        this.moveLeft();
         this.reanimate();
         this.otherDirection = true;
     }
 
     reanimate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 80)
-    }
+            this.moveLeft();
+        }, 1000 / 60)
 
-    moveLeft() {
         setInterval(() => {
-            this.x -= 0.6;
-        }, 1000 / 60);
+            this.playAnimation(this.IMAGES_WALKING);
+        }, 60)
     }
 }

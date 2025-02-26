@@ -33,7 +33,7 @@ class Char extends MoObject{
     ];
     currentImage = 0;
     world;
-    speed = 8;
+    speed = 10;
 
     constructor() {
         super().loadImg('img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Running/0_Skeleton_Warrior_Running_000.png');
@@ -46,14 +46,12 @@ class Char extends MoObject{
     animate() {
         
         setInterval(() => {
-            if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // noch mit leve.level_end_x zum laufen bringen.
-                this.x += this.speed;
-                this.otherDirection = false;
+            if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                this.moveRight();
             }
             
             if(this.world.keyboard.LEFT && this.x > 100) {
-                this.x -= this.speed;
-                this.otherDirection = true;
+                this.moveLeft();
             }
 
             if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
@@ -64,7 +62,7 @@ class Char extends MoObject{
                 this.jump();
             }
             this.world.camera_x = -this.x + 100;
-        },1000 / 40);
+        }, 1000 / 30);
 
         setInterval(() => {
             if(this.isAboveGround()) {
@@ -74,6 +72,6 @@ class Char extends MoObject{
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
-        }, 1000 / 30)
+        }, 100)
     }
 }
