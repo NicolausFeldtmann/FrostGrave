@@ -9,6 +9,7 @@ class MoObject {
     speedY = 0;
     accel = 2.0;
     otherDirection = false;
+    energy = 100;
 
     loadImg(path) {
         this.img = new Image();
@@ -41,11 +42,31 @@ class MoObject {
     }
 
     drawFrame(ctx) {
+        if (this instanceof Char || this instanceof Walker || this instanceof Boss) {
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'blue';
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
+        }
+    }
+
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+    }
+
+    gotHurt(){
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
+    }
+
+    isDeadAgain() {
+        return this.energy == 0;
     }
 
     playAnimation(images) {
@@ -58,16 +79,16 @@ class MoObject {
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
-        console.log('move Right');
     }
 
     moveLeft() {
         this.x -= this.speed;
         this.otherDirection = true;
-        console.log('move left');
     }
 
     jump() {
         this.speedY = 25;
     }
+
+
 }

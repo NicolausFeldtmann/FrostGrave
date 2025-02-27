@@ -13,10 +13,23 @@ constructor(canvas, keyboard) {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions();
 }
 
     setWorld() {
         this.char.world = this;
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if(this.char.isColliding(enemy)) {
+                    this.char.gotHurt();
+                    //this.bounceBack(this.char);
+                    console.log('AUTSCH! energy', this.char.energy);
+                }
+            });
+        }, 200)
     }
     
     draw() {
@@ -63,5 +76,10 @@ constructor(canvas, keyboard) {
     backFlip(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
+    }
+
+    bounceBack() {  
+        this.char.x -= 500;
+        this.otherDirection = false;
     }
 }
