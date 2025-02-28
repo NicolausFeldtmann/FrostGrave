@@ -17,8 +17,6 @@ class DrawObjects {
     draw(ctx) {
         if (this.img) {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-        } else {
-            console.warn('Bild ist nicht geladen:', this.img);
         }
     }
 

@@ -35,10 +35,8 @@ class Status extends DrawObjects {
             return 2;
         } else if (this.percentage > 20) {
             return 2;
-        } else if (this.percentage > 10) {
-            return 1;
         } else {
-            return 0;
+            return 1;
         }
     }
 }
