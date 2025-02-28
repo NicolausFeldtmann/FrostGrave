@@ -16,7 +16,6 @@ class Walker extends MoObject{
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_010.png',
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_011.png',
     ];
-    currentImage = 0
 
     constructor(imagePath, x) {
         super().loadImg(imagePath, x);

@@ -65,7 +65,6 @@ class Char extends MoObject{
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Dying/0_Skeleton_Warrior_Dying_014.png'
     ];
 
-    currentImage = 0;
     world;
     speed = 10;
 
@@ -103,6 +102,8 @@ class Char extends MoObject{
         setInterval(() => {
             if(this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
+            } else if(this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
             } else if(this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
@@ -110,6 +111,6 @@ class Char extends MoObject{
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
-        }, 100)
+        }, 200)
     }
 }

@@ -6,6 +6,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new Status();
 
 constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -38,6 +39,7 @@ constructor(canvas, keyboard) {
         this.addObjToMap(this.level.blueSky);
         this.addObjToMap(this.level.backgrounds);
         this.addToMap(this.char);
+        this.addToMap(this.statusBar);
         this.addObjToMap(this.level.clouds);
         this.addObjToMap(this.level.enemies);
         this.addObjToMap(this.level.frontObj);
@@ -76,10 +78,5 @@ constructor(canvas, keyboard) {
     backFlip(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
-    }
-
-    bounceBack() {  
-        this.char.x -= 500;
-        this.otherDirection = false;
     }
 }
