@@ -5,8 +5,16 @@ let keyboard = new Keyboard();
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    backGrndMusic = new Audio('audio/backgroundMusic.mp3');
+    //backGrndSound = new Audio('audio/backgroundAudio.mp3');
+    playAudio();
+}
 
-    console.log('My char is', world.char);
+function playAudio() {
+    setTimeout(() => {
+        backGrndMusic.play();
+        backGrndSound.play();
+    })
 }
 
 window.addEventListener('keydown', (e) => {

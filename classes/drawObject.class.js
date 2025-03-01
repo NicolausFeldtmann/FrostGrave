@@ -30,11 +30,6 @@ class DrawObjects {
         }
     }   
 
-    /**
-     * 
-     *  @param {Array} arr - 
-     */
-
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();

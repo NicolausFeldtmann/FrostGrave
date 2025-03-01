@@ -26,7 +26,6 @@ constructor(canvas, keyboard) {
             this.level.enemies.forEach((enemy) => {
                 if(this.char.isColliding(enemy)) {
                     this.char.gotHurt();
-                    //this.bounceBack(this.char);
                     console.log('AUTSCH! energy', this.char.energy);
                 }
             });
@@ -39,10 +38,10 @@ constructor(canvas, keyboard) {
         this.addObjToMap(this.level.blueSky);
         this.addObjToMap(this.level.backgrounds);
         this.addToMap(this.char);
-        this.addToMap(this.statusBar);
         this.addObjToMap(this.level.clouds);
         this.addObjToMap(this.level.enemies);
         this.addObjToMap(this.level.frontObj);
+        this.addToMap(this.statusBar);
         this.ctx.translate(-this.camera_x, 0);
         let self = this;
         requestAnimationFrame(function() {

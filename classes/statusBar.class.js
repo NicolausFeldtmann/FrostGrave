@@ -2,20 +2,23 @@ class Status extends DrawObjects {
 
     IMAGES_HEALTH = [
         'img/objects/health/health.0.PNG',
-        'img/objects/health/health.1.PNG',
-        'img/objects/health/health.2.PNG',
-        'img/objects/health/health.3.PNG',
-        'img/objects/health/health.4.PNG',
+        'img/objects/health/health.20.PNG',
+        'img/objects/health/health.40.PNG',
+        'img/objects/health/health.60.PNG',
+        'img/objects/health/health.80.PNG',
+        'img/objects/health/health.100.PNG',
     ];
 
     percentage = 100;
 
     constructor() {
-        super().loadImg('img/objects/health/health.0.PNG');
+        super();
         this.loadImages(this.IMAGES_HEALTH);
-        this.x = 100;
-        this.y= 100;
-        this,this.setPercentage(100);
+        this.x = 20;
+        this.y= 20;
+        this.width = 200;
+        this.height = 60;
+        this.setPercentage(100);
     }
 
     setPercentage(percentage) {
@@ -33,10 +36,10 @@ class Status extends DrawObjects {
             return 3;
         } else if (this.percentage > 40) {
             return 2;
-        } else if (this.percentage > 20) {
-            return 2;
-        } else {
+        } else if(this.percentage > 20) {
             return 1;
+        } else {
+            return 0;
         }
     }
 }
