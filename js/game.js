@@ -41,6 +41,11 @@ window.addEventListener('keydown', (e) => {
     if (e.keyCode == 69) {
         keyboard.SLASH = true;
     }
+    
+    if (e.keyCode == 81) {
+        keyboard.THORW = true;
+    }
+    
 })
 
 window.addEventListener('keyup', (e) => {
@@ -66,5 +71,9 @@ window.addEventListener('keyup', (e) => {
 
     if (e.keyCode == 69) {
         keyboard.SLASH = false;
+    }
+
+    if (e.keyCode == 81) {
+        keyboard.THORW = false;
     }
 })

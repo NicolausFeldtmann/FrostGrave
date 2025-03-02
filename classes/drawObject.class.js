@@ -2,12 +2,26 @@ class DrawObjects {
     img;
     imgCache = {};
     currentImage = 0;
+    speed = 1;
+    speedY = 0;
     x = 100;
     y = 320;
     height = 150;
     width = 100;
     otherDirection = false;
-    
+
+    alppyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.accel;
+            }
+        }, 1000 / 50)
+    }
+
+    isAboveGround() {
+        return this.y < 320;
+    }
 
     loadImg(path) {
         this.img = new Image();

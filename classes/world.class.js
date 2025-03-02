@@ -9,6 +9,7 @@ class World {
     statusBar = new Status();
     greenBar = new GreenBar();
     orangeBar = new OrangeBar();
+    projectile = [new Projectile()];
 
 constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -43,6 +44,7 @@ constructor(canvas, keyboard) {
         this.addObjToMap(this.level.clouds);
         this.addObjToMap(this.level.enemies);
         this.addObjToMap(this.level.frontObj);
+        this.addObjToMap(this.projectile);
         //------Space for fixed objects-----//
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);

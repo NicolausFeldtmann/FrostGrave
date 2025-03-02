@@ -1,7 +1,7 @@
 class OrangeBar extends DrawObjects {
 
     IMAGES_ORANGE = [
-        'img/objects/bars/oragneBar.6.PNG',
+        'img/objects/bars/greenBar.6.PNG',
         'img/objects/bars/oragneBar.5.PNG',
         'img/objects/bars/oragneBar.4.PNG',
         'img/objects/bars/oragneBar.3.PNG',
