@@ -6,7 +6,7 @@ class Clouds extends MoObject {
     constructor() {
         super().loadImg('img/objects/clouds/PNG/Clouds_gray/Shape2/cloud_shape2_1.png');
         this.y = Math.random() * 30;
-        this.x = Math.random() * 500;
+        this.x = 200 + Math.random() * 5040;
         this.height = 50;
         this.moveCloud();
     }

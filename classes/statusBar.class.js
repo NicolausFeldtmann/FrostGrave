@@ -15,9 +15,9 @@ class Status extends DrawObjects {
         super();
         this.loadImages(this.IMAGES_HEALTH);
         this.x = 20;
-        this.y= 20;
+        this.y = 20;
         this.width = 200;
-        this.height = 60;
+        this.height = 30;
         this.setPercentage(100);
     }
 
