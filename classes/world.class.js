@@ -9,7 +9,7 @@ class World {
     statusBar = new Status();
     greenBar = new GreenBar();
     orangeBar = new OrangeBar();
-    projectile = [new Projectile()];
+    projectile = [];
 
 constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -18,21 +18,35 @@ constructor(canvas, keyboard) {
     this.draw();
     this.setWorld();
     this.checkCollisions();
+    this.run();
 }
 
     setWorld() {
         this.char.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
+            this.checkCollisions();
+            this.checkThorw();
+        }, 200)
+    }
+
+    checkThorw() {
+        if (this.keyboard.THROW) {
+            let projectile = new Projectile(this.char.x - 55, this.char.y);
+            this.projectile.push(projectile);
+            console.log('HADOUKEN!');
+        }
+    }
+
+    checkCollisions() {
             this.level.enemies.forEach((enemy) => {
                 if(this.char.isColliding(enemy)) {
                     this.char.gotHurt();
                     this.statusBar.setPercentage(this.char.energy);
                 }
-            });
-        }, 200)
+        })
     }
     
     draw() {

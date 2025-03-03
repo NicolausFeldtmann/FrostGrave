@@ -43,7 +43,7 @@ window.addEventListener('keydown', (e) => {
     }
     
     if (e.keyCode == 81) {
-        keyboard.THORW = true;
+        keyboard.THROW = true;
     }
     
 })
@@ -74,6 +74,6 @@ window.addEventListener('keyup', (e) => {
     }
 
     if (e.keyCode == 81) {
-        keyboard.THORW = false;
+        keyboard.THROW = false;
     }
 })

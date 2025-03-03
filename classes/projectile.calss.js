@@ -1,17 +1,20 @@
-class Projectile extends  DrawObjects {
+class Projectile extends MoObject {
 
-    constructor() {
+    constructor(x, y) {
         super().loadImg('img/effects/Explosion_6/Explosion_1.png');
-        this.x = 100;
-        this.y = 100;
-        this.throw(100, 150);
+        this.x = x;
+        this.y = y;
+        this.width = 250;
+        this.height = 180;
+        this.throw();
 
     }
     
-    throw (x, y) {
-    this.x = x;
-    this.y = y;
+    throw () {
     this.speedY = 30;
     this.alppyGravity();
+    setInterval (() => {
+        this.x += 12;
+    }, 25)
     };
 }

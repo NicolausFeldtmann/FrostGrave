@@ -1,8 +1,28 @@
 class MoObject extends DrawObjects{
 
-    accel = 2.0;
     energy = 100;
     lasHit = 0;
+    speed = 1;
+    speedY = 0;
+    accel = 2.0;
+    otherDirection = false;
+
+    alppyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.accel;
+            }
+        }, 1000 / 50)
+    }
+
+    isAboveGround() {
+        if (this instanceof Projectile) { // Projectils shall allway fall
+            return true;
+        } else {
+        return this.y < 320;
+       }
+    }
 
     isColliding(mo) {
         return this.x + this.width > mo.x &&
@@ -48,6 +68,6 @@ class MoObject extends DrawObjects{
     }
 
     jump() {
-        this.speedY = 25;
+        this.speedY = 30;
     }
 }

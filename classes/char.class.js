@@ -1,7 +1,5 @@
 class Char extends MoObject{
 
-    
-    
     IMAGES_WALKING = [
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Running/0_Skeleton_Warrior_Running_000.png',
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Running/0_Skeleton_Warrior_Running_001.png',
@@ -138,7 +136,7 @@ class Char extends MoObject{
                 this.playAnimation(this.IMAGES_SLASHING);
             }
 
-            if(this.world.keyboard.THORW && !this.isAboveGround()) {
+            if(this.world.keyboard.THROW && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_THROW);
             }
             this.world.camera_x = -this.x + 100;
