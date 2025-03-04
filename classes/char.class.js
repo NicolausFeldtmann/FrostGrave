@@ -122,7 +122,7 @@ class Char extends MoObject{
                 this.moveLeft();
             }
 
-            if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT && !this.isAboveGround()) {
             this.playAnimation(this.IMAGES_WALKING);
             this.snow1.play();
             this.snow2.play();
@@ -150,7 +150,7 @@ class Char extends MoObject{
             } else if(this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
-                if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT && this.isAboveGround()) {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }

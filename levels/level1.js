@@ -65,4 +65,12 @@ const level1 = new Level(
         new FrontObj('img/backgrounds/3/9.png',170),
         new FrontObj('img/backgrounds/3/9.png',170),
     ],
+    [
+        new Mana('img/objects/shiny/8.png', 380),
+        new Mana('img/objects/shiny/8.png', 380),
+        new Mana('img/objects/shiny/8.png', 380),
+        new Mana('img/objects/shiny/8.png', 380),
+        new Mana('img/objects/shiny/8.png', 380),
+        new Mana('img/objects/shiny/8.png', 380),
+    ],
 );

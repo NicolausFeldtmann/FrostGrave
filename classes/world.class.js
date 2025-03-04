@@ -48,6 +48,15 @@ constructor(canvas, keyboard) {
                 }
         })
     }
+
+    checkFoeCollision() {
+        this.level.projectile.forEach((projectile) => {
+            if (this.enemies.isCollidingFoe(projectile)) {
+                this.enemies.gotHurtFoe();
+                console.log('foe hurt');
+            }
+        })
+    }
     
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -57,6 +66,7 @@ constructor(canvas, keyboard) {
         this.addToMap(this.char);
         this.addObjToMap(this.level.clouds);
         this.addObjToMap(this.level.enemies);
+        this.addObjToMap(this.level.mana);
         this.addObjToMap(this.level.frontObj);
         this.addObjToMap(this.projectile);
         //------Space for fixed objects-----//
