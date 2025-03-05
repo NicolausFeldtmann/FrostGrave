@@ -1,6 +1,7 @@
 class MoObject extends DrawObjects{
 
     energy = 100;
+    mana = 0;
     lasHit = 0;
     speed = 1;
     speedY = 0;
@@ -40,25 +41,22 @@ class MoObject extends DrawObjects{
         }
     }
 
-    gotHurtFoe() {
-        this.energy -= 10;
-        if (this.energy < 0) {
-            this.energy = 0;
-        } else {
-            this.lasHit = new Date().getTime();
-        }
-    }
-
-    foeIsHurt() {
-        let timePassed = new Date().getTime() - this.lasHit;
-        timePassed = timePassed / 1000
-        return timePassed < 1;
-    }
-
     isHurt() {
         let timePassed = new Date().getTime() - this.lasHit;
         timePassed = timePassed / 1000
         return timePassed < 1;
+    }
+
+    gotMana() {
+        this.mana += 5; 
+        console.log(this.mana);
+        if (this.mana > 100) { 
+            this.mana = 100;
+            
+            
+        } else {
+            this.lastHit = new Date().getTime(); 
+        }
     }
 
     isDeadAgain() {

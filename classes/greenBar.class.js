@@ -9,7 +9,7 @@ class GreenBar extends DrawObjects {
         'img/objects/bars/greenBar.1.PNG',
     ];
 
-    percentGreen = 100;
+    percentage = 0;
 
     constructor() {
         super();
@@ -18,25 +18,25 @@ class GreenBar extends DrawObjects {
         this.y = 60;
         this.width = 200;
         this.height = 30;
-        this.setPerGreen(100);
+        this.setPercentage(20);
     }
 
-    setPerGreen(percentGreen) {
-        this.percentGreen = percentGreen;
-        let path = this.IMAGES_GREEN[this.resolveImgIdx()];
+    setPercentage(percentage) {
+        this.percentage = percentage;
+        let path = this.IMAGES_GREEN[this.resolveImagesIdx()];
         this.img = this.imgCache[path];
     }
 
-    resolveImgIdx() {
-        if (this.percentGreen == 100) {
+    resolveImagesIdx() {
+        if(this.percentage == 100) {
             return 5;
-        } else if (this.percentGreen > 80) {
+        } else if (this.percentage > 80) {
             return 4;
-        } else if (this.percentGreen > 60) {
+        } else if (this.percentage > 60) {
             return 3;
-        } else if (this.percentGreen > 40) {
+        } else if (this.percentage > 40) {
             return 2;
-        } else if (this.percentGreen > 20) {
+        } else if(this.percentage > 20) {
             return 1;
         } else {
             return 0;

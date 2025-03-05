@@ -17,7 +17,6 @@ constructor(canvas, keyboard) {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisions();
     this.run();
 }
 
@@ -28,6 +27,7 @@ constructor(canvas, keyboard) {
     run() {
         setInterval(() => {
             this.checkCollisions();
+            this.checkCollMana();
             this.checkThorw();
         }, 200)
     }
@@ -49,11 +49,12 @@ constructor(canvas, keyboard) {
         })
     }
 
-    checkFoeCollision() {
-        this.level.projectile.forEach((projectile) => {
-            if (this.enemies.isCollidingFoe(projectile)) {
-                this.enemies.gotHurtFoe();
-                console.log('foe hurt');
+    checkCollMana() {
+        this.level.mana.forEach((mana) => {
+            if(this.char.isColliding(mana)) {
+                console.log('MANA!');
+                this.char.gotMana();
+                this.greenBar.setPercentage(this.char.mana);
             }
         })
     }

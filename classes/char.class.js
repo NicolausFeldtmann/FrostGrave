@@ -98,6 +98,7 @@ class Char extends MoObject{
     snow1 = new Audio('audio/snow1.mp3');
     snow2 = new Audio('audio/snow2.mp3');
 
+
     constructor() {
         super().loadImg('img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Running/0_Skeleton_Warrior_Running_000.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -106,6 +107,7 @@ class Char extends MoObject{
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_SLASHING);
         this.loadImages(this.IMAGES_THROW);
+        this.mana = 0;
         this.alppyGravity();
         this.animate();
 
