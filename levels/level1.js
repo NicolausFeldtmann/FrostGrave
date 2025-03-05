@@ -72,4 +72,12 @@ const level1 = new Level(
         new Mana('img/objects/shiny/8.png', 380),
         new Mana('img/objects/shiny/8.png', 380),
     ],
+    [
+        new Jewel('img/objects/shiny/5.png', 380),
+        new Jewel('img/objects/shiny/5.png', 380),
+        new Jewel('img/objects/shiny/5.png', 380),
+        new Jewel('img/objects/shiny/5.png', 380),
+        new Jewel('img/objects/shiny/5.png', 380),
+        new Jewel('img/objects/shiny/5.png', 380),
+    ],
 );

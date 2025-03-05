@@ -28,6 +28,7 @@ constructor(canvas, keyboard) {
         setInterval(() => {
             this.checkCollisions();
             this.checkCollMana();
+            this.checkCollJewel();
             this.checkThorw();
         }, 200)
     }
@@ -58,6 +59,16 @@ constructor(canvas, keyboard) {
             }
         })
     }
+
+    checkCollJewel() {
+        this.level.jewel.forEach((jewel) => {
+            if (this.char.isColliding(jewel)) {
+                console.log('JEWEWL!');
+                this.char.gotJewel();
+                this.orangeBar.setPercentage(this.char.jewel);
+            }
+        })
+    }
     
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -68,6 +79,7 @@ constructor(canvas, keyboard) {
         this.addObjToMap(this.level.clouds);
         this.addObjToMap(this.level.enemies);
         this.addObjToMap(this.level.mana);
+        this.addObjToMap(this.level.jewel);
         this.addObjToMap(this.level.frontObj);
         this.addObjToMap(this.projectile);
         //------Space for fixed objects-----//

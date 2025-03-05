@@ -9,7 +9,7 @@ class OrangeBar extends DrawObjects {
         'img/objects/bars/oragneBar.1.PNG',
     ];
 
-    percentOrange = 100;
+    percentOrange = 0;
 
     constructor() {
         super();
@@ -18,25 +18,25 @@ class OrangeBar extends DrawObjects {
         this.y = 100;
         this.width = 200;
         this.height = 30;
-        this.setPerOrange(100);
+        this.setPercentage();
     }
 
-    setPerOrange(percentOrange) {
-        this.percentOrange = percentOrange;
-        let path = this.IMAGES_ORANGE[this.resolveImgIdx()];
+    setPercentage(percentage) {
+        this.percentage = percentage;
+        let path = this.IMAGES_ORANGE[this.resolveImagesIdx()];
         this.img = this.imgCache[path];
     }
 
-    resolveImgIdx() {
-        if (this.percentOrange == 100) {
+    resolveImagesIdx() {
+        if(this.percentage == 100) {
             return 5;
-        } else if (this.percentOrange > 80) {
+        } else if (this.percentage > 80) {
             return 4;
-        } else if (this.percentOrange > 60) {
+        } else if (this.percentage > 60) {
             return 3;
-        } else if (this.percentOrange > 40) {
+        } else if (this.percentage > 40) {
             return 2;
-        } else if (this.percentOrange > 20) {
+        } else if(this.percentage > 20) {
             return 1;
         } else {
             return 0;

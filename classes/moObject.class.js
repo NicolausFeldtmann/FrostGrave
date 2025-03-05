@@ -2,6 +2,7 @@ class MoObject extends DrawObjects{
 
     energy = 100;
     mana = 0;
+    jewel = 0;
     lasHit = 0;
     speed = 1;
     speedY = 0;
@@ -48,14 +49,21 @@ class MoObject extends DrawObjects{
     }
 
     gotMana() {
-        this.mana += 5; 
+        this.mana += 20; 
         console.log(this.mana);
         if (this.mana > 100) { 
-            this.mana = 100;
-            
-            
+            this.mana = 100; 
         } else {
             this.lastHit = new Date().getTime(); 
+        }
+    }
+
+    gotJewel() {
+        this.jewel += 20;
+        if (this.jewel > 100) {
+            this.jewel = 100;
+        } else {
+            this.lasHit = new Date().getTime();
         }
     }
 
