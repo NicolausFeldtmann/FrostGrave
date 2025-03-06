@@ -107,7 +107,6 @@ class Char extends MoObject{
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_SLASHING);
         this.loadImages(this.IMAGES_THROW);
-        this.mana = 0;
         this.alppyGravity();
         this.animate();
 

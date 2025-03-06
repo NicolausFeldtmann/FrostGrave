@@ -29,6 +29,7 @@ constructor(canvas, keyboard) {
             this.checkCollisions();
             this.checkCollMana();
             this.checkCollJewel();
+            this.checkHitFoe();
             this.checkThorw();
         }, 200)
     }
@@ -68,6 +69,17 @@ constructor(canvas, keyboard) {
                 this.orangeBar.setPercentage(this.char.jewel);
             }
         })
+    }
+
+    checkHitFoe() {
+        this.projectile.forEach((projectile) => {
+            this.level.enemies.forEach((enemy) => {
+                if (enemy.isColliding(projectile)) {
+                    console.log('HIT!');
+                    enemy.foeHurt();
+                }
+            });
+        });
     }
     
     draw() {

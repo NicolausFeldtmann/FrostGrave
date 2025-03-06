@@ -51,6 +51,7 @@ class Walker extends MoObject{
         setInterval (() => {
             if (this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
+                !this.moveLeft();
             } else {
                 this.moveLeft();
             }
