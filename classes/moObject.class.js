@@ -40,19 +40,10 @@ class MoObject extends DrawObjects{
                this.y < projectile.y + projectile.height;
     }
 
-    impact() {
-        this.energy -= 100;
-        if (this.energy < 0) {
-            this.energy = 0;
-        } else {
-            this.lasHit = new Date().getTime();
-        }
-    }
-
     gotHurt(){
         this.energy -= 5;
         if (this.energy < 0) {
-            this.energy = 0;
+            this.energy = 0;   
         } else {
             this.lasHit = new Date().getTime();
         }
@@ -62,6 +53,8 @@ class MoObject extends DrawObjects{
         this.energy -= 50;
         if (this.energy < 0) {
             this.energy = 0;
+            console.log(this.energy);
+            
         } else {
             this.lasHit = new Date().getTime();
         }
