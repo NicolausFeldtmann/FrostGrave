@@ -19,6 +19,8 @@ canvas{
     height: 100vh;
     display: flex;
     justify-content: center;
+    overflow: hidden;
+    position: fixed;
 }
 
 .backGrnImg{
@@ -40,7 +42,44 @@ canvas{
 }
 
 .starterImg{
-    width: 72px;
-    height: 72px;
+    width: 248px;
     position: absolute;
+}
+
+.char{
+    bottom: 30px;
+    left: 0px;
+}
+
+.walker{
+    bottom: 30px;
+    right: 0px;
+    transform: scaleX(-1);
+    rotate: 33deg;
+}
+
+.walker2{
+    bottom: 12px;
+    left: 155px;
+    transform: scaleX(-1);
+}
+
+.boss{
+    transform:  scaleX(-1);
+    width: 600px;
+    right: -336px;
+    rotate: -7deg;
+    bottom: 155px;
+}
+
+.effeck1{
+    bottom: 12px;
+    right: 94px;
+    width: 348px;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
