@@ -141,7 +141,7 @@ class Char extends MoObject{
                 this.playAnimation(this.IMAGES_THROW);
             }
             this.world.camera_x = -this.x + 100;
-        }, 1000 / 30);
+        }, 1000 / 50);
 
         setInterval(() => {
             if(this.isDeadAgain()) {

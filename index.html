@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
     <title>Frost Grave</title>
 
     <script src="/classes/drawObject.class.js"></script>
@@ -27,9 +32,9 @@
     <script src="levels/level1.js"></script>
     <script src="/js/game.js"></script>
 </head>
-<body onload="init()">
+<body onload="">
 
-    <div class="startScreen">
+    <div class="startScreen" id="startScreen">
         <h1 class="startH1">FROST GRAVE!</h1>
         <img class="backGrnImg" src="img/backgrounds/2/5.png">
 
@@ -58,6 +63,10 @@
         <img class="starterImg effeck1" src="img/effects/Explosion_8/Explosion_5.png">
         <img class="starterImg walker2" src="img/enemys/Zombie_Villager_2/PNG/PNG Sequences/Hurt/0_Zombie_Villager_Hurt_006.png">
         <img class="starterImg boss" src="img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_004.png">
+
+        <div class="btnBox">
+            <div class="btn" onclick="init()">Start Game!</div>
+        </div>
     </div>
 
     <h1>Frost Grave!</h1>

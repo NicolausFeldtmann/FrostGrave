@@ -5,13 +5,19 @@ backGrndMusic = new Audio('audio/backgroundMusic.mp3');
 //backGrndSound = new Audio('audio/backgroundAudio.mp3');
 
 function init() {
-
+    hideStartScreen();
+    startGame();
 }
 
-function starGame() {
-    //playAudio();
+function startGame() {
+    playAudio();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+}
+
+function hideStartScreen() {
+    let x = document.getElementById('startScreen');
+    x.classList.toggle('hideStart');
 }
 
 function playAudio() {
