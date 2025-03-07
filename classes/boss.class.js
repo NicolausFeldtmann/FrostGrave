@@ -78,7 +78,7 @@ class Boss extends MoObject {
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
             }
-        }, 60)
+        }, 100)
     }
 
 }

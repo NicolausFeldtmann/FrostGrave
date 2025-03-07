@@ -5,6 +5,10 @@ backGrndMusic = new Audio('audio/backgroundMusic.mp3');
 //backGrndSound = new Audio('audio/backgroundAudio.mp3');
 
 function init() {
+
+}
+
+function starGame() {
     //playAudio();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);

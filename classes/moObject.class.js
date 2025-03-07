@@ -53,8 +53,9 @@ class MoObject extends DrawObjects{
         this.energy -= 50;
         if (this.energy < 0) {
             this.energy = 0;
-            console.log(this.energy);
-            
+            setTimeout(() => {
+                this.playAnimation(this.IMAGES_DYING);
+            }, 100)
         } else {
             this.lasHit = new Date().getTime();
         }
@@ -62,7 +63,7 @@ class MoObject extends DrawObjects{
 
     isHurt() {
         let timePassed = new Date().getTime() - this.lasHit;
-        timePassed = timePassed / 1000
+        timePassed = timePassed / 500
         return timePassed < 1;
     }
 

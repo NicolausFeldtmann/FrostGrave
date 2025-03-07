@@ -43,30 +43,36 @@ constructor(canvas, keyboard) {
     }
 
     checkCollisions() {
-            this.level.enemies.forEach((enemy) => {
-                if(this.char.isColliding(enemy)) {
-                    this.char.gotHurt();
-                    this.statusBar.setPercentage(this.char.energy);
-                }
-        })
+        this.level.enemies.forEach((enemy, index) => {
+            if (enemy.isDeadAgain()) {
+                setTimeout(() => {
+                    this.level.enemies.splice(index, 1);
+                }, 200)
+            } else if (this.char.isColliding(enemy)) {
+                this.char.gotHurt();
+                this.statusBar.setPercentage(this.char.energy);
+            }
+        });
     }
 
     checkCollMana() {
-        this.level.mana.forEach((mana) => {
+        this.level.mana.forEach((mana , idx) => {
             if(this.char.isColliding(mana)) {
                 console.log('MANA!');
                 this.char.gotMana();
                 this.greenBar.setPercentage(this.char.mana);
+                this.level.mana.splice(idx, 1);
             }
         })
     }
 
     checkCollJewel() {
-        this.level.jewel.forEach((jewel) => {
+        this.level.jewel.forEach((jewel, idx) => {
             if (this.char.isColliding(jewel)) {
                 console.log('JEWEWL!');
                 this.char.gotJewel();
                 this.orangeBar.setPercentage(this.char.jewel);
+                this.level.jewel.splice(idx, 1);
             }
         })
     }

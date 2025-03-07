@@ -13,3 +13,34 @@ h1{
 canvas{
     background-color: black;
 }
+
+.startScreen{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.backGrnImg{
+    width: 100%;
+    height: 100%;
+}
+
+.startH1{
+    margin: 48px 0px 0px 0px;
+    position: absolute;
+}
+
+.instrucktions{
+    margin: 96px 0px 0px 0px;
+    width: 448px;
+    height: 200px;
+    background-color: aqua;
+    position: absolute;
+}
+
+.starterImg{
+    width: 72px;
+    height: 72px;
+    position: absolute;
+}
