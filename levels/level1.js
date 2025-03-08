@@ -1,4 +1,7 @@
-const level1 = new Level(
+let level1 
+
+function initLevel(){
+    level1 = new Level(
     [
         new Walker('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png'),
         new Walker('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png'),
@@ -80,4 +83,5 @@ const level1 = new Level(
         new Jewel('img/objects/shiny/5.png', 380),
         new Jewel('img/objects/shiny/5.png', 380),
     ],
-);
+    );
+};

@@ -6,6 +6,7 @@ backGrndMusic = new Audio('audio/backgroundMusic.mp3');
 
 function init() {
     hideStartScreen();
+    initLevel();
     startGame();
 }
 
@@ -22,7 +23,7 @@ function hideStartScreen() {
 
 function playAudio() {
     setTimeout(() => {
-        backGrndMusic.play();
+        //backGrndMusic.play();
         //backGrndSound.play();
     }, 500);
 }
