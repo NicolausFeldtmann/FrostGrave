@@ -5,7 +5,7 @@ class MoObject extends DrawObjects{
     jewel = 0;
     lasHit = 0;
     speed = 1;
-    speedY = 0;
+    speedY = 2.5;
     accel = 2.5;
     otherDirection = false;
     offset = {
@@ -63,7 +63,7 @@ class MoObject extends DrawObjects{
             this.energy = 0;
             setTimeout(() => {
                 this.playAnimation(this.IMAGES_DYING);
-            }, 100)
+            }, 500)
         } else {
             this.lasHit = new Date().getTime();
         }

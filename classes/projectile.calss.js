@@ -1,5 +1,12 @@
 class Projectile extends MoObject {
 
+    offset = {
+        top: 120,
+        left: 165,
+        right: 165,
+        bottom: 100,
+    };
+
     IMAGES_IMPACT = [
         'img/effects/Explosion_8/Explosion_1.png',
         'img/effects/Explosion_8/Explosion_2.png',
@@ -23,7 +30,7 @@ class Projectile extends MoObject {
         this.throw();
         this.spin();
     }
-
+    Projectile
     spin() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_IMPACT);

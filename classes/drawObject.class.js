@@ -19,7 +19,7 @@ class DrawObjects {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel) {
+        if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel || this instanceof Projectile) {
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'blue';
@@ -29,7 +29,7 @@ class DrawObjects {
     }
     
     drawHitFrame(ctx) {
-        if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel) {
+        if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel || this instanceof Projectile) {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'red';

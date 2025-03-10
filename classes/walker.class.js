@@ -1,7 +1,7 @@
 class Walker extends MoObject{
 
     x = 150;
-    speed = 2;
+    speed = 2.5;
     offset = {
         top: 35,
         left: 25,
@@ -65,13 +65,13 @@ class Walker extends MoObject{
         setInterval(() => {
             if (this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
-            } else if(this.isHurt()) {
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else {
                 this.walkLeft();
                 this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 60)
+        }, 1000 / 20)
     }
 
     walkLeft() {
