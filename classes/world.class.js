@@ -27,9 +27,6 @@ constructor(canvas, keyboard) {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkCollMana();
-            this.checkCollJewel();
-            this.checkHitFoe();
             this.checkThorw();
         }, 200)
     }
@@ -53,9 +50,18 @@ constructor(canvas, keyboard) {
                 this.statusBar.setPercentage(this.char.energy);
             }
         });
-    }
 
-    checkCollMana() {
+        this.level.boss.forEach((boss, index) => {
+            if (boss.isDeadAgain()) {
+                setTimeout(() => {
+                    this.level.boss.splice(index, 1);
+                }, 200)
+            } else if (this.char.isColliding(boss)) {
+                this.char.gotHurt();
+                this.statusBar.setPercentage(this.char.energy);
+            }
+        })
+
         this.level.mana.forEach((mana , idx) => {
             if(this.char.isColliding(mana)) {
                 console.log('MANA!');
@@ -63,10 +69,8 @@ constructor(canvas, keyboard) {
                 this.greenBar.setPercentage(this.char.mana);
                 this.level.mana.splice(idx, 1);
             }
-        })
-    }
+        });
 
-    checkCollJewel() {
         this.level.jewel.forEach((jewel, idx) => {
             if (this.char.isColliding(jewel)) {
                 console.log('JEWEWL!');
@@ -74,15 +78,20 @@ constructor(canvas, keyboard) {
                 this.orangeBar.setPercentage(this.char.jewel);
                 this.level.jewel.splice(idx, 1);
             }
-        })
-    }
+        });
 
-    checkHitFoe() {
         this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy.isColliding(projectile)) {
                     console.log('HIT!');
                     enemy.foeHurt();
+                }
+            });
+            
+            this.level.boss.forEach((boss) => {
+                if (boss.isColliding(projectile)) {
+                    console.log('HIT BOSS');
+                    boss.foeHurt();
                 }
             });
         });
@@ -96,6 +105,7 @@ constructor(canvas, keyboard) {
         this.addToMap(this.char);
         this.addObjToMap(this.level.clouds);
         this.addObjToMap(this.level.enemies);
+        this.addObjToMap(this.level.boss);
         this.addObjToMap(this.level.mana);
         this.addObjToMap(this.level.jewel);
         this.addObjToMap(this.level.frontObj);

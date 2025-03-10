@@ -117,7 +117,11 @@ class Boss extends MoObject {
             } else if (this.firstEncounter) {
                 if (this.x > 5040) {
                     this.playAnimation(this.IMAGES_SPAWNING);
-                    this.moveIn(); 
+                    this.moveIn();
+                } else if (this.isHurt()) {
+                    this.playAnimation(this.IMAGES_HURT);
+                } else if (this.isDeadAgain()) {
+                    this.playAnimation(this.IMAGES_DYING);
                 } else {
                     this.playAnimation(this.IMAGES_IDLE); 
                 }

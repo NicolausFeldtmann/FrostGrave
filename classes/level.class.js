@@ -1,5 +1,6 @@
 class Level {
     enemies;
+    boss;
     clouds;
     backgrounds;
     blueSky;
@@ -9,13 +10,13 @@ class Level {
     boss;
     level_end_x = 5040;
 
-    constructor(enemies, clouds, backgrounds, blueSky, frontObj, mana, jewel, boss) {
+    constructor(enemies, boss, clouds, backgrounds, blueSky, frontObj, mana, jewel,) {
         this.enemies = enemies;
+        this.boss = boss;
         this.clouds = clouds;
         this.backgrounds= backgrounds;
         this.blueSky = blueSky;
         this.frontObj = frontObj;
-        this.boss = boss;
         this.mana = mana;
         this.jewel = jewel;
     }

@@ -6,7 +6,7 @@ class MoObject extends DrawObjects{
     lasHit = 0;
     speed = 1;
     speedY = 0;
-    accel = 1.5;
+    accel = 2.5;
     otherDirection = false;
     offset = {
         top: 0,
@@ -76,7 +76,7 @@ class MoObject extends DrawObjects{
     }
 
     gotMana() {
-        this.mana += 20; 
+        this.mana += 21; 
         console.log(this.mana);
         if (this.mana > 100) { 
             this.mana = 100; 
@@ -86,7 +86,7 @@ class MoObject extends DrawObjects{
     }
 
     gotJewel() {
-        this.jewel += 20;
+        this.jewel += 21;
         if (this.jewel > 100) {
             this.jewel = 100;
         } else {
@@ -116,5 +116,5 @@ class MoObject extends DrawObjects{
     }
 
     jump() {
-        this.speedY = 25;
+        this.speedY = 35;
     }}
