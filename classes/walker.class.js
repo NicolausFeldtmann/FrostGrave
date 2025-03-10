@@ -71,7 +71,7 @@ class Walker extends MoObject{
                 this.walkLeft();
                 this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 1000 / 20)
+        }, 60)
     }
 
     walkLeft() {

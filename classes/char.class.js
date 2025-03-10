@@ -115,7 +115,6 @@ class Char extends MoObject{
         this.loadImages(this.IMAGES_THROW);
         this.alppyGravity();
         this.animate();
-
     }
 
     animate() {
@@ -147,7 +146,7 @@ class Char extends MoObject{
                 this.playAnimation(this.IMAGES_THROW);
             }
             this.world.camera_x = -this.x + 100;
-        }, 1000 / 30);
+        }, 30);
 
         setInterval(() => {
             if(this.isDeadAgain()) {
@@ -161,6 +160,6 @@ class Char extends MoObject{
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
-        }, 200)
+        }, 100)
     }    
 }

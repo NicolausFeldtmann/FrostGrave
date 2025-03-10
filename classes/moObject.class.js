@@ -6,7 +6,7 @@ class MoObject extends DrawObjects{
     lasHit = 0;
     speed = 1;
     speedY = 2.5;
-    accel = 2.5;
+    accel = 1.5;
     otherDirection = false;
     offset = {
         top: 0,
@@ -63,7 +63,7 @@ class MoObject extends DrawObjects{
             this.energy = 0;
             setTimeout(() => {
                 this.playAnimation(this.IMAGES_DYING);
-            }, 500)
+            }, 30)
         } else {
             this.lasHit = new Date().getTime();
         }
@@ -76,7 +76,7 @@ class MoObject extends DrawObjects{
     }
 
     gotMana() {
-        this.mana += 21; 
+        this.mana += 41; 
         console.log(this.mana);
         if (this.mana > 100) { 
             this.mana = 100; 
@@ -116,5 +116,5 @@ class MoObject extends DrawObjects{
     }
 
     jump() {
-        this.speedY = 35;
+        this.speedY = 25;
     }}

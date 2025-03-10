@@ -38,7 +38,7 @@ class Projectile extends MoObject {
     }
     
         throw () {
-        this.speedY = 30;
+        this.speedY = 25;
         this.alppyGravity();
         setInterval (() => {
             this.x += 12;
