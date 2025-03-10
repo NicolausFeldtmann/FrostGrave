@@ -8,6 +8,12 @@ class MoObject extends DrawObjects{
     speedY = 0;
     accel = 1.5;
     otherDirection = false;
+    offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    };
 
     alppyGravity() {
         setInterval(() => {
@@ -27,11 +33,13 @@ class MoObject extends DrawObjects{
     }
 
     isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
-    }
+        return (
+          this.x + this.width - this.offset.right >= mo.x + mo.offset.left &&
+          this.x + this.offset.left <= mo.x + mo.width - mo.offset.right &&
+          this.y + this.height - this.offset.bottom >= mo.y + mo.offset.top &&
+          this.y + this.offset.top <= mo.y + mo.height - mo.offset.bottom
+        );
+      }
 
     isColliding(projectile) {
         return this.x + this.width > projectile.x &&

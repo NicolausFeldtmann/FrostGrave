@@ -5,6 +5,12 @@ class Boss extends MoObject {
     y = 35;
     energy = 1000;
     speed = 2;
+        offset = {
+        top: 120,
+        left: 105,
+        right: 120,
+        bottom: 80, 
+    };
 
     IMAGES_IDLE = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png',

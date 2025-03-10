@@ -97,6 +97,12 @@ class Char extends MoObject{
     speed = 10;
     snow1 = new Audio('audio/snow1.mp3');
     snow2 = new Audio('audio/snow2.mp3');
+    offset = {
+        top: 35,
+        left: 25,
+        right: 25,
+        bottom: 25, 
+    };
 
 
     constructor() {
@@ -141,7 +147,7 @@ class Char extends MoObject{
                 this.playAnimation(this.IMAGES_THROW);
             }
             this.world.camera_x = -this.x + 100;
-        }, 1000 / 50);
+        }, 1000 / 30);
 
         setInterval(() => {
             if(this.isDeadAgain()) {

@@ -126,6 +126,7 @@ constructor(canvas, keyboard) {
         }
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+        mo.drawHitFrame(this.ctx);
 
         if(mo.otherDirection) {
             this.backFlip(mo);

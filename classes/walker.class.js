@@ -2,6 +2,12 @@ class Walker extends MoObject{
 
     x = 150;
     speed = 2;
+    offset = {
+        top: 35,
+        left: 25,
+        right: 25,
+        bottom: 25, 
+    };
 
     IMAGES_WALKING = [
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png',
