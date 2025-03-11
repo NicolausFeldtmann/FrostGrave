@@ -15,6 +15,27 @@ class Char extends MoObject{
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Running/0_Skeleton_Warrior_Running_011.png'
     ];
 
+    IMAGES_IDLE = [
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_000.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_001.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_002.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_003.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_004.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_005.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_006.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_007.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_008.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_009.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_010.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_011.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_012.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_013.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_014.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_015.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_016.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Idle Blinking/0_Skeleton_Warrior_Idle Blinking_017.png',
+    ];
+
     IMAGES_JUMPING = [
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Jump Start/0_Skeleton_Warrior_Jump Start_000.png',
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Jump Start/0_Skeleton_Warrior_Jump Start_001.png',
@@ -113,6 +134,7 @@ class Char extends MoObject{
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_SLASHING);
         this.loadImages(this.IMAGES_THROW);
+        this.loadImages(this.IMAGES_IDLE);
         this.alppyGravity();
         this.animate();
     }
@@ -155,10 +177,10 @@ class Char extends MoObject{
                 this.playAnimation(this.IMAGES_HURT);
             } else if(this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
-            } else {
-                if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT && this.isAboveGround()) {
+            } else if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT && this.isAboveGround()) {
                     this.playAnimation(this.IMAGES_WALKING);
-                }
+            } else {
+                this.playAnimation(this.IMAGES_IDLE);
             }
         }, 100)
     }    

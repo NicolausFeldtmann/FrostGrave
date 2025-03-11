@@ -143,3 +143,29 @@ canvas{
     opacity: 1;
     display: none;
 }
+
+.btnArea{
+    display: flex;
+    justify-content: space-around;
+}
+
+.btnLeft{
+    backdrop-filter: blur(5px);
+    border: solid 2px gray;
+    border-radius: 10px;
+}
+
+.btnRight{
+    backdrop-filter: blur(5px);
+    border: solid 2px gray;
+    border-radius: 10px;
+}
+
+.controllBtn{
+    width: 82px;
+    padding: 12px;
+    margin: 8px;
+    border: solid 2px gray;
+    border-radius: 55px;
+    background-color: #568d8f;
+}

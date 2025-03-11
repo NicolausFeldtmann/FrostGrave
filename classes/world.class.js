@@ -32,12 +32,12 @@ constructor(canvas, keyboard) {
     }
 
     checkThorw() {
-        if (this.keyboard.THROW && this.char.mana > 0) {  // Überprüfe, ob die Taste gedrückt wird und Mana verfügbar ist
+        if (this.keyboard.THROW && this.char.mana > 0) { 
             let projectile = new Projectile(this.char.x - 55, this.char.y);
             this.projectile.push(projectile);
-            this.char.mana -= 11; // Reduziere die Mana um einen bestimmten Betrag (hier 10, du kannst den Wert anpassen)
+            this.char.mana -= 11; 
             console.log('HADOUKEN!');
-            this.greenBar.setPercentage(this.char.mana); // Aktualisiere die grüne Leiste für Mana
+            this.greenBar.setPercentage(this.char.mana); 
         }
     }
 
@@ -88,7 +88,7 @@ constructor(canvas, keyboard) {
                     console.log('HIT!');
                     enemy.foeHurt();
                 }
-            });
+        });
             
             this.level.boss.forEach((boss) => {
                 if (boss.isColliding(projectile)) {

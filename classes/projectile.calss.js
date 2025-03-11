@@ -28,7 +28,7 @@ class Projectile extends MoObject {
         this.width = 250;
         this.height = 180;
         this.throw();
-        this.spin();
+        //this.spin();
     }
     Projectile
     spin() {
