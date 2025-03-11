@@ -27,6 +27,9 @@ constructor(canvas, keyboard) {
     run() {
         setInterval(() => {
             this.checkCollisions();
+            this.checkCollMana();
+            this.checkCollJewel();
+            this.checkGotHit();
             this.checkThorw();
         }, 200)
     }
@@ -63,7 +66,9 @@ constructor(canvas, keyboard) {
                 this.statusBar.setPercentage(this.char.energy);
             }
         })
+    }
 
+    checkCollMana() {
         this.level.mana.forEach((mana , idx) => {
             if(this.char.isColliding(mana)) {
                 console.log('MANA!');
@@ -72,7 +77,9 @@ constructor(canvas, keyboard) {
                 this.level.mana.splice(idx, 1);
             }
         });
+    };
 
+    checkCollJewel() {
         this.level.jewel.forEach((jewel, idx) => {
             if (this.char.isColliding(jewel)) {
                 console.log('JEWEWL!');
@@ -81,7 +88,9 @@ constructor(canvas, keyboard) {
                 this.level.jewel.splice(idx, 1);
             }
         });
+    }
 
+    checkGotHit() {
         this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy.isColliding(projectile)) {
