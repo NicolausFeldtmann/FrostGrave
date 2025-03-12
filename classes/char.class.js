@@ -124,6 +124,8 @@ class Char extends MoObject{
         right: 25,
         bottom: 25, 
     };
+    doSlash = false;
+    slashTimeout;
 
 
     constructor() {
@@ -162,6 +164,7 @@ class Char extends MoObject{
 
             if(this.world.keyboard.SLASH && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_SLASHING);
+                this.createHitbox();
             }
 
             if(this.world.keyboard.THROW && !this.isAboveGround()) {

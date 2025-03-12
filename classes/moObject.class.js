@@ -4,8 +4,8 @@ class MoObject extends DrawObjects{
     mana = 0;
     jewel = 0;
     lasHit = 0;
-    speed = 0.5;
-    speedY = 1.5;
+    speed = 0.15;
+    speedY = 0;
     accel = 1.5;
     otherDirection = false;
     offset = {
@@ -21,7 +21,7 @@ class MoObject extends DrawObjects{
                 this.y -= this.speedY;
                 this.speedY -= this.accel;
             }
-        }, 1000 / 50)
+        }, 1000 / 40)
     }
 
     isAboveGround() {
@@ -37,6 +37,13 @@ class MoObject extends DrawObjects{
             this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top;
+    }
+    
+    isColliding(projectile) {
+        return this.x + this.width > projectile.x &&
+               this.y + this.height > projectile.y &&
+               this.x < projectile.x + projectile.width &&
+               this.y < projectile.y + projectile.height;
     }
 
     gotHurt(){
@@ -106,4 +113,6 @@ class MoObject extends DrawObjects{
 
     jump() {
         this.speedY = 25;
-    }}
+    }
+}
+    

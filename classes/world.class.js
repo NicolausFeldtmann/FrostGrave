@@ -91,11 +91,11 @@ constructor(canvas, keyboard) {
     }
 
     checkGotHit() {
-        this.projectile.forEach((projectile, idx) => {
+        this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy.isColliding(projectile)) {
                     console.log('HIT!');
-                    this.enemy.foeHurt();
+                    enemy.foeHurt();
                 }
         });
             
@@ -148,6 +148,7 @@ constructor(canvas, keyboard) {
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
         mo.drawHitFrame(this.ctx);
+        mo.drawMeleFrame(this.ctx);
 
         if(mo.otherDirection) {
             this.backFlip(mo);

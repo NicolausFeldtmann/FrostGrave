@@ -38,6 +38,16 @@ class DrawObjects {
             }
     }
 
+    drawMeleFrame(ctx) {
+        if (this instanceof Char) {
+            ctx.beginPath();
+            ctx.lineWidth = '2';
+            ctx.strokeStyle = 'orange';
+            ctx.rect(this.x + this.offset.right, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.top - this.offset.bottom);
+            ctx.stroke();
+        }
+    }
+
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
