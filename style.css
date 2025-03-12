@@ -145,7 +145,7 @@ canvas{
 }
 
 .btnArea{
-    display: flex;
+    display: none;
     justify-content: space-around;
     width: 100%;
 }
@@ -170,6 +170,14 @@ canvas{
     -webkit-box-shadow: 12px 11px 19px 4px rgba(0,0,0,0.75);
     -moz-box-shadow: 12px 11px 19px 4px rgba(0,0,0,0.75);
     border-radius: 10px;
+    position: relative;
+    rotate: -35deg;
+    left: 148px;
+    top: -44px;
+}
+
+.right{
+    rotate: 35deg;
 }
 
 .controllBtn{
@@ -179,4 +187,35 @@ canvas{
     border: solid 2px gray;
     border-radius: 55px;
     background-color: #568d8f;
+}
+
+.mobileTurnScreen{
+    background-color: #1d1c1c;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.turnImg{
+    background-color: #568d8f;
+    width: 224px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.turnText{
+    font-size: 24px;
+}
+
+.turnIcon{
+    width: 148px;
+    padding: 24px;
 }

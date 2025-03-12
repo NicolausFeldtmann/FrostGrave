@@ -49,7 +49,7 @@ constructor(canvas, keyboard) {
             if (enemy.isDeadAgain()) {
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
-                }, 200)
+                }, 800)
             } else if (this.char.isColliding(enemy)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
@@ -60,7 +60,7 @@ constructor(canvas, keyboard) {
             if (boss.isDeadAgain()) {
                 setTimeout(() => {
                     this.level.boss.splice(index, 1);
-                }, 200)
+                }, 800)
             } else if (this.char.isColliding(boss)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
@@ -91,11 +91,11 @@ constructor(canvas, keyboard) {
     }
 
     checkGotHit() {
-        this.projectile.forEach((projectile) => {
+        this.projectile.forEach((projectile, idx) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy.isColliding(projectile)) {
                     console.log('HIT!');
-                    enemy.foeHurt();
+                    this.enemy.foeHurt();
                 }
         });
             
