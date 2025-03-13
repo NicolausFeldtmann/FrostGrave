@@ -11,6 +11,8 @@ class Boss extends MoObject {
         right: 120,
         bottom: 80, 
     };
+    hurt = new Audio('audio/bossPain.mp3');
+    melm = new Audio('audio/melm.mp3');
 
     IMAGES_IDLE = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png',
@@ -120,8 +122,10 @@ class Boss extends MoObject {
                     this.moveIn();
                 } else if (this.isHurt()) {
                     this.playAnimation(this.IMAGES_HURT);
+                    this.hurt.play();
                 } else if (this.isDeadAgain()) {
                     this.playAnimation(this.IMAGES_DYING);
+                    this.melm.play();
                 } else {
                     this.playAnimation(this.IMAGES_IDLE); 
                 }

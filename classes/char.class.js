@@ -118,6 +118,9 @@ class Char extends MoObject{
     speed = 10;
     snow1 = new Audio('audio/snow1.mp3');
     snow2 = new Audio('audio/snow2.mp3');
+    slashSound = new Audio('audio/slash.mp3');
+    ouch = new Audio('audio/heroDying.mp3');
+
     offset = {
         top: 35,
         left: 25,
@@ -164,7 +167,7 @@ class Char extends MoObject{
 
             if(this.world.keyboard.SLASH && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_SLASHING);
-                this.createHitbox();
+                this.slashSound.play();
             }
 
             if(this.world.keyboard.THROW && !this.isAboveGround()) {
@@ -176,6 +179,7 @@ class Char extends MoObject{
         setInterval(() => {
             if(this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
+                this.ouch.play();
             } else if(this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if(this.isAboveGround()) {

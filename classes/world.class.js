@@ -10,6 +10,8 @@ class World {
     greenBar = new GreenBar();
     orangeBar = new OrangeBar();
     projectile = [];
+    spell = new Audio('audio/spell.mp3');
+    crystal = new Audio('audio/crystal.mp3');
 
 constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -40,6 +42,7 @@ constructor(canvas, keyboard) {
             this.projectile.push(projectile);
             this.char.mana -= 11; 
             console.log('HADOUKEN!');
+            this.spell.play();
             this.greenBar.setPercentage(this.char.mana); 
         }
     }
@@ -72,6 +75,7 @@ constructor(canvas, keyboard) {
         this.level.mana.forEach((mana , idx) => {
             if(this.char.isColliding(mana)) {
                 console.log('MANA!');
+                this.crystal.play();
                 this.char.gotMana();
                 this.greenBar.setPercentage(this.char.mana);
                 this.level.mana.splice(idx, 1);
@@ -83,6 +87,7 @@ constructor(canvas, keyboard) {
         this.level.jewel.forEach((jewel, idx) => {
             if (this.char.isColliding(jewel)) {
                 console.log('JEWEWL!');
+                this.crystal.play();
                 this.char.gotJewel();
                 this.orangeBar.setPercentage(this.char.jewel);
                 this.level.jewel.splice(idx, 1);

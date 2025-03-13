@@ -8,6 +8,7 @@ class Walker extends MoObject{
         right: 25,
         bottom: 25, 
     };
+    hurt = new Audio('audio/gotHrut.mp3');
 
     IMAGES_WALKING = [
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png',
@@ -67,6 +68,7 @@ class Walker extends MoObject{
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                this.hurt.play();
             } else {
                 this.walkLeft();
                 this.playAnimation(this.IMAGES_WALKING);
