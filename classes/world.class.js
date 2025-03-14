@@ -32,6 +32,7 @@ constructor(canvas, keyboard) {
             this.checkCollMana();
             this.checkCollJewel();
             this.checkGotHit();
+            this.checkImpact();
             this.checkThorw();
         }, 200)
     }
@@ -69,6 +70,24 @@ constructor(canvas, keyboard) {
                 this.statusBar.setPercentage(this.char.energy);
             }
         })
+    }
+
+    checkImpact() {
+        this.projectile.forEach((projectile, proIdx) => {
+            this.level.enemies.forEach((enemy) => {
+                if (enemy.isColliding(projectile)) {
+                    projectile.impact();
+                    this.removeProjectile(); 
+                }
+            });
+    
+            this.level.boss.forEach((boss) => {
+                if (boss.isColliding(projectile)) {
+                    projectile.impact();
+                    this.removeProjectile();
+                }
+            });
+        });
     }
 
     checkCollMana() {
@@ -170,5 +189,11 @@ constructor(canvas, keyboard) {
     backFlip(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
+    }
+
+    removeProjectile(proIdx) {
+        setTimeout(() => {
+            this.projectile.splice(proIdx, 1);
+        }, 500);
     }
 }

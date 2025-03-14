@@ -13,6 +13,7 @@ class Boss extends MoObject {
     };
     hurt = new Audio('audio/bossPain.mp3');
     melm = new Audio('audio/melm.mp3');
+    bossTheme = new Audio('audio/bossMusic.mp3');
 
     IMAGES_IDLE = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png',
@@ -137,6 +138,7 @@ class Boss extends MoObject {
     moveIn() {
         if (this.x > 5040) {
             this.x -= this.speed;
+            this.bossTheme.play();
         }
     }
 }
