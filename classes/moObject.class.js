@@ -8,12 +8,6 @@ class MoObject extends DrawObjects{
     speedY = 0;
     accel = 1.5;
     otherDirection = false;
-    offset = {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-    };
 
     alppyGravity() {
         this.gravityInterval = setInterval(() => {
@@ -40,7 +34,7 @@ class MoObject extends DrawObjects{
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
         );
     }
-    
+
     isColliding(projectile) {
         return this.x + this.width > projectile.x &&
                this.y + this.height > projectile.y &&
@@ -58,10 +52,9 @@ class MoObject extends DrawObjects{
     }
 
     foeHurt() {
-        this.energy -= 50;
+        this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
-
         } else {
             this.lasHit = new Date().getTime();
         }

@@ -28,7 +28,8 @@ constructor(canvas, keyboard) {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollEnemys();
+            this.checkCollBoss();
             this.checkCollMana();
             this.checkCollJewel();
             this.checkGotHit();
@@ -48,7 +49,7 @@ constructor(canvas, keyboard) {
         }
     }
 
-    checkCollisions() {
+    checkCollEnemys() {
         this.level.enemies.forEach((enemy, index) => {
             if (enemy.isDeadAgain()) {
                 setTimeout(() => {
@@ -59,7 +60,9 @@ constructor(canvas, keyboard) {
                 this.statusBar.setPercentage(this.char.energy);
             }
         });
+    }
 
+    checkCollBoss() {
         this.level.boss.forEach((boss, index) => {
             if (boss.isDeadAgain()) {
                 setTimeout(() => {
@@ -73,21 +76,7 @@ constructor(canvas, keyboard) {
     }
 
     checkImpact() {
-        this.projectile.forEach((projectile, proIdx) => {
-            this.level.enemies.forEach((enemy) => {
-                if (enemy.isColliding(projectile)) {
-                    projectile.impact();
-                    this.removeProjectile(); 
-                }
-            });
-    
-            this.level.boss.forEach((boss) => {
-                if (boss.isColliding(projectile)) {
-                    projectile.impact();
-                    this.removeProjectile();
-                }
-            });
-        });
+
     }
 
     checkCollMana() {
