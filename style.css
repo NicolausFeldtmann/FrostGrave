@@ -24,6 +24,17 @@ canvas{
     position: fixed;
 }
 
+.gameOverScreen{
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 20;
+    background-color: #2c353d;
+}
+
 .backGrnImg{
     width: 100%;
     height: 100%;
@@ -35,6 +46,15 @@ canvas{
     margin: 28px 0px 0px 0px;
     position: absolute;
     font-size: 48px;
+    background: radial-gradient(at 76.67025862068965% 24.791666666666668%, #2740e2 0px, transparent 50%), radial-gradient(at 73.97629310344827% 71.25%, #000000 0px, transparent 50%), radial-gradient(at 34.428879310344826% 20.208333333333332%, #cde5ff 0px, transparent 50%), radial-gradient(at 12.661637931034484% 77.5%, #3b4a6b 0px, transparent 50%), #09203f;
+    background-clip: text;
+    color: transparent;
+}
+
+.gameOver{
+    margin: 28px 0px 0px 0px;
+    position: absolute;
+    font-size: 88px;
     background: radial-gradient(at 76.67025862068965% 24.791666666666668%, #2740e2 0px, transparent 50%), radial-gradient(at 73.97629310344827% 71.25%, #000000 0px, transparent 50%), radial-gradient(at 34.428879310344826% 20.208333333333332%, #cde5ff 0px, transparent 50%), radial-gradient(at 12.661637931034484% 77.5%, #3b4a6b 0px, transparent 50%), #09203f;
     background-clip: text;
     color: transparent;
@@ -142,6 +162,11 @@ canvas{
 .hideStart{
     opacity: 1;
     display: none;
+}
+
+.showGameOver{
+    opacity: 1;
+    display: flex;
 }
 
 .btnArea{

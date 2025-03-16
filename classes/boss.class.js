@@ -15,6 +15,21 @@ class Boss extends MoObject {
     melm = new Audio('audio/melm.mp3');
     bossTheme = new Audio('audio/bossMusic.mp3');
 
+    IMAGES_SLAY = [
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_001.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_002.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_003.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_004.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_005.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_006.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_007.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_008.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_009.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_010.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_011.png',
+    ];
+
     IMAGES_IDLE = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_001.png',
@@ -104,6 +119,7 @@ class Boss extends MoObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_SPAWNING)
+        this.loadImages(this.IMAGES_SLAY);
         this.animate();
         this.x = 5500;
         this.otherDirection = true;
@@ -111,10 +127,9 @@ class Boss extends MoObject {
 
     animate() {
         let i = 0;
-        setInterval(() => {
+        this.reanimateInterval = setInterval(() => {
             if (!this.firstEncounter && world.char.x > 4440) {
                 this.firstEncounter = true; 
-                console.log('encounter!'); 
                 this.playAnimation(this.IMAGES_SPAWNING); 
                 i = 0; 
             } else if (this.firstEncounter) {
@@ -127,8 +142,36 @@ class Boss extends MoObject {
                 } else if (this.isDeadAgain()) {
                     this.playAnimation(this.IMAGES_DYING);
                     this.melm.play();
+                    clearInterval(this.reanimateInterval);
                 } else {
                     this.playAnimation(this.IMAGES_IDLE); 
+                }
+                i++;
+            }
+        }, 60);
+    }
+
+    fight() {
+        let i = 0;
+        this.reanimateInterval = setInterval(() => {
+            if (!this.firstEncounter && world.char.x > 4440) {
+                this.firstEncounter = true; 
+                this.playAnimation(this.IMAGES_SPAWNING); 
+                i = 0; 
+            } else if (this.firstEncounter) {
+                if (this.x > 5040) {
+                    this.playAnimation(this.IMAGES_SPAWNING);
+                    this.moveIn();
+                } else if (this.isHurt()) {
+                    this.playAnimation(this.IMAGES_HURT);
+                    this.hurt.play();
+                } else if (this.isDeadAgain()) {
+                    this.playAnimation(this.IMAGES_DYING);
+                    this.melm.play();
+                    clearInterval(this.reanimateInterval);
+                } else {
+                    this.playAnimation(this.IMAGES_SLAY);
+                    this.walk ();
                 }
                 i++;
             }
@@ -140,5 +183,10 @@ class Boss extends MoObject {
             this.x -= this.speed;
             this.bossTheme.play();
         }
+    }
+
+    walk(){
+        this.x -= 50;
+        this.playAnimation(this.IMAGES_SPAWNING);
     }
 }

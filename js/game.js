@@ -21,6 +21,11 @@ function hideStartScreen() {
     x.classList.toggle('hideStart');
 }
 
+function showGameUver() {
+    let x = document.getElementById('gameOverScreen');
+    x.classList.toggle('showGameOver');
+}
+
 function playAudio() {
     setTimeout(() => {
         //backGrndMusic.play();

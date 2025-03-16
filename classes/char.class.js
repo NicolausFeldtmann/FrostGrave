@@ -119,7 +119,7 @@ class Char extends MoObject{
     snow1 = new Audio('audio/snow1.mp3');
     snow2 = new Audio('audio/snow2.mp3');
     slashSound = new Audio('audio/slash.mp3');
-    ouch = new Audio('audio/heroDying.mp3');
+    ouch = new Audio('audio/wilhelm.mp3');
 
     offset = {
         top: 35,

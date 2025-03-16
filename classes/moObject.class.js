@@ -125,6 +125,10 @@ class MoObject extends DrawObjects{
         return this.energy == 0;
     }
 
+    gameOver() {
+        showGameOver();
+    }
+
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
