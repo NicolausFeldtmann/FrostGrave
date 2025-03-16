@@ -1,5 +1,6 @@
 class MoObject extends DrawObjects{
 
+    world;
     energy = 100;
     mana = 0;
     jewel = 0;
@@ -7,7 +8,13 @@ class MoObject extends DrawObjects{
     speed = 0.15;
     speedY = 0;
     accel = 1.5;
+    CoolDown = false;
     otherDirection = false;
+
+    constructor(world) {
+        super();
+        this.world = world;
+    }
 
     alppyGravity() {
         this.gravityInterval = setInterval(() => {
@@ -44,10 +51,28 @@ class MoObject extends DrawObjects{
         );
     }
 
+    isColliding(mele) {
+        return (
+            this.x + this.offset.left < mele.x + mele.width - mele.offset.right &&
+            this.x + this.width - this.offset.right > mele.x + mele.offset.left &&
+            this.y + this.offset.top < mele.y + mele.height - mele.offset.bottom &&
+            this.y + this.height - this.offset.bottom > mele.y + mele.offset.top
+        );
+    }
+
     gotHurt(){
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;   
+        } else {
+            this.lasHit = new Date().getTime();
+        }
+    }
+
+    gotSlashed() {
+        this.energy -= 25;
+        if (this.energy < 0) {
+            this.energy = 0;
         } else {
             this.lasHit = new Date().getTime();
         }
@@ -59,7 +84,16 @@ class MoObject extends DrawObjects{
             this.energy = 0;
         } else {
             this.lasHit = new Date().getTime();
+            this.beCool();
         }
+    }
+
+    beCool() {
+        this.CoolDown = true;
+        console.log('BE COOL!');
+        setTimeout(() => {
+            this.CoolDown = false;
+        }, 500);
     }
 
     isHurt() {
@@ -111,5 +145,13 @@ class MoObject extends DrawObjects{
     jump() {
         this.speedY = 25;
     }
+
+    slash() {
+        console.log('SLASH');
+        this.world.checkMele();
+    }
+
+    bounceBack() {
+        this.x += 75;
+    }
 }
-    

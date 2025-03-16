@@ -10,6 +10,8 @@ class World {
     greenBar = new GreenBar();
     orangeBar = new OrangeBar();
     projectile = [];
+    lastMeleTime = 0; // Zeit, wann die letzte Melee-Attacke ausgeführt wurde
+    meleeCooldown = 500;
     spell = new Audio('audio/spell.mp3');
     crystal = new Audio('audio/crystal.mp3');
 
@@ -35,6 +37,7 @@ constructor(canvas, keyboard) {
             this.checkGotHit();
             this.checkImpact();
             this.checkThorw();
+            this.checkMele();
         }, 200)
     }
 
@@ -90,6 +93,16 @@ constructor(canvas, keyboard) {
                     this.removeProjectile();
                 }
             });
+        });
+    }
+
+    checkMele() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.char.isColliding(enemy)) {
+                console.log('MELEE HIT!');
+                enemy.gotSlashed();
+                enemy.bounceBack(); 
+            }
         });
     }
 
