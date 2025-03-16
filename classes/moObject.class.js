@@ -36,10 +36,12 @@ class MoObject extends DrawObjects{
     }
 
     isColliding(projectile) {
-        return this.x + this.width > projectile.x &&
-               this.y + this.height > projectile.y &&
-               this.x < projectile.x + projectile.width &&
-               this.y < projectile.y + projectile.height;
+        return (
+            this.x + this.width - this.offset.right > projectile.x + projectile.offset.left &&
+            this.y + this.height - this.offset.bottom > projectile.y + projectile.offset.top &&
+            this.x + this.offset.left < projectile.x + projectile.width - projectile.offset.right &&
+            this.y + this.offset.top < projectile.y + projectile.height - projectile.offset.bottom
+        );
     }
 
     gotHurt(){
@@ -52,7 +54,7 @@ class MoObject extends DrawObjects{
     }
 
     foeHurt() {
-        this.energy -= 5;
+        this.energy -= 50;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

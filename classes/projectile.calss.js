@@ -5,10 +5,10 @@ class Projectile extends MoObject {
     speddy = 30;
     speedx = 20;
     offset = {
-        top: 120,
-        left: 165,
-        right: 165,
-        bottom: 100,
+        top: 80,
+        left: 100,
+        right: 100,
+        bottom: 40,
     };
     boom = new Audio('audio/boom2.mp3');
 

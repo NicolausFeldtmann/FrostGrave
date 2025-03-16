@@ -76,7 +76,21 @@ constructor(canvas, keyboard) {
     }
 
     checkImpact() {
-
+        this.projectile.forEach((projectile) => {
+            this.level.enemies.forEach((enemy) => {
+                if (enemy.isColliding(projectile)) {
+                    projectile.impact();
+                    this.removeProjectile(); 
+                }
+            });
+    
+            this.level.boss.forEach((boss) => {
+                if (boss.isColliding(projectile)) {
+                    projectile.impact();
+                    this.removeProjectile();
+                }
+            });
+        });
     }
 
     checkCollMana() {
