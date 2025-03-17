@@ -142,7 +142,9 @@ class Boss extends MoObject {
                 } else if (this.isDeadAgain()) {
                     this.playAnimation(this.IMAGES_DYING);
                     this.melm.play();
-                    clearInterval(this.reanimateInterval);
+                    setTimeout(() => {
+                        clearInterval(this.reanimateInterval);
+                    }, 500)
                 } else {
                     this.playAnimation(this.IMAGES_IDLE); 
                 }
@@ -168,7 +170,9 @@ class Boss extends MoObject {
                 } else if (this.isDeadAgain()) {
                     this.playAnimation(this.IMAGES_DYING);
                     this.melm.play();
-                    clearInterval(this.reanimateInterval);
+                    setTimeout(() => {
+                        clearInterval(this.reanimateInterval);
+                    }, 500)
                 } else {
                     this.playAnimation(this.IMAGES_SLAY);
                     this.walk ();

@@ -21,7 +21,7 @@ function hideStartScreen() {
     x.classList.toggle('hideStart');
 }
 
-function showGameUver() {
+function showGameOver() {
     let x = document.getElementById('gameOverScreen');
     x.classList.toggle('showGameOver');
 }
