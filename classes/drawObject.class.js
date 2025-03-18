@@ -1,4 +1,5 @@
 class DrawObjects {
+    
     img;
     imgCache = {};
     currentImage = 0;

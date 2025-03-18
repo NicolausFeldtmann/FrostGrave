@@ -176,7 +176,9 @@ canvas{
 
 .btnArea{
     display: none;
-    justify-content: space-around;
+    justify-content: center;
+    top: 218px;
+    position: relative;
     width: 100%;
 }
 
@@ -215,7 +217,7 @@ canvas{
 }
 
 .controllBtn{
-    width: 82px;
+    width: 28px;
     padding: 12px;
     margin: 8px;
     border: solid 2px gray;

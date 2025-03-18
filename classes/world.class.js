@@ -10,7 +10,7 @@ class World {
     greenBar = new GreenBar();
     orangeBar = new OrangeBar();
     projectile = [];
-    lastMeleTime = 0; // Zeit, wann die letzte Melee-Attacke ausgeführt wurde
+    lastMeleTime = 0; 
     meleeCooldown = 500;
     spell = new Audio('audio/spell.mp3');
     crystal = new Audio('audio/crystal.mp3');
@@ -22,6 +22,7 @@ constructor(canvas, keyboard) {
     this.draw();
     this.setWorld();
     this.run();
+    this.runSlow();
 }
 
     setWorld() {
@@ -30,14 +31,19 @@ constructor(canvas, keyboard) {
 
     run() {
         this.runInterval = setInterval(() => {
-            this.checkCollEnemys();
-            this.checkCollBoss();
             this.checkCollMana();
             this.checkCollJewel();
             this.checkGotHit();
             this.checkImpact();
             this.checkThorw();
         }, 100)
+    }
+
+    runSlow() {
+        this.slowInterval = setInterval(() => {
+            this.checkCollEnemys();
+            this.checkCollBoss();
+        }, 400)
     }
 
     checkThorw() {
@@ -56,7 +62,7 @@ constructor(canvas, keyboard) {
             if (enemy.isDeadAgain()) {
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
-                }, 800)
+                }, 400)
             } else if (this.char.isCollidingMo(enemy)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
