@@ -5,6 +5,32 @@
     }
 }
 
+@media (max-height: 660px) {
+
+    .starterImg{
+        width: 128px;
+    }
+
+    .boss{
+        right: 8px;
+        width: 228px;
+    }
+}
+
+@media (max-height: 450px) {
+
+    .instrucktions {
+        height: 164px;
+    }
+
+    .letterBox{
+        margin: 4px 8px 4px 8px;
+        font-size: 16px;
+    }
+
+    p{margin: 0px;}
+}
+
 @media (max-height: 415px) {
 
     .btnArea{

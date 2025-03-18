@@ -29,7 +29,7 @@ constructor(canvas, keyboard) {
     }
 
     run() {
-        setInterval(() => {
+        this.runInterval = setInterval(() => {
             this.checkCollEnemys();
             this.checkCollBoss();
             this.checkCollMana();
@@ -37,7 +37,6 @@ constructor(canvas, keyboard) {
             this.checkGotHit();
             this.checkImpact();
             this.checkThorw();
-            this.checkMele();
         }, 200)
     }
 
@@ -211,5 +210,9 @@ constructor(canvas, keyboard) {
         setTimeout(() => {
             this.projectile.splice(proIdx, 1);
         }, 500);
+    }
+
+    endGame() {
+        clearInterval(this.runInterval);
     }
 }

@@ -13,6 +13,11 @@ h1{
 
 canvas{
     background-color: black;
+    display: none;
+}
+
+.showCanvas{
+    display: flex;
 }
 
 .startScreen{
@@ -173,6 +178,10 @@ canvas{
     display: none;
     justify-content: space-around;
     width: 100%;
+}
+
+.showBtn{
+    display: flex;
 }
 
 .btnLeft{

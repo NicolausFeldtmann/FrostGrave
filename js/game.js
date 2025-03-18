@@ -14,6 +14,18 @@ function startGame() {
     playAudio();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    showCanvas();
+    showMobileBtn();
+}
+
+function showCanvas() {
+    let x = document.getElementById('canvas');
+    x.classList.toggle('showCanvas');
+}
+
+function showMobileBtn() {
+    let x = document.getElementById('btnArea');
+    x.classList.toggle('showBtn');
 }
 
 function hideStartScreen() {

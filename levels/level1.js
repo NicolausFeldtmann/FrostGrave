@@ -78,12 +78,12 @@ function initLevel(){
         new Mana('img/objects/shiny/8.png', 380),
     ],
     [
-        new Jewel('img/objects/shiny/5.png', 380),
-        new Jewel('img/objects/shiny/5.png', 380),
-        new Jewel('img/objects/shiny/5.png', 380),
-        new Jewel('img/objects/shiny/5.png', 380),
-        new Jewel('img/objects/shiny/5.png', 380),
-        new Jewel('img/objects/shiny/5.png', 380),
+        new Jewel('img/objects/shiny/15.png', 250),
+        new Jewel('img/objects/shiny/15.png', 250),
+        new Jewel('img/objects/shiny/15.png', 250),
+        new Jewel('img/objects/shiny/15.png', 250),
+        new Jewel('img/objects/shiny/15.png', 250),
+        new Jewel('img/objects/shiny/15.png', 250),
     ],
     );
 };
