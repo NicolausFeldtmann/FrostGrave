@@ -15,6 +15,19 @@ class Boss extends MoObject {
     melm = new Audio('audio/melm.mp3');
     bossTheme = new Audio('audio/bossMusic.mp3');
 
+    IMAGES_START_ATTACK = [
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_009.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_010.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_011.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
+        
+    ];
+
     IMAGES_SLAY = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_001.png',
@@ -120,7 +133,8 @@ class Boss extends MoObject {
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_SPAWNING)
         this.loadImages(this.IMAGES_SLAY);
-        this.animate();
+        this.loadImages(this.IMAGES_START_ATTACK);
+        this.fight();
         this.x = 5500;
         this.otherDirection = true;
     }
@@ -170,8 +184,11 @@ class Boss extends MoObject {
                     this.melm.play();
                     clearInterval(this.reanimateInterval);
                 } else {
-                    this.playAnimation(this.IMAGES_SLAY);
-                    this.walk ();
+                    this.attack();
+                    setTimeout(() => {
+                        clearInterval(this.attackInterval);
+                        this.walk();
+                    }, 1000);
                 }
                 i++;
             }
@@ -181,12 +198,23 @@ class Boss extends MoObject {
     moveIn() {
         if (this.x > 5040) {
             this.x -= this.speed;
-            this.bossTheme.play();
+            //this.bossTheme.play();
         }
     }
 
+    attack() {
+        this.attackInterval = setInterval(() => {
+            this.playAnimation(this.IMAGES_START_ATTACK);
+            setTimeout(() => {
+                this.playAnimation(this.IMAGES_SLAY);
+            }, 1000);
+        }, 800);
+    }
+ 
     walk(){
-        this.x -= 50;
+        this.x -= 10;
+        this.x -= this.speed;
         this.playAnimation(this.IMAGES_SPAWNING);
+        this.fight();
     }
 }

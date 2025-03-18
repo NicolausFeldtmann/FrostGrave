@@ -33,7 +33,7 @@ class MoObject extends DrawObjects{
        }
     }
 
-    isColliding(mo) {
+    isCollidingMo(mo) {
         return (
             this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -42,7 +42,7 @@ class MoObject extends DrawObjects{
         );
     }
 
-    isColliding(projectile) {
+    isCollidingPro(projectile) {
         return (
             this.x + this.width - this.offset.right > projectile.x + projectile.offset.left &&
             this.y + this.height - this.offset.bottom > projectile.y + projectile.offset.top &&
@@ -51,7 +51,7 @@ class MoObject extends DrawObjects{
         );
     }
 
-    isColliding(mele) {
+    isCollidingMele(mele) {
         return (
             this.x + this.offset.left < mele.x + mele.width - mele.offset.right &&
             this.x + this.width - this.offset.right > mele.x + mele.offset.left &&

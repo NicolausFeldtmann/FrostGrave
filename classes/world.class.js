@@ -37,7 +37,7 @@ constructor(canvas, keyboard) {
             this.checkGotHit();
             this.checkImpact();
             this.checkThorw();
-        }, 200)
+        }, 100)
     }
 
     checkThorw() {
@@ -57,7 +57,7 @@ constructor(canvas, keyboard) {
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
                 }, 800)
-            } else if (this.char.isColliding(enemy)) {
+            } else if (this.char.isCollidingMo(enemy)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
             }
@@ -70,7 +70,7 @@ constructor(canvas, keyboard) {
                 setTimeout(() => {
                     this.level.boss.splice(index, 1);
                 }, 800)
-            } else if (this.char.isColliding(boss)) {
+            } else if (this.char.isCollidingMo(boss)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
             }
@@ -80,14 +80,14 @@ constructor(canvas, keyboard) {
     checkImpact() {
         this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
-                if (enemy.isColliding(projectile)) {
+                if (enemy.isCollidingPro(projectile)) {
                     projectile.impact();
                     this.removeProjectile(); 
                 }
             });
     
             this.level.boss.forEach((boss) => {
-                if (boss.isColliding(projectile)) {
+                if (boss.isCollidingPro(projectile)) {
                     projectile.impact();
                     this.removeProjectile();
                 }
@@ -97,7 +97,7 @@ constructor(canvas, keyboard) {
 
     checkMele() {
         this.level.enemies.forEach((enemy) => {
-            if (this.char.isColliding(enemy)) {
+            if (this.char.isCollidingMele(enemy)) {
                 console.log('MELEE HIT!');
                 enemy.gotSlashed();
                 enemy.bounceBack(); 
@@ -107,7 +107,7 @@ constructor(canvas, keyboard) {
 
     checkCollMana() {
         this.level.mana.forEach((mana , idx) => {
-            if(this.char.isColliding(mana)) {
+            if(this.char.isCollidingMo(mana)) {
                 console.log('MANA!');
                 this.crystal.play();
                 this.char.gotMana();
@@ -119,7 +119,7 @@ constructor(canvas, keyboard) {
 
     checkCollJewel() {
         this.level.jewel.forEach((jewel, idx) => {
-            if (this.char.isColliding(jewel)) {
+            if (this.char.isCollidingMo(jewel)) {
                 console.log('JEWEWL!');
                 this.crystal.play();
                 this.char.gotJewel();
@@ -132,14 +132,14 @@ constructor(canvas, keyboard) {
     checkGotHit() {
         this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
-                if (enemy.isColliding(projectile)) {
+                if (enemy.isCollidingPro(projectile)) {
                     console.log('HIT!');
                     enemy.foeHurt();
                 }
         });
             
             this.level.boss.forEach((boss) => {
-                if (boss.isColliding(projectile)) {
+                if (boss.isCollidingPro(projectile)) {
                     console.log('HIT BOSS');
                     boss.foeHurt();
                 }

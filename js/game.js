@@ -15,7 +15,7 @@ function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     showCanvas();
-    showMobileBtn();
+    //showMobileBtn();
 }
 
 function showCanvas() {
