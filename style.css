@@ -1,19 +1,25 @@
 body{
     margin: 0;
-    background: url('img/backgrounds/4/5.png');
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: creepster;
 }
 
+.fullscreen{
+    width: 100%;
+}
+
 h1{
     margin: 0;
+    position: absolute;
+    top: 64px;
 }
 
 canvas{
     background-color: black;
     display: none;
+    position: absolute;
 }
 
 .showCanvas{
@@ -22,11 +28,23 @@ canvas{
 
 .startScreen{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     overflow: hidden;
-    position: fixed;
+    position: absolute;
+    z-index: 1;
+}
+
+.gameScreen{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
 }
 
 .gameOverScreen{
@@ -43,7 +61,6 @@ canvas{
 .backGrnImg{
     width: 100%;
     height: 100%;
-    position: absolute;
     z-index: -1;
 }
 
@@ -272,4 +289,12 @@ canvas{
 
 .optImg{
     width: 80px;
+}
+
+.btnSmallScreen{
+    display: none;
+}
+
+.btnShow{
+    display: flex;
 }

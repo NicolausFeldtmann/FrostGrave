@@ -18,21 +18,6 @@ function startGame() {
     //showMobileBtn();
 }
 
-function showCanvas() {
-    let x = document.getElementById('canvas');
-    x.classList.toggle('showCanvas');
-}
-
-function showMobileBtn() {
-    let x = document.getElementById('btnArea');
-    x.classList.toggle('showBtn');
-}
-
-function hideStartScreen() {
-    let x = document.getElementById('startScreen');
-    x.classList.toggle('hideStart');
-}
-
 function showGameOver() {
     let x = document.getElementById('gameOverScreen');
     x.classList.toggle('showGameOver');
@@ -43,21 +28,6 @@ function playAudio() {
         //backGrndMusic.play();
         //backGrndSound.play();
     }, 500);
-}
-
-function fullscreen() {
-    let fullScreen = document.getElementById('fullscreen');
-    showFullscreen(fullScreen);
-}
-
-function showFullscreen(element) {
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
-    }
 }
 
 window.addEventListener('keydown', (e) => {
