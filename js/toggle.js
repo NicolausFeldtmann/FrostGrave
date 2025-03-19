@@ -12,22 +12,30 @@ function hideStartScreen() {
     let x = document.getElementById('startScreen');
     let y = document.getElementById('gameScreen');
     x.classList.toggle('hideStart');
-    x.classList.toggle('showGame');
+    y.classList.toggle('showGame');
 }
 
 function toggleBtn() {
-    let x = document.getElementsByClassName('btnSmallScreen');
-    x.classList.toggle('btnShow');
+    let x = document.getElementById('btnFullStart');
+    let y = document.getElementById('btnSmallStart');
+    let i = document.getElementById('btnFullGame');
+    let e = document.getElementById('btnSmallGame');
+    x.classList.toggle('btnHide');
+    y.classList.toggle('btnShow');
+    i.classList.toggle('btnHide');
+    e.classList.toggle('btnShow');
 }
 
 function fullscreen() {
     let fullScreen = document.getElementById('fullscreen');
     showFullscreen(fullScreen);
+    toggleBtn();
 }
 
 function smallscreen() {
     let smallscreen = document.getElementById('fullscreen');
     showSmallscreen(smallscreen);
+    toggleBtn();
 }
 
 function showSmallscreen() {

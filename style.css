@@ -292,9 +292,16 @@ canvas{
 }
 
 .btnSmallScreen{
+    opacity: 1;
     display: none;
 }
 
 .btnShow{
+    opacity: 1;
     display: flex;
+}
+
+.btnHide{
+    opacity: 1;
+    display: none;
 }
