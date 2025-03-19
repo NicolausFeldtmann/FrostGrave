@@ -45,6 +45,21 @@ function playAudio() {
     }, 500);
 }
 
+function fullscreen() {
+    let fullScreen = document.getElementById('fullscreen');
+    showFullscreen(fullScreen);
+}
+
+function showFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    }
+}
+
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 65) {
         keyboard.LEFT = true;

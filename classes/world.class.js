@@ -219,6 +219,6 @@ constructor(canvas, keyboard) {
     }
 
     endGame() {
-        clearInterval(this.runInterval);
+        
     }
 }

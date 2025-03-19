@@ -255,3 +255,21 @@ canvas{
     width: 148px;
     padding: 24px;
 }
+
+.optionBtnArea{
+    position: absolute;
+    bottom: 28px;
+    right: 72px;
+    border: solid 2px #85f0cc;
+    border-radius: 10px;
+}
+
+.optBtn{
+    width: 80px;
+    background-color: #568d8f;
+    border-radius: 10px;
+}
+
+.optImg{
+    width: 80px;
+}
