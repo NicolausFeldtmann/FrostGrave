@@ -25,10 +25,60 @@ function showGameOver() {
 
 function playAudio() {
     setTimeout(() => {
-        //backGrndMusic.play();
+        backGrndMusic.play();
         //backGrndSound.play();
     }, 500);
 }
+
+    document.getElementById('btnLeft').addEventListener('touchstart' , (e) => {
+        e.preventDefault();
+        this.LEFT = true;
+    });
+
+    document.getElementById('btnLeft').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        this.LEFT = false;
+    })
+
+    document.getElementById('btnRight').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        this.RIGHT = true;
+    });
+
+    document.getElementById('btnRight').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        this.RIGHT = false;
+    })
+
+    document.getElementById('btnFire').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        this.THROW = true;
+    });
+
+    document.getElementById('btnFire').addEventListener('touchend', (e) =>  {
+        e.preventDefault();
+        this.THROW = false;
+    });
+
+    document.getElementById('btnJump').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        this.SPACE = true;
+    });
+
+    document.getElementById('btnJump').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        this.SPACE = false;
+    });
+
+    document.getElementById('btnSlash').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        this.SLASH = true;
+    });
+
+    document,getElementById('btnSlash').addEventListener('touchend', (e) =>  {
+        e.preventDefault();
+        this.SLASH = false;
+    })
 
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 65) {
