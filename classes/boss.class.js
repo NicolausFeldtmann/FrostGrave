@@ -141,23 +141,27 @@ class Boss extends MoObject {
 
     animate() {
         let i = 0;
-        this.reanimateInterval = setInterval(() => {
+        setInterval(() => {
             if (!this.firstEncounter && world.char.x > 4440) {
                 this.firstEncounter = true; 
+                console.log('encounter!'); 
                 this.playAnimation(this.IMAGES_SPAWNING); 
                 i = 0; 
-            } else {
-                this.bossAnimation();
+            } else if (this.firstEncounter) {
+                if (this.x > 5040) {
+                    this.playAnimation(this.IMAGES_SPAWNING);
+                    this.moveIn(); 
+                } else {
+                    this.bossAnimation(); 
+                }
+                i++;
             }
         }, 60);
     }
 
     bossAnimation() {
         let i = 0;
-        if (this.firstEncounter && this.x > 5040) {
-            this.playAnimation(this.IMAGES_SPAWNING);
-            this.moveIn();
-        } else if (this.isHurt()) {
+        if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
             this.hurt.play();
         } else if (this.isDeadAgain()) {
@@ -165,56 +169,53 @@ class Boss extends MoObject {
             this.melm.play();
             clearInterval(this.reanimateInterval);
         } else {
-            this.playAnimation(this.IMAGES_IDLE); 
-        }i++;
+            this.slay(); 
         }
-
-    fight() {
-        let i = 0;
-        this.reanimateInterval = setInterval(() => {
-            if (!this.firstEncounter && world.char.x > 4440) {
-                this.firstEncounter = true; 
-                this.playAnimation(this.IMAGES_SPAWNING); 
-                i = 0; 
-            } else if (this.firstEncounter) {
-                if (this.x > 5040) {
-                    this.playAnimation(this.IMAGES_SPAWNING);
-                    this.moveIn();
-                } else if (this.isHurt()) {
-                    this.playAnimation(this.IMAGES_HURT);
-                    this.hurt.play();
-                } else if (this.isDeadAgain()) {
-                    this.playAnimation(this.IMAGES_DYING);
-                    this.melm.play();
-                    clearInterval(this.reanimateInterval);
-                } else if (this.firstEncounter) {
-                    this.playAnimation(this.IMAGES_IDLE);
-                }
-                i++;
-            }
-        }, 60);
+        i++;
     }
+
+    slay() {
+        this.lungeOut();
+        setTimeout(() => {
+            this.attack();
+            this.waitAndGo();
+        }, 1000);
+    }
+
+    attack() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_SLAY);
+        }, 1000 / 10);
+    }
+
+    lungeOut() {
+        setTimeout(() => {
+            this.playAnimation(this.IMAGES_IDLE);
+        }, 1000);
+    }
+
+    waitAndGo() {
+        setTimeout(() => {
+            this.moveAhead();
+        }, 2000);
+    }
+
+    moveAhead() {
+        let endPosition = this.x - 250;
+        this.moveInterval = setInterval(() => {
+            if (this.x > endPosition) {
+                this.x -= this.speed;
+            } else {
+                clearInterval(this.moveInterval);
+                this.slay();
+            }
+        });
+    } 
 
     moveIn() {
         if (this.x > 5040) {
             this.x -= this.speed;
             //this.bossTheme.play();
         }
-    }
-
-    attack() {
-        this.attackInterval = setInterval(() => {
-            this.playAnimation(this.IMAGES_START_ATTACK);
-            setTimeout(() => {
-                this.playAnimation(this.IMAGES_SLAY);
-            }, 1000);
-        }, 800);
-    }
- 
-    walk(){
-        this.x -= 10;
-        this.x -= this.speed;
-        this.playAnimation(this.IMAGES_SPAWNING);
-        this.fight();
     }
 }

@@ -192,11 +192,11 @@ canvas{
 }
 
 .btnArea{
-    display: none;
-    justify-content: center;
-    top: 218px;
-    position: relative;
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    bottom: 48px;
+    position: absolute;
+    width: 90%;
 }
 
 .showBtn{
@@ -225,7 +225,7 @@ canvas{
     border-radius: 10px;
     position: relative;
     rotate: -35deg;
-    left: 148px;
+    left: 12px;
     top: -44px;
 }
 

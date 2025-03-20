@@ -19,6 +19,10 @@
 
 @media (max-height: 450px) {
 
+    canvas{
+        width: 480px;
+    }
+
     .instrucktions {
         height: 164px;
     }
