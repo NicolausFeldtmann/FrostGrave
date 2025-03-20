@@ -134,7 +134,7 @@ class Boss extends MoObject {
         this.loadImages(this.IMAGES_SPAWNING)
         this.loadImages(this.IMAGES_SLAY);
         this.loadImages(this.IMAGES_START_ATTACK);
-        this.fight();
+        this.animate();
         this.x = 5500;
         this.otherDirection = true;
     }
@@ -146,24 +146,28 @@ class Boss extends MoObject {
                 this.firstEncounter = true; 
                 this.playAnimation(this.IMAGES_SPAWNING); 
                 i = 0; 
-            } else if (this.firstEncounter) {
-                if (this.x > 5040) {
-                    this.playAnimation(this.IMAGES_SPAWNING);
-                    this.moveIn();
-                } else if (this.isHurt()) {
-                    this.playAnimation(this.IMAGES_HURT);
-                    this.hurt.play();
-                } else if (this.isDeadAgain()) {
-                    this.playAnimation(this.IMAGES_DYING);
-                    this.melm.play();
-                    clearInterval(this.reanimateInterval);
-                } else {
-                    this.playAnimation(this.IMAGES_IDLE); 
-                }
-                i++;
+            } else {
+                this.bossAnimation();
             }
         }, 60);
     }
+
+    bossAnimation() {
+        let i = 0;
+        if (this.firstEncounter && this.x > 5040) {
+            this.playAnimation(this.IMAGES_SPAWNING);
+            this.moveIn();
+        } else if (this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURT);
+            this.hurt.play();
+        } else if (this.isDeadAgain()) {
+            this.playAnimation(this.IMAGES_DYING);
+            this.melm.play();
+            clearInterval(this.reanimateInterval);
+        } else {
+            this.playAnimation(this.IMAGES_IDLE); 
+        }i++;
+        }
 
     fight() {
         let i = 0;
@@ -183,12 +187,8 @@ class Boss extends MoObject {
                     this.playAnimation(this.IMAGES_DYING);
                     this.melm.play();
                     clearInterval(this.reanimateInterval);
-                } else {
-                    this.attack();
-                    setTimeout(() => {
-                        clearInterval(this.attackInterval);
-                        this.walk();
-                    }, 1000);
+                } else if (this.firstEncounter) {
+                    this.playAnimation(this.IMAGES_IDLE);
                 }
                 i++;
             }

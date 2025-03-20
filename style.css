@@ -65,7 +65,7 @@ canvas{
 }
 
 .startH1{
-    margin: 28px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     position: absolute;
     font-size: 48px;
     background: radial-gradient(at 76.67025862068965% 24.791666666666668%, #2740e2 0px, transparent 50%), radial-gradient(at 73.97629310344827% 71.25%, #000000 0px, transparent 50%), radial-gradient(at 34.428879310344826% 20.208333333333332%, #cde5ff 0px, transparent 50%), radial-gradient(at 12.661637931034484% 77.5%, #3b4a6b 0px, transparent 50%), #09203f;
@@ -83,7 +83,7 @@ canvas{
 }
 
 .instrucktions{
-    margin: 96px 0px 0px 0px;
+    margin: 128px 0px 0px 0px;
     width: 448px;
     height: 248px;
     backdrop-filter: blur(5px);
@@ -285,10 +285,12 @@ canvas{
     width: 80px;
     background-color: #568d8f;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .optImg{
-    width: 80px;
+    width: 48px;
 }
 
 .btnSmallScreen{
