@@ -6,6 +6,7 @@
     <link rel="icon" type="image" href="./img/frost.png">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./mobile.css">
+    <link rel="stylesheet" href="./loadAnimation.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,6 +86,14 @@
 
         <div class="gameScreen" id="gameScreen">
             
+            <div class="blur-effect" style="display: none;"></div>
+            <div class="animatedArea" id="animatedArea">
+                <div class="spinnObject">
+                    <img class="spinningIcon" src="./img/frost.png">
+                </div>
+            </div>
+
+
             <h1>Frost Grave!</h1>
 
             <canvas width="720" height="480" id="canvas"></canvas>

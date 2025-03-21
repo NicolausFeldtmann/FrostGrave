@@ -221,4 +221,11 @@ constructor(canvas, keyboard) {
     endGame() {
         
     }
+
+    frezzeGame(world) {
+        world.char.speed = 0;
+        world.char.keyboard = {};
+        world.level.enemies.forEach(enemy => enemy.speed = 0);
+    
+    }
 }

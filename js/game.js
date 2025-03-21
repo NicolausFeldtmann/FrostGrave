@@ -2,7 +2,7 @@ let canvas;
 let world; 
 let keyboard = new Keyboard();
 backGrndMusic = new Audio('audio/backgroundMusic.mp3');
-//backGrndSound = new Audio('audio/backgroundAudio.mp3');
+backGrndSound = new Audio('audio/backgroundAudio.mp3');
 
 function init() {
     detectMob();
@@ -11,10 +11,12 @@ function init() {
     hideStartScreen();
     initLevel();
     startGame();
+    backGrndSound.play();
 }
 
 function startGame() {
-    playAudio();
+    clearInterval(this.setInterval);
+    playMusic();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     showCanvas();
@@ -25,11 +27,16 @@ function showGameOver() {
     x.classList.toggle('showGameOver');
 }
 
-function playAudio() {
+function playMusic() {
     setTimeout(() => {
-        //backGrndMusic.play();
-        //backGrndSound.play();
+        backGrndMusic.play();
     }, 500);
+}
+
+function palySound() {
+    this.SoundInterval = setInterval(() => {
+        backGrndSound.play();
+    }, 100);
 }
 
 window.addEventListener('keydown', (e) => {

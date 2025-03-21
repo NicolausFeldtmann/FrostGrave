@@ -1,0 +1,38 @@
+.animatedArea{
+    display: none;
+    justify-content: center; 
+    position: fixed;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.spinnObject{
+    height: 480px;
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+}
+
+.spinnigIcon{
+    animation-name: spin;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.loading{
+    visibility: hidden;
+    opacity: 1;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

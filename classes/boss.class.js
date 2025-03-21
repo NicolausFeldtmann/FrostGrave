@@ -152,7 +152,7 @@ class Boss extends MoObject {
                     this.playAnimation(this.IMAGES_SPAWNING);
                     this.moveIn(); 
                 } else {
-                    this.bossAnimation(); 
+                    //this.bossAnimation(); 
                 }
                 i++;
             }
