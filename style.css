@@ -192,7 +192,6 @@ canvas{
 }
 
 .btnArea{
-    display: flex;
     justify-content: space-between;
     bottom: 48px;
     position: absolute;
