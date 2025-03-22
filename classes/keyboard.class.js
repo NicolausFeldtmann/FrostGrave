@@ -7,4 +7,5 @@ class Keyboard {
     SPACE = false;
     SLASH = false;
     THROW = false;
+    PAUSE = false;
 }

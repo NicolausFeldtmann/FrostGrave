@@ -39,6 +39,6 @@ function mobileBtnEventListner() {
 
     document.getElementById('btnSlash').addEventListener('touchstart', () => keyboard.SLASH = true);
     document.getElementById('btnSlash').addEventListener('touchend', () => keyboard.SLASH = false);
-    console.log('Input mobiel');
+
     
 }

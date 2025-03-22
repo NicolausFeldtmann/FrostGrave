@@ -1,5 +1,6 @@
 class World {
 
+    isRunnig = true;
     char = new Char();
     level = level1;
     canvas;
@@ -154,6 +155,7 @@ constructor(canvas, keyboard) {
     }
     
     draw() {
+        if (!this.isRunnig) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjToMap(this.level.blueSky);
@@ -218,14 +220,18 @@ constructor(canvas, keyboard) {
         }, 500);
     }
 
-    endGame() {
-        
-    }
-
-    frezzeGame(world) {
-        world.char.speed = 0;
-        world.char.keyboard = {};
-        world.level.enemies.forEach(enemy => enemy.speed = 0);
-    
+    stopGame() {
+        if (this.isRunnig) {
+            this.isRunnig = false;
+            clearInterval(this.runInterval);
+            clearInterval(this.slowInterval);
+            console.log('PAUSE!');
+        } else {
+            this.isRunnig = true;
+            this.run();
+            this.draw();
+            console.log('WEITER!');
+            
+        }
     }
 }

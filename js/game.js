@@ -9,13 +9,13 @@ function init() {
     decideControls();
     mobileBtnEventListner();
     hideStartScreen();
-    initLevel();
     startGame();
-    backGrndSound.play();
+    playSound();
 }
 
 function startGame() {
-    clearInterval(this.setInterval);
+    initLevel();
+    clearInterval(this.soundInterval);
     playMusic();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -31,12 +31,6 @@ function playMusic() {
     setTimeout(() => {
         backGrndMusic.play();
     }, 500);
-}
-
-function palySound() {
-    this.SoundInterval = setInterval(() => {
-        backGrndSound.play();
-    }, 100);
 }
 
 window.addEventListener('keydown', (e) => {
@@ -66,6 +60,11 @@ window.addEventListener('keydown', (e) => {
     
     if (e.keyCode == 81) {
         keyboard.THROW = true;
+    }
+
+    if (e.keyCode == 80) {
+        keyboard.PAUSE = !keyboard.PAUSE;
+        world.stopGame();
     }
     
 })
@@ -98,4 +97,8 @@ window.addEventListener('keyup', (e) => {
     if (e.keyCode == 81) {
         keyboard.THROW = false;
     }
+
+    if (e.keyCode == 80) {
+        keyboard.PAUSE = false;
+        }
 })
