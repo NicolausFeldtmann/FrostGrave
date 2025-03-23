@@ -32,6 +32,7 @@ constructor(canvas, keyboard) {
 
     run() {
         this.runInterval = setInterval(() => {
+            if (!this.isRunnig) return;
             this.checkCollMana();
             this.checkCollJewel();
             this.checkGotHit();
@@ -42,6 +43,7 @@ constructor(canvas, keyboard) {
 
     runSlow() {
         this.slowInterval = setInterval(() => {
+            if (!this.isRunnig) return;
             this.checkCollEnemys();
             this.checkCollBoss();
         }, 400)
@@ -221,17 +223,15 @@ constructor(canvas, keyboard) {
     }
 
     stopGame() {
+        this.isRunnig = !this.isRunnig;
         if (this.isRunnig) {
-            this.isRunnig = false;
-            clearInterval(this.runInterval);
-            clearInterval(this.slowInterval);
-            console.log('PAUSE!');
-        } else {
-            this.isRunnig = true;
             this.run();
             this.draw();
             console.log('WEITER!');
-            
+        } else {
+            clearInterval(this.runInterval);
+            clearInterval(this.slowInterval);
+            console.log('PAUSE!');
         }
     }
 }

@@ -17,7 +17,9 @@ class MoObject extends DrawObjects{
     }
 
     alppyGravity() {
-        this.gravityInterval = setInterval(() => {
+        this.gravityInterval = setInterval(() => {  
+            if (!this.world.isRunnig) return;
+
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.accel;

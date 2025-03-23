@@ -34,6 +34,8 @@ function playMusic() {
 }
 
 window.addEventListener('keydown', (e) => {
+    if (!world.isRunnig) return;
+
     if (e.keyCode == 65) {
         keyboard.LEFT = true;
     }
@@ -62,14 +64,21 @@ window.addEventListener('keydown', (e) => {
         keyboard.THROW = true;
     }
 
-    if (e.keyCode == 80) {
+    if (e.keyCode == 80) {  // Taste 'P'
         keyboard.PAUSE = !keyboard.PAUSE;
-        world.stopGame();
+        world.stopGame();  // Hier wird das Spiel gestoppt/fortgesetzt.
+        if (keyboard.PAUSE) {
+            console.log('Spiel pausiert');
+        } else {
+            console.log('Spiel fortgesetzt');
+        }
     }
     
 })
 
 window.addEventListener('keyup', (e) => {
+    if (!world.isRunnig) return;
+
     if (e.keyCode == 65) {
         keyboard.LEFT = false;
     }
