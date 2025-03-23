@@ -62,3 +62,8 @@ function showGameOver() {
     let x = document.getElementById('gameOverScreen');
     x.classList.toggle('show');
 }
+
+function showWinScreen() {
+    let x = document.getElementById('winScreen');
+    x.classList.toggle('show');
+}

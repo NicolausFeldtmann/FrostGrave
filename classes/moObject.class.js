@@ -18,7 +18,6 @@ class MoObject extends DrawObjects{
 
     alppyGravity() {
         this.gravityInterval = setInterval(() => {  
-            if (!this.world.isRunnig) return;
 
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
@@ -161,6 +160,17 @@ class MoObject extends DrawObjects{
         if (!this.world.isRunnig) return;
         this.world.endGame();
         showGameOver();
-        clearInterval(this.musicInterval);
+        this.stopMusic();
+    }
+
+    beatGame() {
+        if (!this.world.isRunnig) return;
+        this.world.endGame();
+        showWinScreen();
+    }
+    
+    stopMusic() {
+        backGrndMusic.pause();
+        backGrndMusic.currentTime = 0;
     }
 }

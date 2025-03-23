@@ -1,5 +1,6 @@
 class Boss extends MoObject {
 
+    world;
     height = 500;
     width = 400;
     y = 35;
@@ -152,7 +153,7 @@ class Boss extends MoObject {
                     this.playAnimation(this.IMAGES_SPAWNING);
                     this.moveIn(); 
                 } else {
-                    //this.bossAnimation(); 
+                    this.bossAnimation(); 
                 }
                 i++;
             }
@@ -168,8 +169,9 @@ class Boss extends MoObject {
             this.playAnimation(this.IMAGES_DYING);
             this.melm.play();
             clearInterval(this.reanimateInterval);
+            this.beatGame();
         } else {
-            this.slay(); 
+            this.playAnimation(this.IMAGES_IDLE);
         }
         i++;
     }
