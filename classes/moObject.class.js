@@ -156,4 +156,11 @@ class MoObject extends DrawObjects{
     bounceBack() {
         this.x += 75;
     }
+
+    gameOver() {
+        if (!this.world.isRunnig) return;
+        this.world.endGame();
+        showGameOver();
+        clearInterval(this.musicInterval);
+    }
 }

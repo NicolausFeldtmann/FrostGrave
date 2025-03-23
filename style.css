@@ -297,7 +297,7 @@ canvas{
     display: none;
 }
 
-.btnShow{
+.show{
     opacity: 1;
     display: flex;
 }

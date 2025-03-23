@@ -234,4 +234,10 @@ constructor(canvas, keyboard) {
             console.log('PAUSE!');
         }
     }
+
+    endGame() {
+        this.isRunnig = !this.isRunnig;
+        clearInterval(this.runInterval);
+        clearInterval(this.slowInterval);
+    }
 }

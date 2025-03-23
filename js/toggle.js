@@ -1,18 +1,18 @@
 function showCanvas() {
     let x = document.getElementById('canvas');
-    x.classList.toggle('showCanvas');
+    x.classList.toggle('show');
 }
 
 function showMobileBtn() {
     let x = document.getElementById('btnArea');
-    x.classList.toggle('showBtn');
+    x.classList.toggle('show');
 }
 
 function hideStartScreen() {
     let x = document.getElementById('startScreen');
     let y = document.getElementById('gameScreen');
     x.classList.toggle('hideStart');
-    y.classList.toggle('showGame');
+    y.classList.toggle('show');
 }
 
 function toggleBtn() {
@@ -21,9 +21,9 @@ function toggleBtn() {
     let i = document.getElementById('btnFullGame');
     let e = document.getElementById('btnSmallGame');
     x.classList.toggle('btnHide');
-    y.classList.toggle('btnShow');
+    y.classList.toggle('show');
     i.classList.toggle('btnHide');
-    e.classList.toggle('btnShow');
+    e.classList.toggle('show');
 }
 
 function fullscreen() {
@@ -56,4 +56,9 @@ function showFullscreen(element) {
     } else if (element.webkitRequestFullscreen) {
         element.webkitRequestFullscreen();
     }
+}
+
+function showGameOver() {
+    let x = document.getElementById('gameOverScreen');
+    x.classList.toggle('show');
 }

@@ -10,7 +10,6 @@ function init() {
     mobileBtnEventListner();
     hideStartScreen();
     startGame();
-    playSound();
 }
 
 function startGame() {
@@ -29,7 +28,9 @@ function showGameOver() {
 
 function playMusic() {
     setTimeout(() => {
-        backGrndMusic.play();
+        this.musicInterval = setInterval(() => {
+            backGrndMusic.play();
+        });
     }, 500);
 }
 
@@ -64,14 +65,9 @@ window.addEventListener('keydown', (e) => {
         keyboard.THROW = true;
     }
 
-    if (e.keyCode == 80) {  // Taste 'P'
+    if (e.keyCode == 80) {
         keyboard.PAUSE = !keyboard.PAUSE;
-        world.stopGame();  // Hier wird das Spiel gestoppt/fortgesetzt.
-        if (keyboard.PAUSE) {
-            console.log('Spiel pausiert');
-        } else {
-            console.log('Spiel fortgesetzt');
-        }
+        world.stopGame();
     }
     
 })

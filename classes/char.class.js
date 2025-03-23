@@ -180,7 +180,8 @@ class Char extends MoObject{
         setInterval(() => {
             if(this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
-                this.ouch.play();
+                //this.ouch.play();
+                this.gameOver();
             } else if(this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if(this.isAboveGround()) {
