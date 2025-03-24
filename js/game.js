@@ -1,34 +1,45 @@
 let canvas;
 let world; 
 let keyboard = new Keyboard();
-backGrndMusic = new Audio('audio/backgroundMusic.mp3');
-backGrndSound = new Audio('audio/backgroundAudio.mp3');
+let backGrndSound = new Audio('audio/backgroundAudio.mp3');
 
+
+/**
+ * functioin to initialize thw game
+ */
 function init() {
     detectMob();
     decideControls();
     mobileBtnEventListner();
     hideStartScreen();
     startGame();
+    //palyTitelSound();
 }
 
+/**
+ * function to start the actual game
+ */
 function startGame() {
     initLevel();
     clearInterval(this.soundInterval);
-    playMusic();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     showCanvas();
 }
 
-function playMusic() {
-    setTimeout(() => {
-        this.musicInterval = setInterval(() => {
-            backGrndMusic.play();
-        });
-    }, 500);
+
+/**
+ * play background sound startscreen
+ */
+function palyTitelSound() {
+    this.soundInterval = setInterval(() => {
+        backGrndSound.play();
+    });
 }
 
+/**
+ * eventlistner for pressed keys on keyboard
+ */
 window.addEventListener('keydown', (e) => {
     if (!world.isRunnig) return;
 
@@ -67,6 +78,9 @@ window.addEventListener('keydown', (e) => {
     
 })
 
+/**
+ * eventlistner for unpressed keys on keyboard
+ */
 window.addEventListener('keyup', (e) => {
     if (!world.isRunnig) return;
 

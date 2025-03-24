@@ -63,6 +63,9 @@ class Walker2 extends MoObject{
         this.otherDirection = true;
     }
 
+    /**
+     * animate enemy depending of its current status
+     */
     reanimate() {
         this.reanimateInterval = setInterval(() => {
             if (this.isDeadAgain()) {
@@ -81,6 +84,9 @@ class Walker2 extends MoObject{
         }, 1000/ 15)
     }
 
+    /**
+     * moves enemy from right to left throu level
+     */
     walkLeft() {
         this.x -= this.speed;
         this.otherDirection = true;

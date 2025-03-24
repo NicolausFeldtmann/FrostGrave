@@ -16,6 +16,9 @@ class MoObject extends DrawObjects{
         this.world = world;
     }
 
+    /**
+     * sets gravity physics for game
+     */
     alppyGravity() {
         this.gravityInterval = setInterval(() => {  
 
@@ -26,6 +29,9 @@ class MoObject extends DrawObjects{
         }, 1000 / 40)
     }
 
+    /**
+     * Let Objet fall when higher on y axis as 320
+     */
     isAboveGround() {
         if (this instanceof Projectile) { // Projectils shall allway fall
             return true;
@@ -34,6 +40,9 @@ class MoObject extends DrawObjects{
        }
     }
 
+    /**
+     * Defines size of Movable Obeject hitbox
+     */
     isCollidingMo(mo) {
         return (
             this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
@@ -43,6 +52,9 @@ class MoObject extends DrawObjects{
         );
     }
 
+    /**
+     * Defines size of Projectile hitbox
+     */
     isCollidingPro(projectile) {
         return (
             this.x + this.width - this.offset.right > projectile.x + projectile.offset.left &&
@@ -52,6 +64,9 @@ class MoObject extends DrawObjects{
         );
     }
 
+    /**
+     * Defines mele hitbox, wile character is executing mele attack
+     */
     isCollidingMele(mele) {
         return (
             this.x + this.offset.left < mele.x + mele.width - mele.offset.right &&
@@ -61,6 +76,9 @@ class MoObject extends DrawObjects{
         );
     }
 
+    /**
+     * handles damage when collision is deteckted
+     */
     gotHurt(){
         this.energy -= 5;
         if (this.energy < 0) {
@@ -70,6 +88,9 @@ class MoObject extends DrawObjects{
         }
     }
 
+    /**
+     * handles damage when collision with mele hitbox is deteckted
+     */
     gotSlashed() {
         this.energy -= 25;
         if (this.energy < 0) {
@@ -79,6 +100,9 @@ class MoObject extends DrawObjects{
         }
     }
 
+    /**
+     * handles demage of enemies
+     */
     foeHurt() {
         this.energy -= 50;
         if (this.energy < 0) {
@@ -89,6 +113,9 @@ class MoObject extends DrawObjects{
         }
     }
 
+    /**
+     * sets cooldown
+     */
     beCool() {
         this.CoolDown = true;
         console.log('BE COOL!');
@@ -97,12 +124,18 @@ class MoObject extends DrawObjects{
         }, 500);
     }
 
+    /**
+     * sets hurt datus for 500ms
+     */
     isHurt() {
         let timePassed = new Date().getTime() - this.lasHit;
         timePassed = timePassed / 500
         return timePassed < 1;
     }
 
+    /**
+     * handles recived mana
+     */
     gotMana() {
         this.mana += 41; 
         console.log(this.mana);
@@ -113,6 +146,9 @@ class MoObject extends DrawObjects{
         }
     }
 
+    /**
+     * handles reived jewlery
+     */
     gotJewel() {
         this.jewel += 21;
         if (this.jewel > 100) {
@@ -122,10 +158,16 @@ class MoObject extends DrawObjects{
         }
     }
 
+    /**
+     * detecs if character or enemy is out of energy
+     */
     isDeadAgain() {
         return this.energy == 0;
     }
 
+    /**
+     * player for invoked animation 
+     */
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
@@ -133,44 +175,59 @@ class MoObject extends DrawObjects{
         this.currentImage++;
     }
 
+    /**
+     * moves character from left to right
+     */
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
     }
-
+/**
+ * moves character from right to left
+ */
     moveLeft() {
         this.x -= this.speed;
         this.otherDirection = true;
     }
 
+    /**
+     * let char jump, under physic conditions
+     */
     jump() {
         this.speedY = 25;
     }
 
+    /**
+     * execute mele attack
+     */
     slash() {
-        console.log('SLASH');
         this.world.checkMele();
     }
 
+    /**
+     * throw enemy back, after mele collision
+     */
     bounceBack() {
         this.x += 75;
     }
 
+    /**
+     * quit game in shows "Game Over" screen
+     */
     gameOver() {
         if (!this.world.isRunnig) return;
             this.world.endGame();
             showGameOver();
-            this.stopMusic();
+            clearInterval(this.world.musicInterval);
     }
 
+    /**
+     * auit game and shows "Winnig" screen
+     */
     beatGame() {
         if (!this.world.isRunnig) return
             this.world.endGame();
             showWinScreen();
     }
     
-    stopMusic() {
-        backGrndMusic.pause();
-        backGrndMusic.currentTime = 0;
-    }
 }

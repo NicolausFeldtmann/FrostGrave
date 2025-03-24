@@ -15,6 +15,7 @@ class World {
     meleeCooldown = 500;
     spell = new Audio('audio/spell.mp3');
     crystal = new Audio('audio/crystal.mp3');
+    backGrndMusic = new Audio('audio/backgroundMusic.mp3');
 
 constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -24,12 +25,19 @@ constructor(canvas, keyboard) {
     this.setWorld();
     this.run();
     this.runSlow();
+    this.playMusic();
 }
 
+    /**
+     * 
+     */
     setWorld() {
         this.char.world = this;
     }
 
+    /**
+     * execute check functions every 100ms
+     */
     run() {
         this.runInterval = setInterval(() => {
             if (!this.isRunnig) return;
@@ -41,6 +49,9 @@ constructor(canvas, keyboard) {
         }, 100)
     }
 
+    /**
+     * execute check functions every 400ms
+     */
     runSlow() {
         this.slowInterval = setInterval(() => {
             if (!this.isRunnig) return;
@@ -49,17 +60,33 @@ constructor(canvas, keyboard) {
         }, 400)
     }
 
+    /**
+     * play Background Music
+     */
+    playMusic() {
+        this.musicInterval = setInterval(() => {
+            this.backGrndMusic.play();
+        });
+    }
+
+
+    /**
+     * check if prejecktile is thrown by Character and define start position of animation
+     */
     checkThorw() {
         if (this.keyboard.THROW && this.char.mana > 0) { 
             let projectile = new Projectile(this.char.x - 55, this.char.y);
             this.projectile.push(projectile);
             this.char.mana -= 11; 
-            console.log('HADOUKEN!');
             this.spell.play();
             this.greenBar.setPercentage(this.char.mana); 
         }
     }
 
+    /**
+     * check if enemy is dead and removes it.
+     * check if Character is colliding with alive enemy
+     */
     checkCollEnemys() {
         this.level.enemies.forEach((enemy, index) => {
             if (enemy.isDeadAgain()) {
@@ -73,6 +100,10 @@ constructor(canvas, keyboard) {
         });
     }
 
+    /**
+     * check if boss is dead and removes it.
+     * check if Character is colliding with alive boss
+     */
     checkCollBoss() {
         this.level.boss.forEach((boss, index) => {
             if (boss.isDeadAgain()) {
@@ -86,6 +117,9 @@ constructor(canvas, keyboard) {
         })
     }
 
+    /**
+     * check if enemy or boss are colliding with projectile
+     */
     checkImpact() {
         this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
@@ -104,6 +138,9 @@ constructor(canvas, keyboard) {
         });
     }
 
+    /**
+     * check if enemy or boss are colliding with mele hitbox
+     */
     checkMele() {
         this.level.enemies.forEach((enemy) => {
             if (this.char.isCollidingMele(enemy)) {
@@ -114,6 +151,9 @@ constructor(canvas, keyboard) {
         });
     }
 
+    /**
+     * check if character is picking um mana crystall
+     */
     checkCollMana() {
         this.level.mana.forEach((mana , idx) => {
             if(this.char.isCollidingMo(mana)) {
@@ -126,6 +166,9 @@ constructor(canvas, keyboard) {
         });
     };
 
+    /**
+     * check if character is picking up jewlery
+     */
     checkCollJewel() {
         this.level.jewel.forEach((jewel, idx) => {
             if (this.char.isCollidingMo(jewel)) {
@@ -138,6 +181,9 @@ constructor(canvas, keyboard) {
         });
     }
 
+    /**
+     * check if enemy or boss are colliding with projectile
+     */
     checkGotHit() {
         this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
@@ -154,13 +200,6 @@ constructor(canvas, keyboard) {
                 }
             });
         });
-    }
-
-    checkWonGame() {
-        if (this.world.level.boss.energy < 0) {
-            this.endGame();
-            showWinScreen();
-        }
     }
     
     draw() {
@@ -246,5 +285,6 @@ constructor(canvas, keyboard) {
         this.isRunnig = !this.isRunnig;
         clearInterval(this.runInterval);
         clearInterval(this.slowInterval);
+        clearInterval(this.musicInterval);
     }
 }

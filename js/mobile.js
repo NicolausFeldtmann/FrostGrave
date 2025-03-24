@@ -1,3 +1,7 @@
+
+/**
+ * dectect if used device is a mobile device 
+ */
 function detectMob() {
     const toMatch = [
         /Android/i,
@@ -13,6 +17,9 @@ function detectMob() {
     );
 }
 
+/**
+ * shows or hide buttons, depending on if mobile device is used or not
+ */
 function decideControls() {
     let mobileBtn = document.getElementById('btnArea');
 
@@ -24,6 +31,9 @@ function decideControls() {
     }
 }
 
+/**
+ * eventlistner for butttons on mobile device
+ */
 function mobileBtnEventListner() {
     document.getElementById('btnLeft').addEventListener('touchstart', () => keyboard.LEFT = true);
     document.getElementById('btnLeft').addEventListener('touchend', () => keyboard.LEFT = false);

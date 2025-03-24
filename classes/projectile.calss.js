@@ -35,6 +35,9 @@ class Projectile extends MoObject {
         this.throw();
     }
     
+    /**
+     * Defines physics of prjctile
+     */
     throw () {
         this.speedY = 25;
         this.alppyGravity();
@@ -43,6 +46,9 @@ class Projectile extends MoObject {
         }, 25)
     }
 
+    /**
+     * Defines behavuior after Collision
+     */
     impact() {
         this.speedy = 0;
         this.speedx = 0;
@@ -53,6 +59,9 @@ class Projectile extends MoObject {
         this.boom.play();
     }
 
+    /**
+     * runs impact animation
+     */
     impactAnimation() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_IMPACT);
