@@ -158,15 +158,15 @@ class MoObject extends DrawObjects{
 
     gameOver() {
         if (!this.world.isRunnig) return;
-        this.world.endGame();
-        showGameOver();
-        this.stopMusic();
+            this.world.endGame();
+            showGameOver();
+            this.stopMusic();
     }
 
     beatGame() {
-        if (!this.world.isRunnig) return;
-        this.world.endGame();
-        showWinScreen();
+        if (!this.world.isRunnig) return
+            this.world.endGame();
+            showWinScreen();
     }
     
     stopMusic() {

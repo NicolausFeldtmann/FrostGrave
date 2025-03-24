@@ -142,7 +142,7 @@ class Boss extends MoObject {
 
     animate() {
         let i = 0;
-        setInterval(() => {
+        this.animateInterval = setInterval(() => {
             if (!this.firstEncounter && world.char.x > 4440) {
                 this.firstEncounter = true; 
                 console.log('encounter!'); 
@@ -168,8 +168,8 @@ class Boss extends MoObject {
         } else if (this.isDeadAgain()) {
             this.playAnimation(this.IMAGES_DYING);
             this.melm.play();
-            clearInterval(this.reanimateInterval);
-            this.beatGame();
+            showWinScreen();
+            clearInterval(this.animateInterval);
         } else {
             this.playAnimation(this.IMAGES_IDLE);
         }

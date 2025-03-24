@@ -21,11 +21,6 @@ function startGame() {
     showCanvas();
 }
 
-function showGameOver() {
-    let x = document.getElementById('gameOverScreen');
-    x.classList.toggle('showGameOver');
-}
-
 function playMusic() {
     setTimeout(() => {
         this.musicInterval = setInterval(() => {

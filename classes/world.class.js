@@ -155,6 +155,13 @@ constructor(canvas, keyboard) {
             });
         });
     }
+
+    checkWonGame() {
+        if (this.world.level.boss.energy < 0) {
+            this.endGame();
+            showWinScreen();
+        }
+    }
     
     draw() {
         if (!this.isRunnig) return;
