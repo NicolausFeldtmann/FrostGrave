@@ -171,48 +171,35 @@ class Boss extends MoObject {
             showWinScreen();
             clearInterval(this.animateInterval);
         } else {
-            this.playAnimation(this.IMAGES_IDLE);
+            this.attack();
         }
         i++;
     }
 
-    slay() {
-        this.lungeOut();
-        setTimeout(() => {
-            this.attack();
-            this.waitAndGo();
-        }, 1000);
-    }
-
     attack() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_SLAY);
-        }, 1000 / 10);
-    }
-
-    lungeOut() {
-        setTimeout(() => {
-            this.playAnimation(this.IMAGES_IDLE);
-        }, 1000);
-    }
-
-    waitAndGo() {
-        setTimeout(() => {
-            this.moveAhead();
-        }, 2000);
-    }
-
-    moveAhead() {
-        let endPosition = this.x - 250;
-        this.moveInterval = setInterval(() => {
-            if (this.x > endPosition) {
-                this.x -= this.speed;
+        this.playAnimation(this.IMAGES_SLAY);
+    
+        let startPosition = this.x;
+        const moveDistance = 250; 
+        const targetPosition = startPosition + moveDistance;
+    
+        const moveInterval = setInterval(() => {
+            if (this.x < targetPosition) {
+                this.x -= this.speed; 
+                this.playAnimation(this.IMAGES_SPAWNING);
             } else {
-                clearInterval(this.moveInterval);
-                this.slay();
+                clearInterval(moveInterval);
+                this.idleAfterAttack(); 
             }
-        });
-    } 
+        }, 1000 / 30);  
+    }
+    
+    idleAfterAttack() {
+        this.playAnimation(this.IMAGES_IDLE); 
+        setTimeout(() => {
+            this.attack(); 
+        }, 2000); 
+    }
 
     moveIn() {
         if (this.x > 5040) {
