@@ -8,17 +8,26 @@ class DrawObjects {
     height = 150;
     width = 100;
 
+    /**
+     * load single Image from path 
+     */
     loadImg(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
+    /**
+     * draws image on canvas 
+     */
     draw(ctx) {
         if (this.img) {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         }
     }
 
+    /**
+     * draws dev tool fram around image 
+     */
     drawFrame(ctx) {
         if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel || this instanceof Projectile) {
         ctx.beginPath();
@@ -29,6 +38,10 @@ class DrawObjects {
         }
     }
     
+
+    /**
+     * draws dev tool frame aorund declared hitbox
+     */
     drawHitFrame(ctx) {
         if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel || this instanceof Projectile) {
             ctx.beginPath();
@@ -39,6 +52,9 @@ class DrawObjects {
             }
     }
 
+    /**
+     * draws dev tool fram around declared mele hitbox
+     */
     drawMeleFrame(ctx) {
         if (this instanceof Char) {
             ctx.beginPath();
@@ -49,6 +65,9 @@ class DrawObjects {
         }
     }
 
+    /**
+     * loads all images from array 
+     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();

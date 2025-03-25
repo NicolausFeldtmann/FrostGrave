@@ -16,6 +16,7 @@ class World {
     spell = new Audio('audio/spell.mp3');
     crystal = new Audio('audio/crystal.mp3');
     backGrndMusic = new Audio('audio/backgroundMusic.mp3');
+    gameOverSound = new Audio('audio/backgroundAudio.mp3');
 
 constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -64,9 +65,7 @@ constructor(canvas, keyboard) {
      * play Background Music
      */
     playMusic() {
-        this.musicInterval = setInterval(() => {
-            this.backGrndMusic.play();
-        });
+        this.backGrndMusic.play();
     }
 
 
@@ -202,6 +201,9 @@ constructor(canvas, keyboard) {
         });
     }
     
+    /**
+     * draws movable and static objects on canvas
+    */
     draw() {
         if (!this.isRunnig) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -230,12 +232,18 @@ constructor(canvas, keyboard) {
         });
     }
 
+    /**
+     * add object to canvas
+    */
     addObjToMap(objects) {
         objects.forEach(obj => {
             this.addToMap(obj);
         })
     }
 
+    /**
+     * add movable object to canvas 
+     */
     addToMap(mo) {
         if(mo.otherDirection) {
             this.frontFlip(mo);
@@ -250,6 +258,9 @@ constructor(canvas, keyboard) {
         }
     }
 
+    /**
+     * fliping image depending of declared direktion 
+     */
     frontFlip(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -257,17 +268,26 @@ constructor(canvas, keyboard) {
         mo.x = mo.x * -1;
     }
 
+    /**
+     * fliping image in other direction depending of declared direktion
+     */
     backFlip(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
 
+    /**
+     * removes hiting projectile from game 
+     */
     removeProjectile(proIdx) {
         setTimeout(() => {
             this.projectile.splice(proIdx, 1);
         }, 500);
     }
 
+    /**
+     * pauses the game
+     */
     stopGame() {
         this.isRunnig = !this.isRunnig;
         if (this.isRunnig) {
@@ -281,10 +301,15 @@ constructor(canvas, keyboard) {
         }
     }
 
+    /**
+     * frezzes the game
+     */
     endGame() {
         this.isRunnig = !this.isRunnig;
         clearInterval(this.runInterval);
         clearInterval(this.slowInterval);
-        clearInterval(this.musicInterval);
+        this.backGrndMusic.pause();
+        this.backGrndMusic.currentTime = 0;
+        this.gameOverSound.play();
     }
 }

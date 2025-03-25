@@ -3,7 +3,6 @@ let world;
 let keyboard = new Keyboard();
 let backGrndSound = new Audio('audio/backgroundAudio.mp3');
 
-
 /**
  * functioin to initialize thw game
  */
@@ -13,7 +12,6 @@ function init() {
     mobileBtnEventListner();
     hideStartScreen();
     startGame();
-    //palyTitelSound();
 }
 
 /**
@@ -21,20 +19,9 @@ function init() {
  */
 function startGame() {
     initLevel();
-    clearInterval(this.soundInterval);
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     showCanvas();
-}
-
-
-/**
- * play background sound startscreen
- */
-function palyTitelSound() {
-    this.soundInterval = setInterval(() => {
-        backGrndSound.play();
-    });
 }
 
 /**

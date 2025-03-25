@@ -144,50 +144,93 @@ class Char extends MoObject{
         this.animate();
     }
 
+    /**
+     * all character animations
+     */
     animate() {
         
-        setInterval(() => { 
+        setInterval(() => {
+            /**
+             * set parameter for moving right
+             *  */ 
             if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
             }
             
+            /**
+             * set parameter for moving left
+             */
             if(this.world.keyboard.LEFT && this.x > 100) {
                 this.moveLeft();
             }
 
+            /**
+             * detects character moving leaft/rigth and plays walking animation and sounds
+             */
             if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT && !this.isAboveGround()) {
             this.playAnimation(this.IMAGES_WALKING);
             this.snow1.play();
             this.snow2.play();
             }
 
+            /**
+             * detects if character is abouve grond and allows jump funktion
+             */
             if(this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
             }
 
+            /**
+             * detects is abouv ground and allows slash funktion/ play animation and sound
+             */
             if(this.world.keyboard.SLASH && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_SLASHING);
                 this.slash();
                 this.slashSound.play();
             }
 
+            /**
+             * detects is above ground and allows throw funktion / play animation
+             */
             if(this.world.keyboard.THROW && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_THROW);
             }
+            /**
+             * focus camera on character
+             */
             this.world.camera_x = -this.x + 100;
         }, 30);
 
+        /**
+         * character animation depending on helth satus
+         */
         setInterval(() => {
+            /**
+             * detects if character energy is < 0 / plays dying animation and sound / 
+             * triggers game over function
+             */
             if(this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
                 //this.ouch.play();
                 this.gameOver();
+                /**
+                 * detects if character got demage / plays hurt animation
+                 */
             } else if(this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                /**
+                 * detects if character is abouve ground / play jump an fall animation
+                 */
             } else if(this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
+                /**
+                 * detects if character is moving / play walking animation
+                 */
             } else if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT && this.isAboveGround()) {
                     this.playAnimation(this.IMAGES_WALKING);
+                /**
+                 * play indle animation when no controll input detected
+                 */
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
             }

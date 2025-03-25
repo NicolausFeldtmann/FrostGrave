@@ -35,20 +35,32 @@ function decideControls() {
  * eventlistner for butttons on mobile device
  */
 function mobileBtnEventListner() {
-    document.getElementById('btnLeft').addEventListener('touchstart', () => keyboard.LEFT = true);
-    document.getElementById('btnLeft').addEventListener('touchend', () => keyboard.LEFT = false);
-
-    document.getElementById('btnRight').addEventListener('touchstart', () => keyboard.RIGHT = true);
-    document.getElementById('btnRight').addEventListener('touchend', () => keyboard.RIGHT = false);
-
-    document.getElementById('btnFire').addEventListener('touchstart', () => keyboard.THROW = true);
-    document.getElementById('btnFire').addEventListener('touchend', () => keyboard.THROW = false);
-
-    document.getElementById('btnJump').addEventListener('touchstart', () => keyboard.SPACE = true);
-    document.getElementById('btnJump').addEventListener('touchend', () => keyboard.SPACE = false);
-
-    document.getElementById('btnSlash').addEventListener('touchstart', () => keyboard.SLASH = true);
-    document.getElementById('btnSlash').addEventListener('touchend', () => keyboard.SLASH = false);
-
+    let handleTouchStart = (key) => {
+        keyboard[key] = true;
+    };
     
+    let handleTouchEnd = (key) => {
+        keyboard[key] = false;
+    };
+
+    let btnLeft = document.getElementById('btnLeft');
+    let btnRight = document.getElementById('btnRight');
+    let btnFire = document.getElementById('btnFire');
+    let btnJump = document.getElementById('btnJump');
+    let btnSlash = document.getElementById('btnSlash');
+
+    btnLeft.addEventListener('touchstart', (event) => (event.preventDefault(), handleTouchStart('LEFT')));
+    btnLeft.addEventListener('touchend', (event) => (event.preventDefault(), handleTouchEnd('LEFT')));
+
+    btnRight.addEventListener('touchstart', (event) => (event.preventDefault(), handleTouchStart('RIGHT')));
+    btnRight.addEventListener('touchend', (event) => (event.preventDefault(), handleTouchEnd('RIGHT')));
+
+    btnFire.addEventListener('touchstart', (event) => (event.preventDefault(), handleTouchStart('THROW')));
+    btnFire.addEventListener('touchend', (event) => (event.preventDefault(), handleTouchEnd('THROW')));
+
+    btnJump.addEventListener('touchstart', (event) => (event.preventDefault(), handleTouchStart('SPACE')));
+    btnJump.addEventListener('touchend', (event) => (event.preventDefault(), handleTouchEnd('SPACE')));
+
+    btnSlash.addEventListener('touchstart', (event) => (event.preventDefault(), handleTouchStart('SLASH')));
+    btnSlash.addEventListener('touchend', (event) => (event.preventDefault(), handleTouchEnd('SLASH')));
 }
