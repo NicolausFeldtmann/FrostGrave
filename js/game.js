@@ -4,6 +4,15 @@ let keyboard = new Keyboard();
 let backGrndSound = new Audio('audio/backgroundAudio.mp3');
 
 /**
+ * Shown animation wihle start screen is loading
+ */
+function loadStart() {
+    animatedArea.style.display = 'blockk';
+    setTimeout(() => {
+        animatedArea.style.display = 'none';
+    }, 2000);
+}
+/**
  * functioin to initialize thw game
  */
 function init() {

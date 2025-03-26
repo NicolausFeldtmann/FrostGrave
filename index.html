@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image" href="./img/frost.png">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./mobile.css">
-    <link rel="stylesheet" href="./loadAnimation.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/mobile.css">
+    <link rel="stylesheet" href="./styles/animation.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,14 @@
     <script src="./js/toggle.js"></script>
     
 </head>
-<body>
+<body onload="loadStart()">
+
+    <div class="blurEffeckt" style="display: none;"></div>
+    <div class="animatedArea" id="animatedArea">
+        <div class="spinnigObject">
+            <img class="spinningFlake" src="./img/frost.png">
+        </div>
+    </div>
 
     <div class="fullscreen" id="fullscreen">
 
@@ -85,14 +92,6 @@
         </div>
 
         <div class="gameScreen" id="gameScreen">
-            
-            <div class="blur-effect" style="display: none;"></div>
-            <div class="animatedArea" id="animatedArea">
-                <div class="spinnObject">
-                    <img class="spinningIcon" src="./img/frost.png">
-                </div>
-            </div>
-
 
             <h1>Frost Grave!</h1>
 

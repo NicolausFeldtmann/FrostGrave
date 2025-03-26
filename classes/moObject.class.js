@@ -228,6 +228,5 @@ class MoObject extends DrawObjects{
         if (!this.world.isRunnig) return
             this.world.endGame();
             showWinScreen();
-    }
-    
+    } 
 }

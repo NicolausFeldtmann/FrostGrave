@@ -1,38 +1,44 @@
-.animatedArea{
-    display: none;
-    justify-content: center; 
+.blur-effect {
     position: fixed;
-    z-index: 6;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(255, 255, 255, 0.5); 
+    backdrop-filter: blur(10px); 
+    display: none; 
+    z-index: 3; 
+}
+
+.animatedArea{
+    display: grid;
     justify-content: center;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
     backdrop-filter: blur(10px);
 }
 
-.spinnObject{
+.spinnigObject{
     height: 480px;
     margin-top: 48px;
     display: flex;
     justify-content: center;
 }
 
-.spinnigIcon{
+.spinningBall{
     animation-name: spin;
     animation-duration: 1500ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
 
-.loading{
-    visibility: hidden;
-    opacity: 1;
-}
-
 @keyframes spin {
-    from {
-        transform:rotate(0deg);
+    from{
+        transform: rotate(0deg);
     }
     to {
-        transform:rotate(360deg);
+        transform: rotate(360deg);
     }
 }
