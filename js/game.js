@@ -7,7 +7,7 @@ let backGrndSound = new Audio('audio/backgroundAudio.mp3');
  * Shown animation wihle start screen is loading
  */
 function loadStart() {
-    animatedArea.style.display = 'block';
+    animatedArea.style.display = 'grid';
     setTimeout(() => {
         animatedArea.style.display = 'none';
     }, 2000);

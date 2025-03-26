@@ -19,6 +19,7 @@ class World {
     gameOverSound = new Audio('audio/backgroundAudio.mp3');
 
 constructor(canvas, keyboard) {
+    animatedArea.style.display = 'grid';
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
@@ -34,6 +35,7 @@ constructor(canvas, keyboard) {
         setTimeout(() => {
             this.draw();
         }, 5000);
+        animatedArea.style.display = 'none';
     }
     /**
      * 

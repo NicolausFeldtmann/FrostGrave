@@ -167,10 +167,10 @@ class Char extends MoObject{
             /**
              * detects character moving leaft/rigth and plays walking animation and sounds
              */
-            if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT && !this.isAboveGround()) {
-            this.playAnimation(this.IMAGES_WALKING);
-            this.snow1.play();
-            this.snow2.play();
+            if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_WALKING);
+                this.snow1.play();
+                this.snow2.play();
             }
 
             /**
