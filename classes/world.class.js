@@ -22,13 +22,19 @@ constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
-    this.draw();
+    //this.draw();
     this.setWorld();
     this.run();
     this.runSlow();
+    this.loadGame();
     this.playMusic();
 }
 
+    loadGame() {
+        setTimeout(() => {
+            this.draw();
+        }, 5000);
+    }
     /**
      * 
      */
