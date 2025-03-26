@@ -56,6 +56,12 @@ canvas{
     position: fixed;
     z-index: 20;
     background-color: #2c353d;
+    font-size: 20px;
+}
+
+.gameOver{
+    margin: 0;
+    top: 0;
 }
 
 .winScreen{

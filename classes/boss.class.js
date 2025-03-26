@@ -12,9 +12,8 @@ class Boss extends MoObject {
         right: 120,
         bottom: 80, 
     };
-    slays = false;
     hurt = new Audio('audio/bossPain.mp3');
-    melm = new Audio('audio/melm.mp3');
+    dying = new Audio('audio/bossDies.mp3');
     bossTheme = new Audio('audio/bossMusic.mp3');
 
     IMAGES_START_ATTACK = [
@@ -138,8 +137,6 @@ class Boss extends MoObject {
         this.loadImages(this.IMAGES_START_ATTACK);
         this.animate();
         this.x = 5500;
-        this.world = world;
-        this.slays = false;
         this.otherDirection = true;
     }
 
@@ -164,59 +161,46 @@ class Boss extends MoObject {
     }
 
     bossAnimation() {
-        setInterval(() => {
-            this.ceepClose();
-            this.runBossAnimation();
-        }, 200);
-    }
-
-    ceepClose() {
-        if (!this.world || this.world.char) {
-            let spaceBetween = Math.abs(this.world.char.x - this.x);
-            if (spaceBetween < 200) {
-                this.cahrgeChar();
-            }
-        }
-    }
-
-    cahrgeChar() {
-        if (!this.world || this.world.char) return;
-        let charPos = this.world.char.x;
-        let spaceBetween = Math.abs(this.world.char.x - this.x);
-
-        if (spaceBetween > 100) {
-            this.x += charPos < this.x ? -this.speed : this.speed;
-            this.otherDirection = charPos > this.x;
-        } else {
-            this.slay();
-        }
-    }
-
-    slay() {
-        if (!this.isDeadAgain && !this.slays) {
-            this.slays = true;
-            this.isHurt = false;
-            this.playAnimation(this.IMAGES_SLAY);
-            setTimeout(() => {
-                this.slays = false;
-            }, 2000);
-        }
-    }
-
-    runBossAnimation() {
+        let i = 0;
         if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
             this.hurt.play();
         } else if (this.isDeadAgain()) {
             this.playAnimation(this.IMAGES_DYING);
-            this.melm.play();
+            this.dying.play();
             showWinScreen();
             clearInterval(this.animateInterval);
         } else {
-            this.attack();
+            this.playAnimation(this.IMAGES_IDLE);
         }
+        i++;
+    }
+
+    attack() {
+        this.playAnimation(this.IMAGES_SLAY);
+    
+        let startPosition = this.x;
+        const moveDistance = 250; 
+        const targetPosition = startPosition + moveDistance;
+    
+        const moveInterval = setInterval(() => {
+            if (this.x < targetPosition) {
+                this.x -= this.speed; 
+                this.playAnimation(this.IMAGES_SPAWNING);
+            } else {
+                clearInterval(moveInterval);
+                this.idleAfterAttack(); 
+            }
+        }, 1000 / 30);  
     }
     
+    idleAfterAttack() {
+        this.playAnimation(this.IMAGES_IDLE); 
+        setTimeout(() => {
+            this.attack(); 
+        }, 2000); 
+    }
+
     moveIn() {
         if (this.x > 5040) {
             this.x -= this.speed;
