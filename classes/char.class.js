@@ -99,6 +99,21 @@ class Char extends MoObject{
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing/0_Skeleton_Warrior_Slashing_011.png',
     ];
 
+    IMAGES_SLASH_MIDAIR = [
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_000.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_001.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_002.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_003.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_004.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_005.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_006.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_007.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_008.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_009.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_010.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing in The Air/0_Skeleton_Warrior_Slashing in The Air_011.png',
+    ];
+
     IMAGES_THROW = [
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing/0_Skeleton_Warrior_Throwing_000.png',
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing/0_Skeleton_Warrior_Throwing_001.png',
@@ -112,6 +127,21 @@ class Char extends MoObject{
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing/0_Skeleton_Warrior_Throwing_009.png',
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing/0_Skeleton_Warrior_Throwing_010.png',
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing/0_Skeleton_Warrior_Throwing_011.png',
+    ];
+
+    IMAGES_THROW_MIDAIR = [
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_000.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_001.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_002.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_003.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_004.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_005.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_006.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_007.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_008.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_009.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_010.png',
+        'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_011.png',
     ];
 
     world;
@@ -138,7 +168,9 @@ class Char extends MoObject{
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_SLASHING);
+        this.loadImages(this.IMAGES_SLASH_MIDAIR);
         this.loadImages(this.IMAGES_THROW);
+        this.loadImages(this.IMAGES_THROW_MIDAIR);
         this.loadImages(this.IMAGES_IDLE);
         this.alppyGravity();
         this.animate();
@@ -181,7 +213,7 @@ class Char extends MoObject{
             }
 
             /**
-             * detects is abouv ground and allows slash funktion/ play animation and sound
+             * detects is abouv ground and plays animation and sound
              */
             if(this.world.keyboard.SLASH && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_SLASHING);
@@ -190,10 +222,26 @@ class Char extends MoObject{
             }
 
             /**
-             * detects is above ground and allows throw funktion / play animation
+             * detects is above graound and palys animation slah midair
+             */
+            if(this.world.keyboard.SLASH && this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_SLASH_MIDAIR);
+                this.slash();
+                this.slashSound.play();
+            }
+
+            /**
+             * detects is above ground and plays animation throw animation
              */
             if(this.world.keyboard.THROW && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_THROW);
+            }
+
+            /**
+             * dectects is above ground and plays animation throw midair
+             */
+            if (this.world.keyboard.THROW && this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_THROW_MIDAIR);
             }
             /**
              * focus camera on character

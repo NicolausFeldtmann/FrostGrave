@@ -41,7 +41,7 @@ class Boss extends MoObject {
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_006.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_007.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_008.png',
-        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_009png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_009.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_010.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_011.png',
     ];
@@ -158,6 +158,7 @@ class Boss extends MoObject {
         this.isChargeing = false;
         this.isSlays = false;
         this.isBeaten = false;
+        this.lastHit = 0;
         this.x = 5500;
         this.otherDirection = true;
     }
@@ -200,6 +201,9 @@ class Boss extends MoObject {
         if (this.isBeaten) {
             this.playAnimation(this.IMAGES_DYING);
             this.dying.play();
+            setTimeout(() => {
+                showWinScreen();
+            }, 2000);
         } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
             this.hurt.play();
@@ -234,21 +238,22 @@ class Boss extends MoObject {
             this.isHurt = false;
             this.isSlays = true;
             this.playAnimation(this.IMAGES_SLAY);
+            this.slash.play();
             this.endCharge();
         }
     }
 
     charge() {
         this.isChargeing = true;
-
+        this.lastHit = new Date().getTime();
     }
 
     endCharge() {
         setTimeout(() => {
-            this.isSlays = false, 2000;
+            this.isSlays = false;
             this.playAnimation(this.IMAGES_THROW);
             this.angry.play();
-        })
+        }, 2000);
     }
 
     moveIn() {
