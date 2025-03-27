@@ -15,6 +15,8 @@ class Boss extends MoObject {
     hurt = new Audio('audio/bossPain.mp3');
     dying = new Audio('audio/bossDies.mp3');
     bossTheme = new Audio('audio/bossMusic.mp3');
+    slash = new Audio ('audio/bossSlash.mp3');
+    angry = new Audio ('audio/bossAngry.mp3');
 
     IMAGES_START_ATTACK = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_009.png',
@@ -27,6 +29,21 @@ class Boss extends MoObject {
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
         
+    ];
+
+    IMAGES_THROW = [
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_000.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_001.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_002.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_003.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_004.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_005.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_006.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_007.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_008.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_009png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_010.png',
+        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Throwing/0_Zombie_Villager_Throwing_011.png',
     ];
 
     IMAGES_SLAY = [
@@ -98,7 +115,7 @@ class Boss extends MoObject {
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png',
     ];
 
-    IMAGES_SPAWNING = [
+    IMAGES_WAKLING = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_000.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_001.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_002.png',
@@ -131,11 +148,16 @@ class Boss extends MoObject {
         super().loadImg('img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png');
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_THROW);
         this.loadImages(this.IMAGES_DYING);
-        this.loadImages(this.IMAGES_SPAWNING)
+        this.loadImages(this.IMAGES_WAKLING);
         this.loadImages(this.IMAGES_SLAY);
         this.loadImages(this.IMAGES_START_ATTACK);
         this.animate();
+        this.isHurt = false;
+        this.isChargeing = false;
+        this.isSlays = false;
+        this.isBeaten = false;
         this.x = 5500;
         this.otherDirection = true;
     }
@@ -146,11 +168,11 @@ class Boss extends MoObject {
             if (!this.firstEncounter && world.char.x > 4440) {
                 this.firstEncounter = true; 
                 console.log('encounter!'); 
-                this.playAnimation(this.IMAGES_SPAWNING); 
+                this.playAnimation(this.IMAGES_WAKLING); 
                 i = 0; 
             } else if (this.firstEncounter) {
                 if (this.x > 5040) {
-                    this.playAnimation(this.IMAGES_SPAWNING);
+                    this.playAnimation(this.IMAGES_WAKLING);
                     this.moveIn(); 
                 } else {
                     this.bossAnimation(); 
@@ -161,44 +183,72 @@ class Boss extends MoObject {
     }
 
     bossAnimation() {
-        let i = 0;
-        if (this.isHurt()) {
-            this.playAnimation(this.IMAGES_HURT);
-            this.hurt.play();
-        } else if (this.isDeadAgain()) {
-            this.playAnimation(this.IMAGES_DYING);
-            this.dying.play();
-            showWinScreen();
-            clearInterval(this.animateInterval);
-        } else {
-            this.playAnimation(this.IMAGES_IDLE);
-        }
-        i++;
+        setInterval(() => {
+            this.checkSpaceBetween();
+            this.animationUpdate();
+        }, 200);
     }
 
-    attack() {
-        this.playAnimation(this.IMAGES_SLAY);
-    
-        let startPosition = this.x;
-        const moveDistance = 250; 
-        const targetPosition = startPosition + moveDistance;
-    
-        const moveInterval = setInterval(() => {
-            if (this.x < targetPosition) {
-                this.x -= this.speed; 
-                this.playAnimation(this.IMAGES_SPAWNING);
-            } else {
-                clearInterval(moveInterval);
-                this.idleAfterAttack(); 
-            }
-        }, 1000 / 30);  
+    checkSpaceBetween() {
+        if (!this.world || !this.world.char) return;
+            let spaceBetween = Math.abs(this.world.char.x - this.x);
+        
+        if (spaceBetween < 400 & !this.isChargeing) this.charge();
     }
-    
-    idleAfterAttack() {
-        this.playAnimation(this.IMAGES_IDLE); 
+
+    animationUpdate() {
+        if (this.isBeaten) {
+            this.playAnimation(this.IMAGES_DYING);
+            this.dying.play();
+        } else if (this.isHurt) {
+            this.playAnimation(this.IMAGES_HURT);
+            this.hurt.play();
+        } else if (this.isSlays) {
+            this.playAnimation(this.IMAGES_SLAY);
+            this.slash.play();
+        } else if (this.isChargeing) {
+            this.playAnimation(this.IMAGES_WAKLING);
+            this.chargeChar();
+        } else {
+            this.playAnimation(this.IMAGES_THROW);
+            this.angry.play();
+        }
+    }
+
+    chargeChar() {
+        if (!this.world || this.world.char) return;
+            let charPos = this.world.char.x;
+            let spaceBetween = Math.abs(charPos - this.x);
+
+        if (spaceBetween > 100) {
+            this.x += charPos < this.x ? -this.speed : this.speed;
+            this.otherDirection = charPos > this.x;
+        } else {
+            this.slashing();
+        }
+    }
+
+    slashing() {
+        if (!this.isBeaten && !isChargeing) {
+            this.isChargeing = false;
+            this.isHurt = false;
+            this.isSlays = true;
+            this.playAnimation(this.IMAGES_SLAY);
+            this.endCharge();
+        }
+    }
+
+    charge() {
+        this.isChargeing = true;
+
+    }
+
+    endCharge() {
         setTimeout(() => {
-            this.attack(); 
-        }, 2000); 
+            this.isSlays = false, 2000;
+            this.playAnimation(this.IMAGES_THROW);
+            this.angry.play();
+        })
     }
 
     moveIn() {
