@@ -16,7 +16,7 @@ function initLevel(){
         new Walker2('img/enemys/Zombie_Villager_2/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png'),
     ],
     [
-        new Boss(this),
+        new Boss(),
     ],
     [
         new Clouds(),

@@ -13,7 +13,7 @@ class Level {
 
     constructor(enemies, boss, clouds, backgrounds, blueSky, frontObj, mana, jewel,) {
         this.enemies = enemies;
-        this.boss = boss;
+        this.boss = boss || [];
         this.clouds = clouds;
         this.backgrounds= backgrounds;
         this.blueSky = blueSky;

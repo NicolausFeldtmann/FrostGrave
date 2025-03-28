@@ -148,8 +148,6 @@ class Boss extends MoObject {
     constructor(world) {
         super().loadImg('img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png');
         this.world = world;
-        console.log("Welt: ", this.world); // Debug-Nachricht für die Welt
-        console.log("Charakter: ", this.world ? this.world.char : 'Keine Charakterreferenz');
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_THROW);

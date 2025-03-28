@@ -161,8 +161,9 @@ class Char extends MoObject{
     slashTimeout;
 
 
-    constructor() {
+    constructor(world) {
         super().loadImg('img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Running/0_Skeleton_Warrior_Running_000.png');
+        this.world = world;
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);

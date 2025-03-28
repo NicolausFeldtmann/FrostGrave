@@ -23,6 +23,7 @@ constructor(canvas, keyboard) {
     this.keyboard = keyboard;
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
+    this.initWorld();
     //this.draw();
     this.setWorld();
     this.run();
@@ -314,5 +315,15 @@ constructor(canvas, keyboard) {
         this.backGrndMusic.pause();
         this.backGrndMusic.currentTime = 0;
         this.gameOverSound.play();
+    }
+
+    initWorld() {
+        initLevel();
+        this.spawnBoss();
+    }
+
+    spawnBoss() {
+        let boss = new Boss(this);
+        level1.boss.push(boss);
     }
 }
