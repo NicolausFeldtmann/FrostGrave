@@ -20,9 +20,9 @@ class World {
 
 constructor(canvas, keyboard) {
     animatedArea.style.display = 'grid';
-    this.ctx = canvas.getContext('2d');
-    this.canvas = canvas;
     this.keyboard = keyboard;
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
     //this.draw();
     this.setWorld();
     this.run();
@@ -151,7 +151,6 @@ constructor(canvas, keyboard) {
     checkMele() {
         this.level.enemies.forEach((enemy) => {
             if (this.char.isCollidingMele(enemy)) {
-                console.log('MELEE HIT!');
                 enemy.gotSlashed();
                 enemy.bounceBack(); 
             }
@@ -164,7 +163,6 @@ constructor(canvas, keyboard) {
     checkCollMana() {
         this.level.mana.forEach((mana , idx) => {
             if(this.char.isCollidingMo(mana)) {
-                console.log('MANA!');
                 this.crystal.play();
                 this.char.gotMana();
                 this.greenBar.setPercentage(this.char.mana);
@@ -179,7 +177,6 @@ constructor(canvas, keyboard) {
     checkCollJewel() {
         this.level.jewel.forEach((jewel, idx) => {
             if (this.char.isCollidingMo(jewel)) {
-                console.log('JEWEWL!');
                 this.crystal.play();
                 this.char.gotJewel();
                 this.orangeBar.setPercentage(this.char.jewel);
@@ -195,14 +192,12 @@ constructor(canvas, keyboard) {
         this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy.isCollidingPro(projectile)) {
-                    console.log('HIT!');
                     enemy.foeHurt();
                 }
         });
             
             this.level.boss.forEach((boss) => {
                 if (boss.isCollidingPro(projectile)) {
-                    console.log('HIT BOSS');
                     boss.foeHurt();
                 }
             });

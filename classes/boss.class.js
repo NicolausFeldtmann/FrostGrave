@@ -6,7 +6,8 @@ class Boss extends MoObject {
     y = 35;
     energy = 1000;
     speed = 2;
-        offset = {
+    lastHit = 0;
+    offset = {
         top: 120,
         left: 105,
         right: 120,
@@ -144,8 +145,11 @@ class Boss extends MoObject {
 
     firstEncounter = false;
 
-    constructor() {
+    constructor(world) {
         super().loadImg('img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png');
+        this.world = world;
+        console.log("Welt: ", this.world); // Debug-Nachricht für die Welt
+        console.log("Charakter: ", this.world ? this.world.char : 'Keine Charakterreferenz');
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_THROW);
@@ -154,11 +158,6 @@ class Boss extends MoObject {
         this.loadImages(this.IMAGES_SLAY);
         this.loadImages(this.IMAGES_START_ATTACK);
         this.animate();
-        this.isHurt = false;
-        this.isChargeing = false;
-        this.isSlays = false;
-        this.isBeaten = false;
-        this.lastHit = 0;
         this.x = 5500;
         this.otherDirection = true;
     }
@@ -176,6 +175,7 @@ class Boss extends MoObject {
                     this.playAnimation(this.IMAGES_WAKLING);
                     this.moveIn(); 
                 } else {
+                    this.persueChar();
                     this.bossAnimation(); 
                 }
                 i++;
@@ -184,76 +184,47 @@ class Boss extends MoObject {
     }
 
     bossAnimation() {
-        setInterval(() => {
-            this.checkSpaceBetween();
-            this.animationUpdate();
-        }, 200);
-    }
-
-    checkSpaceBetween() {
-        if (!this.world || !this.world.char) return;
-            let spaceBetween = Math.abs(this.world.char.x - this.x);
-        
-        if (spaceBetween < 400 & !this.isChargeing) this.charge();
-    }
-
-    animationUpdate() {
-        if (this.isBeaten) {
+        if (this.isDeadAgain()) {
             this.playAnimation(this.IMAGES_DYING);
             this.dying.play();
-            setTimeout(() => {
-                showWinScreen();
-            }, 2000);
-        } else if (this.isHurt) {
+        } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
-            this.hurt.play();
-        } else if (this.isSlays) {
-            this.playAnimation(this.IMAGES_SLAY);
-            this.slash.play();
-        } else if (this.isChargeing) {
+        } else {
             this.playAnimation(this.IMAGES_WAKLING);
-            this.chargeChar();
+        }
+    }
+
+    react() {
+        this.persueChar();
+        this.playAnimation(this.IMAGES_WAKLING);
+        console.log('persue!d');
+    }
+
+    persueChar() {
+        console.log('Versuche, Char zu verfolgen!');
+        
+        // Überprüfen, ob die Welt und der Charakter existieren
+        if (!this.world || !this.world.char) {
+            console.log("Welt oder Charakter nicht vorhanden!"); // Debugging
+            return;
+        }
+    
+        let charPos = this.world.char.x; // Die Position des Charakters
+        let distance = charPos - this.x; // Berechnung der Distanz
+    
+        console.log("Boss Position: ", this.x); // Vorherige Position
+        console.log("Char Position: ", charPos); // Position des Charakters
+        console.log("Entfernung: ", distance); // Distanz zwischen Boss und Charakter
+        
+        // Prüfen, ob der Boss sich bewegen sollte
+        if (Math.abs(distance) > 100) { 
+            this.x += distance > 0 ? this.speed : -this.speed; 
+            this.otherDirection = distance < 0; 
+    
+            console.log("Boss nach Bewegung Position: ", this.x); // Nach der Bewegung
         } else {
-            this.playAnimation(this.IMAGES_THROW);
-            this.angry.play();
+            console.log("Boss ist nah genug am Charakter, bewegt sich nicht."); // Debugging
         }
-    }
-
-    chargeChar() {
-        if (!this.world || this.world.char) return;
-            let charPos = this.world.char.x;
-            let spaceBetween = Math.abs(charPos - this.x);
-
-        if (spaceBetween > 100) {
-            this.x += charPos < this.x ? -this.speed : this.speed;
-            this.otherDirection = charPos > this.x;
-        } else {
-            this.slashing();
-        }
-    }
-
-    slashing() {
-        if (!this.isBeaten && !isChargeing) {
-            this.isChargeing = false;
-            this.isHurt = false;
-            this.isSlays = true;
-            this.playAnimation(this.IMAGES_SLAY);
-            this.slash.play();
-            this.endCharge();
-        }
-    }
-
-    charge() {
-        this.isChargeing = true;
-        this.lastHit = new Date().getTime();
-    }
-
-    endCharge() {
-        setTimeout(() => {
-            this.isSlays = false;
-            this.playAnimation(this.IMAGES_THROW);
-            this.angry.play();
-        }, 2000);
     }
 
     moveIn() {
