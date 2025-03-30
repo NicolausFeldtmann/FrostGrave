@@ -29,7 +29,7 @@ constructor(canvas, keyboard) {
     this.run();
     this.runSlow();
     this.loadGame();
-    this.playMusic();
+    //this.playMusic();
 }
 
     loadGame() {

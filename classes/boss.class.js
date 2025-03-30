@@ -5,7 +5,7 @@ class Boss extends MoObject {
     width = 400;
     y = 35;
     energy = 1000;
-    speed = 2;
+    speed = 4;
     lastHit = 0;
     offset = {
         top: 120,
@@ -165,7 +165,7 @@ class Boss extends MoObject {
         this.animateInterval = setInterval(() => {
             if (!this.firstEncounter && world.char.x > 4440) {
                 this.firstEncounter = true; 
-                console.log('encounter!'); 
+                console.log('Encounter!'); 
                 this.playAnimation(this.IMAGES_WAKLING); 
                 i = 0; 
             } else if (this.firstEncounter) {
@@ -173,8 +173,8 @@ class Boss extends MoObject {
                     this.playAnimation(this.IMAGES_WAKLING);
                     this.moveIn(); 
                 } else {
-                    this.persueChar();
-                    this.bossAnimation(); 
+                    console.log('Boss-Animation läuft'); // Hier loggen 
+                    this.bossAnimation();
                 }
                 i++;
             }
@@ -188,47 +188,53 @@ class Boss extends MoObject {
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
         } else {
-            this.playAnimation(this.IMAGES_WAKLING);
+            this.reactInterval();
         }
     }
 
-    react() {
-        this.persueChar();
-        this.playAnimation(this.IMAGES_WAKLING);
-        console.log('persue!d');
+    reactInterval() {
+        setInterval(() => {
+            this.checkDistance();
+        }, 200);
+    }
+
+    checkDistance() {
+        if (!this.world || !this.world.char) return; 
+        
+        let spaceBetween = Math.abs(this.world.char.x - this.x); 
+    
+        if (spaceBetween < 200) {  
+            console.log('Character ist in der Nähe des Bosses. Distanz:', spaceBetween);
+            // Hier kannst du weitere Logik hinzufügen, z.B. Spezialaktionen des Bosses 
+        } else {
+            console.log('Character ist zu weit weg. Distanz:', spaceBetween);
+            this.persueChar();
+        }
     }
 
     persueChar() {
-        console.log('Versuche, Char zu verfolgen!');
+        if (!this.world || !this.world.char) return; 
         
-        // Überprüfen, ob die Welt und der Charakter existieren
-        if (!this.world || !this.world.char) {
-            console.log("Welt oder Charakter nicht vorhanden!"); // Debugging
-            return;
-        }
-    
-        let charPos = this.world.char.x; // Die Position des Charakters
-        let distance = charPos - this.x; // Berechnung der Distanz
-    
-        console.log("Boss Position: ", this.x); // Vorherige Position
-        console.log("Char Position: ", charPos); // Position des Charakters
-        console.log("Entfernung: ", distance); // Distanz zwischen Boss und Charakter
+        let charPos = this.world.char.x;
+        let spaceBetween = Math.abs(charPos - this.x);
         
-        // Prüfen, ob der Boss sich bewegen sollte
-        if (Math.abs(distance) > 100) { 
-            this.x += distance > 0 ? this.speed : -this.speed; 
-            this.otherDirection = distance < 0; 
+        console.log(`Vor der Verfolgung: Boss-Position: ${this.x}, Charakter-Position: ${charPos}, Distanz: ${spaceBetween}`);
     
-            console.log("Boss nach Bewegung Position: ", this.x); // Nach der Bewegung
-        } else {
-            console.log("Boss ist nah genug am Charakter, bewegt sich nicht."); // Debugging
+        if (spaceBetween > 200) {
+            this.x += charPos < this.x ? -this.speed : this.speed;
+            this.otherDirection = charPos > this.x;
+    
+            console.log(`Nach der Verfolgung: Neue Boss-Position: ${this.x}`); // Hier überprüfen, ob die Position aktualisiert wird
+            this.playAnimation(this.IMAGES_WAKLING); // Animation abspielen
         }
     }
 
     moveIn() {
+        // Hier kann die Animation entsprechend dem Bewegungszustand angepasst werden
+        this.playAnimation(this.IMAGES_WAKLING);
         if (this.x > 5040) {
-            this.x -= this.speed;
-            //this.bossTheme.play();
+            this.x -= this.speed; // Dies ist die Logik für das Bewegen des Bosses
+            console.log(`Boss bewegt sich näher: ${this.x}`);
         }
     }
 }
