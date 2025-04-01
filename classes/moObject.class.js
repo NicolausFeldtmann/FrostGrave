@@ -138,7 +138,6 @@ class MoObject extends DrawObjects{
      */
     gotMana() {
         this.mana += 41; 
-        console.log(this.mana);
         if (this.mana > 100) { 
             this.mana = 100; 
         } else {
