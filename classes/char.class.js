@@ -202,8 +202,8 @@ class Char extends MoObject{
              */
             if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_WALKING);
-                this.snow1.play();
-                this.snow2.play();
+                //this.snow1.play();
+                //this.snow2.play();
             }
 
             /**

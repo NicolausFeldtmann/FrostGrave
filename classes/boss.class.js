@@ -156,6 +156,7 @@ class Boss extends MoObject {
         this.loadImages(this.IMAGES_SLAY);
         this.loadImages(this.IMAGES_START_ATTACK);
         this.animate();
+        this.reactInterval();
         this.x = 5500;
         this.otherDirection = true;
     }
@@ -169,11 +170,10 @@ class Boss extends MoObject {
                 this.playAnimation(this.IMAGES_WAKLING); 
                 i = 0; 
             } else if (this.firstEncounter) {
-                if (this.x > 5040) {
+                if (this.x > 4440) {
                     this.playAnimation(this.IMAGES_WAKLING);
                     this.moveIn(); 
                 } else {
-                    console.log('Boss-Animation läuft'); // Hier loggen 
                     this.bossAnimation();
                 }
                 i++;
@@ -185,10 +185,11 @@ class Boss extends MoObject {
         if (this.isDeadAgain()) {
             this.playAnimation(this.IMAGES_DYING);
             this.dying.play();
+            this.beatGame();
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
         } else {
-            this.reactInterval();
+            this.persueChar();
         }
     }
 
@@ -200,41 +201,31 @@ class Boss extends MoObject {
 
     checkDistance() {
         if (!this.world || !this.world.char) return; 
+        let spaceBetween = this.world.char.x - this.x;  
         
-        let spaceBetween = Math.abs(this.world.char.x - this.x); 
-    
-        if (spaceBetween < 200) {  
-            console.log('Character ist in der Nähe des Bosses. Distanz:', spaceBetween);
-            // Hier kannst du weitere Logik hinzufügen, z.B. Spezialaktionen des Bosses 
+        if (Math.abs(spaceBetween) < 200) {  
+            console.log('Char ist nah genug dran', spaceBetween);
         } else {
-            console.log('Character ist zu weit weg. Distanz:', spaceBetween);
-            this.persueChar();
+            console.log('Char ist zu weit weg', spaceBetween);
+            this.persueChar(spaceBetween);
         }
     }
 
-    persueChar() {
-        if (!this.world || !this.world.char) return; 
-        
+    persueChar(spaceBetween) {  
+        if (!this.world || this.world.char) return;
         let charPos = this.world.char.x;
-        let spaceBetween = Math.abs(charPos - this.x);
         
-        console.log(`Vor der Verfolgung: Boss-Position: ${this.x}, Charakter-Position: ${charPos}, Distanz: ${spaceBetween}`);
-    
-        if (spaceBetween > 200) {
+        if (spaceBetween > 150) {
             this.x += charPos < this.x ? -this.speed : this.speed;
             this.otherDirection = charPos > this.x;
-    
-            console.log(`Nach der Verfolgung: Neue Boss-Position: ${this.x}`); // Hier überprüfen, ob die Position aktualisiert wird
-            this.playAnimation(this.IMAGES_WAKLING); // Animation abspielen
+            this.playAnimation(this.IMAGES_WAKLING);
         }
     }
 
     moveIn() {
-        // Hier kann die Animation entsprechend dem Bewegungszustand angepasst werden
         this.playAnimation(this.IMAGES_WAKLING);
-        if (this.x > 5040) {
-            this.x -= this.speed; // Dies ist die Logik für das Bewegen des Bosses
-            console.log(`Boss bewegt sich näher: ${this.x}`);
+        if (this.x > 4440) {
+            this.x -= this.speed; 
         }
     }
 }
