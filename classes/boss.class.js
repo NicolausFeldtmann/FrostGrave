@@ -5,7 +5,7 @@ class Boss extends MoObject {
     width = 400;
     y = 35;
     energy = 1000;
-    speed = 4;
+    speed = 2;
     lastHit = 0;
     offset = {
         top: 120,
@@ -180,7 +180,6 @@ class Boss extends MoObject {
             console.log('Bin da!');
         } else {
             this.firstEncounter = false;
-            console.log(this.x);
         }
     }
 
@@ -192,25 +191,32 @@ class Boss extends MoObject {
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
         } else {
-            this.persueChar();
+            this.checkDistance();
         }
     }
 
     reactInterval() {
         setInterval(() => {
-            this.checkDistance();
             this.checkBossState();
         }, 60);
     }
 
     checkDistance() {
-        if (!this.world || !this.world.char) return; 
-        let spaceBetween = this.world.char.x - this.x;   
+        let bossPos = this.x;
+        let charPos = world.char.x;
+        let spaceBetween = bossPos - charPos;
+        console.log(spaceBetween);
         
-        if (Math.abs(spaceBetween) < 50) {  
-        } else {
+        if (spaceBetween >= 50) {
             this.persueChar();
+        } else {
+            console.log('KASALLA!');
+            this.attack();
         }
+    }
+
+    attack() {
+        this.playAnimation(this.IMAGES_SLAY);
     }
 
     persueChar() {  
