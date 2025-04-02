@@ -16,8 +16,9 @@ class Boss extends MoObject {
     hurt = new Audio('audio/bossPain.mp3');
     dying = new Audio('audio/bossDies.mp3');
     bossTheme = new Audio('audio/bossMusic.mp3');
-    slash = new Audio ('audio/bossSlash.mp3');
-    angry = new Audio ('audio/bossAngry.mp3');
+    slash = new Audio('audio/bossSlash.mp3');
+    angry = new Audio('audio/bossAngry.mp3');
+    stomp = new Audio('audio/stomp.mp3'); 
 
     IMAGES_START_ATTACK = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_009.png',
@@ -63,8 +64,6 @@ class Boss extends MoObject {
     ];
 
     IMAGES_IDLE = [
-        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png',
-        'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_001.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_002.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_003.png',
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_004.png',
@@ -186,9 +185,11 @@ class Boss extends MoObject {
     bossAnimation() {
         if (this.isDeadAgain()) {
             this.playAnimation(this.IMAGES_DYING);
+            this.stomp.pause();
             this.dying.play();
             this.beatGame();
         } else if (this.isHurt()) {
+            this.stomp.pause();
             this.playAnimation(this.IMAGES_HURT);
         } else {
             this.checkDistance();
@@ -216,19 +217,34 @@ class Boss extends MoObject {
     }
 
     attack() {
+        this.stomp.pause();
         this.playAnimation(this.IMAGES_SLAY);
+        this.slash.play();
     }
 
-    persueChar() {  
-        this.x -= this.speed;
-        this.playAnimation(this.IMAGES_WAKLING);
+    persueChar() {
+        let bossPos = this.x;
+        let charPos = world.char.x;
+        if (bossPos < charPos) {
+            this.otherDirection;  
+            this.x += this.speed;
+            this.walk();
+        } else {
+            this.walk();
+            this.x -= this.speed;
+        }
     }
 
     moveIn() {
-        this.playAnimation(this.IMAGES_WAKLING);
+        this.walk();
         if (this.x > 5040) {
             this.x -= this.speed; 
             console.log('first Encounter');            
         }
+    }
+
+    walk() {
+        this.playAnimation(this.IMAGES_WAKLING);
+        this.stomp.play();
     }
 }
