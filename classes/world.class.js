@@ -17,6 +17,7 @@ class World {
     crystal = new Audio('audio/crystal.mp3');
     backGrndMusic = new Audio('audio/backgroundMusic.mp3');
     gameOverSound = new Audio('audio/backgroundAudio.mp3');
+    winMusic = new Audio('audio/winMusic.mp3');
 
 constructor(canvas, keyboard) {
     animatedArea.style.display = 'grid';
@@ -328,7 +329,7 @@ constructor(canvas, keyboard) {
             clearInterval(this.slowInterval);
             this.backGrndMusic.pause();
             this.backGrndMusic.currentTime = 0;
-            this.gameOverSound.play();
+            this.winMusic.play();
             showWinScreen();
         };
     }
