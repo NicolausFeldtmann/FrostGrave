@@ -203,6 +203,12 @@ class MoObject extends DrawObjects{
         this.world.checkMele();
     }
 
+    hitHard() {
+        this.world.checkHardHit();
+        console.log('HIT HARD!');
+        
+    }
+
     /**
      * throw enemy back, after mele collision
      */
@@ -219,13 +225,4 @@ class MoObject extends DrawObjects{
             showGameOver();
             clearInterval(this.world.musicInterval);
     }
-
-    /**
-     * auit game and shows "Winnig" screen
-     */
-    beatGame() {
-        if (!this.world.isRunnig) return
-            this.world.endGame();
-            showWinScreen();
-    } 
 }

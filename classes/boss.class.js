@@ -1,11 +1,12 @@
 class Boss extends MoObject {
 
+    isAlive = true;
     world;
     height = 500;
     width = 400;
     y = 35;
     energy = 1000;
-    speed = 2;
+    speed = 4;
     lastHit = 0;
     offset = {
         top: 120,
@@ -185,11 +186,12 @@ class Boss extends MoObject {
     bossAnimation() {
         if (this.isDeadAgain()) {
             this.playAnimation(this.IMAGES_DYING);
-            this.stomp.pause();
-            this.dying.play();
-            this.beatGame();
+            this.bossDies();
+            setTimeout(() => {
+                clearInterval(this.dieInterval);
+                world.endGame();
+            });
         } else if (this.isHurt()) {
-            this.stomp.pause();
             this.playAnimation(this.IMAGES_HURT);
         } else {
             this.checkDistance();
@@ -197,29 +199,43 @@ class Boss extends MoObject {
     }
 
     reactInterval() {
-        setInterval(() => {
+        this.reactInterval = setInterval(() => {
             this.checkBossState();
         }, 60);
     }
 
+    endAudio() {
+        setInterval(() => {
+            this.hurt.pause();
+            this.dying.pause();
+            this.slash.pause();
+            this.angry.pause();
+            this.stomp.pause();;
+        }, 1000);
+    }
+
     checkDistance() {
-        let bossPos = this.x;
-        let charPos = world.char.x;
-        let spaceBetween = bossPos - charPos;
-        console.log(spaceBetween);
-        
-        if (spaceBetween >= 50) {
-            this.persueChar();
-        } else {
-            console.log('KASALLA!');
-            this.attack();
+        if (this.isAlive) {
+            let bossPos = this.x;
+            let charPos = world.char.x;
+            let spaceBetween = bossPos - charPos;
+            console.log(spaceBetween);
+            
+            if (spaceBetween >= 50) {
+                this.persueChar();
+            } else {
+                console.log('KASALLA!');
+                this.attack();
+            }
         }
     }
 
     attack() {
-        this.stomp.pause();
-        this.playAnimation(this.IMAGES_SLAY);
-        this.slash.play();
+        if (!this.isAlive) {
+            this.playAnimation(this.IMAGES_SLAY);
+            this.slash.play();
+            this.hitHard();
+        }
     }
 
     persueChar() {
@@ -246,5 +262,13 @@ class Boss extends MoObject {
     walk() {
         this.playAnimation(this.IMAGES_WAKLING);
         this.stomp.play();
+    }
+
+    bossDies() {
+        this.isAlive = false;
+        clearInterval(this.reactInterval);
+        console.log('thats the end!');
+        this.endAudio();
+        this.dying.play(); 
     }
 }

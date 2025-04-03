@@ -122,7 +122,7 @@ constructor(canvas, keyboard) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
             }
-        })
+        });
     }
 
     /**
@@ -156,6 +156,19 @@ constructor(canvas, keyboard) {
                 enemy.bounceBack(); 
             }
         });
+    }
+
+    checkHardHit() {
+        this.level.boss.forEach((boss, idx) => {
+            if (boss.isDeadAgain()) {
+                console.log('NOOOOOO!');
+            } else if (this.char.isCollidingMele(boss)) {
+                this.char.gotSlashed();
+                this.statusBar.setPercentage(this.char.energy);
+                console.log('PAAM!');
+                
+            }
+        })
     }
 
     /**
@@ -310,11 +323,14 @@ constructor(canvas, keyboard) {
      */
     endGame() {
         this.isRunnig = !this.isRunnig;
-        clearInterval(this.runInterval);
-        clearInterval(this.slowInterval);
-        this.backGrndMusic.pause();
-        this.backGrndMusic.currentTime = 0;
-        this.gameOverSound.play();
+        if (!this.isRunnig) {
+            clearInterval(this.runInterval);
+            clearInterval(this.slowInterval);
+            this.backGrndMusic.pause();
+            this.backGrndMusic.currentTime = 0;
+            this.gameOverSound.play();
+            showWinScreen();
+        };
     }
 
     initWorld() {
