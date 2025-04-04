@@ -92,7 +92,7 @@ class MoObject extends DrawObjects{
      * handles damage when collision with mele hitbox is deteckted
      */
     gotSlashed() {
-        this.energy -= 25;
+        this.energy -= 10;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -181,9 +181,10 @@ class MoObject extends DrawObjects{
         this.x += this.speed;
         this.otherDirection = false;
     }
-/**
- * moves character from right to left
- */
+    
+    /**
+     * moves character from right to left
+     */
     moveLeft() {
         this.x -= this.speed;
         this.otherDirection = true;
@@ -214,6 +215,10 @@ class MoObject extends DrawObjects{
      */
     bounceBack() {
         this.x += 75;
+    }
+
+    charBounce() {
+        this.x -= 75;
     }
 
     /**

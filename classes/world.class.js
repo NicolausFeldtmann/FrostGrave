@@ -154,7 +154,7 @@ constructor(canvas, keyboard) {
         this.level.enemies.forEach((enemy) => {
             if (this.char.isCollidingMele(enemy)) {
                 enemy.gotSlashed();
-                enemy.bounceBack(); 
+                enemy.charBounce(); 
             }
         });
     }
@@ -329,9 +329,17 @@ constructor(canvas, keyboard) {
             clearInterval(this.slowInterval);
             this.backGrndMusic.pause();
             this.backGrndMusic.currentTime = 0;
-            this.winMusic.play();
-            showWinScreen();
         };
+    }
+
+    winGame() {
+        this.winMusic.play();
+        showWinScreen();
+    }
+
+    lostGame() {
+        this.gameOverSound.play();
+        showGameOver();
     }
 
     initWorld() {

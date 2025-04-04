@@ -144,6 +144,7 @@ class Char extends MoObject{
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_011.png',
     ];
 
+    isAlive = true;
     world;
     speed = 10;
     snow1 = new Audio('audio/snow1.mp3');
@@ -182,74 +183,75 @@ class Char extends MoObject{
      */
     animate() {
         
-        setInterval(() => {
-            /**
-             * set parameter for moving right
-             *  */ 
-            if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-            }
-            
-            /**
-             * set parameter for moving left
-             */
-            if(this.world.keyboard.LEFT && this.x > 100) {
-                this.moveLeft();
-            }
+        if (this.isAlive) {
+            this.animationInterval = setInterval(() => {
+                /**
+                 * set parameter for moving right
+                 *  */ 
+                if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                    this.moveRight();
+                }
+                
+                /**
+                 * set parameter for moving left
+                 */
+                if(this.world.keyboard.LEFT && this.x > 100) {
+                    this.moveLeft();
+                }
 
-            /**
-             * detects character moving leaft/rigth and plays walking animation and sounds
-             */
-            if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_WALKING);
-                //this.snow1.play();
-                //this.snow2.play();
-            }
+                /**
+                 * detects character moving leaft/rigth and plays walking animation and sounds
+                 */
+                if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround()) {
+                    this.playAnimation(this.IMAGES_WALKING);
+                    //this.snow1.play();
+                    //this.snow2.play();
+                }
 
-            /**
-             * detects if character is abouve grond and allows jump funktion
-             */
-            if(this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-            }
+                /**
+                 * detects if character is abouve grond and allows jump funktion
+                 */
+                if(this.world.keyboard.SPACE && !this.isAboveGround()) {
+                    this.jump();
+                }
 
-            /**
-             * detects is abouv ground and plays animation and sound
-             */
-            if(this.world.keyboard.SLASH && !this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_SLASHING);
-                this.slash();
-                this.slashSound.play();
-            }
+                /**
+                 * detects is abouv ground and plays animation and sound
+                 */
+                if(this.world.keyboard.SLASH && !this.isAboveGround()) {
+                    this.playAnimation(this.IMAGES_SLASHING);
+                    this.slash();
+                    this.slashSound.play();
+                }
 
-            /**
-             * detects is above graound and palys animation slah midair
-             */
-            if(this.world.keyboard.SLASH && this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_SLASH_MIDAIR);
-                this.slash();
-                this.slashSound.play();
-            }
+                /**
+                 * detects is above graound and palys animation slah midair
+                 */
+                if(this.world.keyboard.SLASH && this.isAboveGround()) {
+                    this.playAnimation(this.IMAGES_SLASH_MIDAIR);
+                    this.slash();
+                    this.slashSound.play();
+                }
 
-            /**
-             * detects is above ground and plays animation throw animation
-             */
-            if(this.world.keyboard.THROW && !this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_THROW);
-            }
+                /**
+                 * detects is above ground and plays animation throw animation
+                 */
+                if(this.world.keyboard.THROW && !this.isAboveGround()) {
+                    this.playAnimation(this.IMAGES_THROW);
+                }
 
-            /**
-             * dectects is above ground and plays animation throw midair
-             */
-            if (this.world.keyboard.THROW && this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_THROW_MIDAIR);
-            }
-            /**
-             * focus camera on character
-             */
-            this.world.camera_x = -this.x + 100;
-        }, 30);
-
+                /**
+                 * dectects is above ground and plays animation throw midair
+                 */
+                if (this.world.keyboard.THROW && this.isAboveGround()) {
+                    this.playAnimation(this.IMAGES_THROW_MIDAIR);
+                }
+                /**
+                 * focus camera on character
+                 */
+                this.world.camera_x = -this.x + 100;
+            }, 30);
+        }
         /**
          * character animation depending on helth satus
          */
@@ -259,9 +261,13 @@ class Char extends MoObject{
              * triggers game over function
              */
             if(this.isDeadAgain()) {
-                this.playAnimation(this.IMAGES_DYING);
-                //this.ouch.play();
-                this.gameOver();
+                if (this.isAlive) {
+                    this.playAnimation(this.IMAGES_DYING);
+                    //this.ouch.play();
+                    this.isDead();
+                    world.endGame();
+                    world.lostGame();
+                };
                 /**
                  * detects if character got demage / plays hurt animation
                  */
@@ -284,5 +290,9 @@ class Char extends MoObject{
                 this.playAnimation(this.IMAGES_IDLE);
             }
         }, 100)
-    }    
+    }
+    
+    isDead() {
+        this.isAlive = false;
+    }
 }

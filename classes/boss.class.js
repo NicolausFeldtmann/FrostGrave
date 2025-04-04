@@ -1,6 +1,7 @@
 class Boss extends MoObject {
 
     isAlive = true;
+    firstEncounter = false;
     world;
     height = 500;
     width = 400;
@@ -143,8 +144,6 @@ class Boss extends MoObject {
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_023.png',
     ];
 
-    firstEncounter = false;
-
     constructor(world) {
         super().loadImg('img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png');
         this.world = world;
@@ -184,17 +183,21 @@ class Boss extends MoObject {
     }
 
     bossAnimation() {
-        if (this.isDeadAgain()) {
-            this.playAnimation(this.IMAGES_DYING);
-            this.bossDies();
-            setTimeout(() => {
-                clearInterval(this.dieInterval);
-                world.endGame();
-            });
-        } else if (this.isHurt()) {
-            this.playAnimation(this.IMAGES_HURT);
-        } else {
-            this.checkDistance();
+        if (this.isAlive) {
+            if (this.isDeadAgain()) {
+                this.playAnimation(this.IMAGES_DYING);
+                this.isAlive = false;
+                setTimeout(() => {
+                    this.bossDies();
+                    clearInterval(this.reactInterval);
+                    world.endGame();
+                    world.winGame();
+                }, 1500);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else {
+                this.checkDistance();
+            }
         }
     }
 
@@ -205,13 +208,22 @@ class Boss extends MoObject {
     }
 
     endAudio() {
-        setInterval(() => {
-            this.hurt.pause();
-            this.dying.pause();
-            this.slash.pause();
-            this.angry.pause();
-            this.stomp.pause();;
-        }, 1000);
+        console.log('end Audio');
+        
+        this.hurt.pause();
+        this.hurt.currentTime = 0;
+
+        this.dying.pause();
+        this.dying.currentTime = 0;
+
+        this.slash.pause();
+        this.slash.currentTime = 0;
+
+        this.angry.pause();
+        this.angry.currentTime = 0;
+
+        this.stomp.pause();
+        this.stomp.currentTime = 0;
     }
 
     checkDistance() {
@@ -221,7 +233,7 @@ class Boss extends MoObject {
             let spaceBetween = bossPos - charPos;
             console.log(spaceBetween);
             
-            if (spaceBetween >= 50) {
+            if (spaceBetween >= 5) {
                 this.persueChar();
             } else {
                 console.log('KASALLA!');
@@ -231,7 +243,8 @@ class Boss extends MoObject {
     }
 
     attack() {
-        if (!this.isAlive) {
+        if (this.isAlive) {
+            this.endAudio();
             this.playAnimation(this.IMAGES_SLAY);
             this.slash.play();
             this.hitHard();
@@ -239,15 +252,17 @@ class Boss extends MoObject {
     }
 
     persueChar() {
-        let bossPos = this.x;
-        let charPos = world.char.x;
-        if (bossPos < charPos) {
-            this.otherDirection;  
-            this.x += this.speed;
-            this.walk();
-        } else {
-            this.walk();
-            this.x -= this.speed;
+        if (this.isAlive) {
+            let bossPos = this.x;
+            let charPos = world.char.x;
+            if (bossPos < charPos) {
+                this.otherDirection;  
+                this.x += this.speed;
+                this.walk();
+            } else {
+                this.walk();
+                this.x -= this.speed;
+            }
         }
     }
 
@@ -265,7 +280,6 @@ class Boss extends MoObject {
     }
 
     bossDies() {
-        this.isAlive = false;
         clearInterval(this.reactInterval);
         console.log('thats the end!');
         this.endAudio();
