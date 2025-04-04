@@ -27,6 +27,7 @@ function init() {
  * function to start the actual game
  */
 function startGame() {
+    animatedArea.style.display = 'grid';
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);

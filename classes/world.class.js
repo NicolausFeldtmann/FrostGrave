@@ -27,10 +27,10 @@ constructor(canvas, keyboard) {
     this.initWorld();
     //this.draw();
     this.setWorld();
-    this.run();
-    this.runSlow();
+    //this.run();
+    //this.runSlow();
     this.loadGame();
-    //this.playMusic();
+    this.playMusic();
 }
 
     loadGame() {
@@ -38,6 +38,8 @@ constructor(canvas, keyboard) {
             this.draw();
         }, 5000);
         animatedArea.style.display = 'none';
+        this.run();
+        this.runSlow();
     }
     /**
      * 
@@ -332,14 +334,12 @@ constructor(canvas, keyboard) {
         };
     }
 
-    winGame() {
-        this.winMusic.play();
-        showWinScreen();
+    lostGame() {
+        window.location = 'gameOver.html';
     }
 
-    lostGame() {
-        this.gameOverSound.play();
-        showGameOver();
+    winGame() {
+        window.location = 'winGame.html'
     }
 
     initWorld() {

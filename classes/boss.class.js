@@ -195,6 +195,7 @@ class Boss extends MoObject {
                 }, 1500);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                this.hurt.play()
             } else {
                 this.checkDistance();
             }
@@ -259,8 +260,10 @@ class Boss extends MoObject {
                 this.otherDirection;  
                 this.x += this.speed;
                 this.walk();
+                this.angry.play();
             } else {
                 this.walk();
+                this.angry.play();
                 this.x -= this.speed;
             }
         }

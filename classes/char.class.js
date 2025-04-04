@@ -263,7 +263,7 @@ class Char extends MoObject{
             if(this.isDeadAgain()) {
                 if (this.isAlive) {
                     this.playAnimation(this.IMAGES_DYING);
-                    //this.ouch.play();
+                    this.ouch.play();
                     this.isDead();
                     world.endGame();
                     world.lostGame();
@@ -293,6 +293,8 @@ class Char extends MoObject{
     }
     
     isDead() {
-        this.isAlive = false;
+        setTimeout(() => {
+            this.isAlive = false;
+        }, 1000);
     }
 }

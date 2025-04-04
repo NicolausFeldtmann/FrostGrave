@@ -13,6 +13,6 @@ class Jewel extends MoObject {
     constructor(imagePath, y) {
         super().loadImg(imagePath);
         this.y = y;
-        this.x = 400 + Math.random() * 4800;
+        this.x = 400 + Math.random() * 4400;
     }
 }
