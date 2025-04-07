@@ -17,7 +17,7 @@ class Boss extends MoObject {
     };
     hurt = new Audio('audio/bossPain.mp3');
     dying = new Audio('audio/bossDies.mp3');
-    bossTheme = new Audio('audio/bossMusic.mp3');
+    bossTheme = new Audio('audio/bossTheme.mp3');
     slash = new Audio('audio/bossSlash.mp3');
     angry = new Audio('audio/bossAngry.mp3');
     stomp = new Audio('audio/stomp.mp3'); 
@@ -167,7 +167,7 @@ class Boss extends MoObject {
                 this.firstEncounter = true;
                 if (this.firstEncounter) {
                     this.moveIn();
-                    //this.bossTheme.play();
+                    this.bossTheme.play();
                 }
             }
         }, 60)
@@ -176,6 +176,7 @@ class Boss extends MoObject {
     checkBossState() {
         if (this.x <= 5040) {
             clearInterval(this.spawnInterval);
+            this.bossTheme.pause();
             this.bossAnimation();
             console.log('Bin da!');
         } else {
@@ -189,13 +190,12 @@ class Boss extends MoObject {
                 this.playAnimation(this.IMAGES_DYING);
                 setTimeout(() => {
                     this.bossDies();
-                    //clearInterval(this.reactInterval);
+                    clearInterval(this.reactInterval);
                     world.endGame();
                     world.winGame();
                 }, 500);
             } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                this.hurt.play()
+                this.bossHurt();
             } else {
                 this.checkDistance();
             }
@@ -206,25 +206,6 @@ class Boss extends MoObject {
         this.reactInterval = setInterval(() => {
             this.checkBossState();
         }, 60);
-    }
-
-    endAudio() {
-        console.log('end Audio');
-        
-        this.hurt.pause();
-        this.hurt.currentTime = 0;
-
-        this.dying.pause();
-        this.dying.currentTime = 0;
-
-        this.slash.pause();
-        this.slash.currentTime = 0;
-
-        this.angry.pause();
-        this.angry.currentTime = 0;
-
-        this.stomp.pause();
-        this.stomp.currentTime = 0;
     }
 
     checkDistance() {
@@ -245,10 +226,11 @@ class Boss extends MoObject {
 
     attack() {
         if (this.isAlive) {
-            this.endAudio();
             this.playAnimation(this.IMAGES_SLAY);
             this.slash.play();
-            this.hitHard();
+            setTimeout(() => {
+                world.hitHard();
+            }, 100);
         }
     }
 
@@ -260,10 +242,8 @@ class Boss extends MoObject {
                 this.otherDirection;  
                 this.x += this.speed;
                 this.walk();
-                this.angry.play();
             } else {
                 this.walk();
-                this.angry.play();
                 this.x -= this.speed;
             }
         }
@@ -283,10 +263,16 @@ class Boss extends MoObject {
     }
 
     bossDies() {
-        //clearInterval(this.reactInterval);
+        clearInterval(this.reactInterval);
         this.isAlive = false;
         console.log('thats the end!');
-        this.endAudio();
         this.dying.play(); 
     }
+
+    bossHurt()  {
+        clearInterval(this.angryInterval);
+        this.playAnimation(this.IMAGES_HURT);
+        this.hurt.play();
+    }
+
 }

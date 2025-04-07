@@ -25,10 +25,7 @@ constructor(canvas, keyboard) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.initWorld();
-    //this.draw();
     this.setWorld();
-    //this.run();
-    //this.runSlow();
     this.loadGame();
     this.playMusic();
 }
@@ -79,7 +76,6 @@ constructor(canvas, keyboard) {
     playMusic() {
         //this.backGrndMusic.play();
     }
-
 
     /**
      * check if prejecktile is thrown by Character and define start position of animation
@@ -168,8 +164,7 @@ constructor(canvas, keyboard) {
             } else if (this.char.isCollidingMele(boss)) {
                 this.char.gotSlashed();
                 this.statusBar.setPercentage(this.char.energy);
-                console.log('PAAM!');
-                
+                console.log('PAAM!');  
             }
         })
     }
@@ -350,5 +345,11 @@ constructor(canvas, keyboard) {
     spawnBoss() {
         let boss = new Boss(this);
         level1.boss.push(boss);
+    }
+
+    hitHard() {
+        this.checkHardHit();
+        this.char.charBounce();
+        console.log('HIT HARD!');
     }
 }

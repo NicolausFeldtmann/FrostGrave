@@ -8,7 +8,7 @@ class MoObject extends DrawObjects{
     speed = 0.15;
     speedY = 0;
     accel = 1;
-    CoolDown = false;
+    isCool = true;
     otherDirection = false;
 
     constructor(world) {
@@ -92,7 +92,7 @@ class MoObject extends DrawObjects{
      * handles damage when collision with mele hitbox is deteckted
      */
     gotSlashed() {
-        this.energy -= 10;
+        this.energy -= 25;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -104,24 +104,26 @@ class MoObject extends DrawObjects{
      * handles demage of enemies
      */
     foeHurt() {
-        this.energy -= 50;
-        if (this.energy < 0) {
-            this.energy = 0;
-        } else {
-            this.lasHit = new Date().getTime();
-            this.beCool();
+        if (this.isCool) {
+            this.energy -= 50;
+            if (this.energy < 0) {
+                this.energy = 0;
+            } else {
+                this.lasHit = new Date().getTime();
+            }
         }
     }
 
     /**
      * sets cooldown
      */
-    beCool() {
-        this.CoolDown = true;
-        console.log('BE COOL!');
-        setTimeout(() => {
-            this.CoolDown = false;
-        }, 500);
+    setCool() {
+        if (this.lasHit > 500) {
+            isCool = true;
+            console.log('ITS COOL MAN!');
+        } else {
+            isCool = false;
+        }
     }
 
     /**
@@ -204,12 +206,6 @@ class MoObject extends DrawObjects{
         this.world.checkMele();
     }
 
-    hitHard() {
-        this.world.checkHardHit();
-        console.log('HIT HARD!');
-        
-    }
-
     /**
      * throw enemy back, after mele collision
      */
@@ -218,7 +214,10 @@ class MoObject extends DrawObjects{
     }
 
     charBounce() {
-        this.x -= 75;
+        this.speedY = 5;
+        if (this.isAboveGround()) {
+            this.x -= 50;
+        }
     }
 
     /**
