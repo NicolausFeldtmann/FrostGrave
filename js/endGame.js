@@ -9,3 +9,7 @@ function winGame() {
     winSound.play();
 }
 
+function toTitle() {
+    window.location = 'index.html';
+}
+

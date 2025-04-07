@@ -7,7 +7,7 @@ class MoObject extends DrawObjects{
     lasHit = 0;
     speed = 0.15;
     speedY = 0;
-    accel = 1.5;
+    accel = 1;
     CoolDown = false;
     otherDirection = false;
 
@@ -26,7 +26,7 @@ class MoObject extends DrawObjects{
                 this.y -= this.speedY;
                 this.speedY -= this.accel;
             }
-        }, 1000 / 40)
+        }, 1000 / 60)
     }
 
     /**
@@ -194,7 +194,7 @@ class MoObject extends DrawObjects{
      * let char jump, under physic conditions
      */
     jump() {
-        this.speedY = 25;
+        this.speedY = 20;
     }
 
     /**
@@ -214,7 +214,7 @@ class MoObject extends DrawObjects{
      * throw enemy back, after mele collision
      */
     bounceBack() {
-        this.x += 75;
+        this.x += 250;
     }
 
     charBounce() {

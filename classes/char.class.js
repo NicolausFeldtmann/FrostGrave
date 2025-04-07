@@ -273,6 +273,7 @@ class Char extends MoObject{
                  */
             } else if(this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+            
                 /**
                  * detects if character is abouve ground / play jump an fall animation
                  */

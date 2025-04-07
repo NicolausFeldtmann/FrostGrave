@@ -77,7 +77,7 @@ constructor(canvas, keyboard) {
      * play Background Music
      */
     playMusic() {
-        this.backGrndMusic.play();
+        //this.backGrndMusic.play();
     }
 
 
@@ -155,8 +155,8 @@ constructor(canvas, keyboard) {
     checkMele() {
         this.level.enemies.forEach((enemy) => {
             if (this.char.isCollidingMele(enemy)) {
-                enemy.gotSlashed();
-                enemy.charBounce(); 
+                enemy.gotSlashed(); 
+                enemy.bounceBack();
             }
         });
     }

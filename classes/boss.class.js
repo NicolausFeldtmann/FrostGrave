@@ -167,6 +167,7 @@ class Boss extends MoObject {
                 this.firstEncounter = true;
                 if (this.firstEncounter) {
                     this.moveIn();
+                    //this.bossTheme.play();
                 }
             }
         }, 60)
@@ -186,13 +187,12 @@ class Boss extends MoObject {
         if (this.isAlive) {
             if (this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
-                this.isAlive = false;
                 setTimeout(() => {
                     this.bossDies();
-                    clearInterval(this.reactInterval);
+                    //clearInterval(this.reactInterval);
                     world.endGame();
                     world.winGame();
-                }, 1500);
+                }, 500);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 this.hurt.play()
@@ -228,7 +228,7 @@ class Boss extends MoObject {
     }
 
     checkDistance() {
-        if (this.isAlive) {
+        //if (this.isAlive) {
             let bossPos = this.x;
             let charPos = world.char.x;
             let spaceBetween = bossPos - charPos;
@@ -240,7 +240,7 @@ class Boss extends MoObject {
                 console.log('KASALLA!');
                 this.attack();
             }
-        }
+       // }
     }
 
     attack() {
@@ -270,8 +270,8 @@ class Boss extends MoObject {
     }
 
     moveIn() {
-        this.walk();
         if (this.x > 5040) {
+            this.playAnimation(this.IMAGES_WAKLING);
             this.x -= this.speed; 
             console.log('first Encounter');            
         }
@@ -283,7 +283,8 @@ class Boss extends MoObject {
     }
 
     bossDies() {
-        clearInterval(this.reactInterval);
+        //clearInterval(this.reactInterval);
+        this.isAlive = false;
         console.log('thats the end!');
         this.endAudio();
         this.dying.play(); 

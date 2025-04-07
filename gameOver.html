@@ -41,9 +41,13 @@
 
     <title>Frost Grave</title>
 </head>
-<body onload="gameOver()">
+<body onload="gameOver(), gameFullscreen()" id="overFullscreen">
     <div class="gameOverScreen" id="gameOverScreen">
         <h1 class="gameOver">GAME OVER!</h1>
+        
+        <div class="btnBox">
+            <div class="btn" onclick="toTitle()">Back to Title</div>
+        </div>
     </div>
 </body>
 </html>
