@@ -1,5 +1,6 @@
 class World {
 
+    isLoaded = false;
     isRunnig = true;
     char = new Char();
     level = level1;
@@ -33,6 +34,9 @@ constructor(canvas, keyboard) {
     loadGame() {
         setTimeout(() => {
             this.draw();
+            this.isLoaded = true;
+            console.log('ist geladen');
+            
         }, 5000);
         animatedArea.style.display = 'none';
         this.run();
@@ -74,7 +78,7 @@ constructor(canvas, keyboard) {
      * play Background Music
      */
     playMusic() {
-        //this.backGrndMusic.play();
+        this.backGrndMusic.play();
     }
 
     /**
