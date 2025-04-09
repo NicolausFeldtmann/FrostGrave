@@ -263,7 +263,7 @@ class Boss extends MoObject {
     }
 
     bossDies() {
-        clearInterval(this.reactInterval);
+        world.stopDraw();
         this.isAlive = false;
         console.log('thats the end!');
         this.dying.play(); 

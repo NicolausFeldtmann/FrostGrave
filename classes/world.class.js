@@ -224,31 +224,33 @@ constructor(canvas, keyboard) {
      * draws movable and static objects on canvas
     */
     draw() {
-        if (!this.isRunnig) return;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.translate(this.camera_x, 0);
-        this.addObjToMap(this.level.blueSky);
-        this.addObjToMap(this.level.backgrounds);
-        this.addToMap(this.char);
-        this.addObjToMap(this.level.clouds);
-        this.addObjToMap(this.level.enemies);
-        this.addObjToMap(this.level.boss);
-        this.addObjToMap(this.level.mana);
-        this.addObjToMap(this.level.jewel);
-        this.addObjToMap(this.level.frontObj);
-        this.addObjToMap(this.projectile);
-        //------Space for fixed objects-----//
-        this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusBar);
-        this.addToMap(this.greenBar);
-        this.addToMap(this.orangeBar);
-        this.ctx.translate(this.camera_x, 0);
+        this.drawInterval = setInterval(() => {
+            if (!this.isRunnig) return;
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.translate(this.camera_x, 0);
+            this.addObjToMap(this.level.blueSky);
+            this.addObjToMap(this.level.backgrounds);
+            this.addToMap(this.char);
+            this.addObjToMap(this.level.clouds);
+            this.addObjToMap(this.level.enemies);
+            this.addObjToMap(this.level.boss);
+            this.addObjToMap(this.level.mana);
+            this.addObjToMap(this.level.jewel);
+            this.addObjToMap(this.level.frontObj);
+            this.addObjToMap(this.projectile);
+            //------Space for fixed objects-----//
+            this.ctx.translate(-this.camera_x, 0);
+            this.addToMap(this.statusBar);
+            this.addToMap(this.greenBar);
+            this.addToMap(this.orangeBar);
+            this.ctx.translate(this.camera_x, 0);
 
-        this.ctx.translate(-this.camera_x, 0);
-        let self = this;
-        requestAnimationFrame(function() {
-            self.draw();
-        });
+            this.ctx.translate(-this.camera_x, 0);
+        }, 1000 / 30);
+        //let self = this;
+        //requestAnimationFrame(function() {
+        //    self.draw();
+        //});
     }
 
     /**
@@ -355,5 +357,9 @@ constructor(canvas, keyboard) {
         this.checkHardHit();
         this.char.charBounce();
         console.log('HIT HARD!');
+    }
+
+    stopDraw() {
+        clearInterval(this.drawInterval);
     }
 }
