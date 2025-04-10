@@ -1,5 +1,6 @@
 class World {
 
+    isCool = true;
     isLoaded = false;
     isRunnig = true;
     char = new Char();
@@ -85,12 +86,18 @@ constructor(canvas, keyboard) {
      * check if prejecktile is thrown by Character and define start position of animation
      */
     checkThorw() {
-        if (this.keyboard.THROW && this.char.mana > 0) { 
-            let projectile = new Projectile(this.char.x - 55, this.char.y);
-            this.projectile.push(projectile);
-            this.char.mana -= 11; 
-            this.spell.play();
-            this.greenBar.setPercentage(this.char.mana); 
+        if (this.isCool) {
+            if (this.keyboard.THROW && this.char.mana > 0) { 
+                let projectile = new Projectile(this.char.x - 55, this.char.y);
+                this.projectile.push(projectile);
+                this.char.mana -= 11; 
+                this.spell.play();
+                this.greenBar.setPercentage(this.char.mana);
+                this.isCool = false;
+                setTimeout(() => {
+                    this.isCool = true;
+                }, 1000);
+            }
         }
     }
 
@@ -99,16 +106,16 @@ constructor(canvas, keyboard) {
      * check if Character is colliding with alive enemy
      */
     checkCollEnemys() {
-        this.level.enemies.forEach((enemy, index) => {
-            if (enemy.isDeadAgain()) {
-                setTimeout(() => {
-                    this.level.enemies.splice(index, 1);
-                }, 400)
-            } else if (this.char.isCollidingMo(enemy)) {
-                this.char.gotHurt();
-                this.statusBar.setPercentage(this.char.energy);
-            }
-        });
+            this.level.enemies.forEach((enemy, index) => {
+                if (enemy.isDeadAgain()) {
+                    setTimeout(() => {
+                        this.level.enemies.splice(index, 1);
+                    }, 400)
+                } else if (this.char.isCollidingMo(enemy)) {
+                    this.char.gotHurt();
+                    this.statusBar.setPercentage(this.char.energy);
+                }
+            });
     }
 
     /**
@@ -247,7 +254,7 @@ constructor(canvas, keyboard) {
 
             this.ctx.translate(-this.camera_x, 0);
         }, 1000 / 30);
-        //let self = this;
+        //let self = this;  
         //requestAnimationFrame(function() {
         //    self.draw();
         //});

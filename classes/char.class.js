@@ -144,6 +144,7 @@ class Char extends MoObject{
         'img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Throwing in The Air/0_Skeleton_Warrior_Throwing in The Air_011.png',
     ];
 
+    isCool = true;
     isAlive = true;
     world;
     speed = 10;
@@ -237,14 +238,26 @@ class Char extends MoObject{
                  * detects is above ground and plays animation throw animation
                  */
                 if(this.world.keyboard.THROW && !this.isAboveGround()) {
-                    this.playAnimation(this.IMAGES_THROW);
+                    if (this.isCool) {
+                        this.playAnimation(this.IMAGES_THROW);
+                        this.isCool = false;
+                        setTimeout(() => {
+                            this.isCool = true;
+                        }, 1000);
+                    }
                 }
 
                 /**
                  * dectects is above ground and plays animation throw midair
                  */
                 if (this.world.keyboard.THROW && this.isAboveGround()) {
-                    this.playAnimation(this.IMAGES_THROW_MIDAIR);
+                    if (this.isCool) {
+                        this.playAnimation(this.IMAGES_THROW_MIDAIR);
+                        this.isCool = false;
+                        setTimeout(() => {
+                            this.isCool = true;
+                         }, 1000);
+                    }
                 }
                 /**
                  * focus camera on character
