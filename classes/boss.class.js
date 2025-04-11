@@ -15,12 +15,6 @@ class Boss extends MoObject {
         right: 120,
         bottom: 80, 
     };
-    hurt = new Audio('audio/bossPain.mp3');
-    dying = new Audio('audio/bossDies.mp3');
-    bossTheme = new Audio('audio/bossTheme.mp3');
-    slash = new Audio('audio/bossSlash.mp3');
-    angry = new Audio('audio/bossAngry.mp3');
-    stomp = new Audio('audio/stomp.mp3'); 
 
     IMAGES_START_ATTACK = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_009.png',
@@ -167,19 +161,22 @@ class Boss extends MoObject {
                 this.firstEncounter = true;
                 if (this.firstEncounter) {
                     this.moveIn();
-                    this.bossTheme.play();
+                    world.bossTheme.volume = 0.2;
+                    world.bossTheme.play();
                 }
             }
         }, 60)
     }
 
     checkBossState() {
-        if (this.x <= 5040) {
-            clearInterval(this.spawnInterval);
-            this.bossTheme.pause();
-            this.bossAnimation();
-        } else {
-            this.firstEncounter = false;
+        if (this.isAlive) {
+            if (this.x <= 5040) {
+                clearInterval(this.spawnInterval);
+                world.bossTheme.pause();
+                this.bossAnimation();
+            } else {
+                this.firstEncounter = false;
+            }
         }
     }
 
@@ -187,10 +184,10 @@ class Boss extends MoObject {
         if (this.isAlive) {
             if (this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
+                this.isAlive = false;
+                clearInterval(this.reactInterval);
+                clearInterval(this.spawnInterval);
                 setTimeout(() => {
-                    this.bossDies();
-                    clearInterval(this.reactInterval);
-                    //world.endGame();
                     world.winGame();
                 }, 500);
             } else if (this.isHurt()) {
@@ -202,13 +199,14 @@ class Boss extends MoObject {
     }
 
     reactInterval() {
+        console.log(this.isAlive);
         this.reactInterval = setInterval(() => {
             this.checkBossState();
         }, 60);
     }
 
     checkDistance() {
-        //if (this.isAlive) {
+        if (this.isAlive) {
             let bossPos = this.x;
             let charPos = world.char.x;
             let spaceBetween = bossPos - charPos;
@@ -218,16 +216,18 @@ class Boss extends MoObject {
             } else {
                 this.attack();
             }
-       // }
+        }
     }
 
     attack() {
         if (this.isAlive) {
             this.playAnimation(this.IMAGES_SLAY);
-            this.slash.play();
+            world.slash.play();
             setTimeout(() => {
                 world.hitHard();
             }, 100);
+        } else {
+            console.log('attack attempted, but boss id daed');
         }
     }
 
@@ -254,19 +254,23 @@ class Boss extends MoObject {
     }
 
     walk() {
-        this.playAnimation(this.IMAGES_WAKLING);
-        this.stomp.play();
+        if (this.isAlive) {
+            this.playAnimation(this.IMAGES_WAKLING);
+            world.stomp.volume = 0.2;
+            world.stomp.play();
+        }
     }
 
     bossDies() {
         this.isAlive = false;
-        this.dying.play(); 
+        world.dying.play(); 
+        clearInterval(this.reactInterval);
+        clearInterval(this.spawnInterval);
     }
 
     bossHurt()  {
-        clearInterval(this.angryInterval);
         this.playAnimation(this.IMAGES_HURT);
-        this.hurt.play();
+        world.hurt.play();
     }
 
 }

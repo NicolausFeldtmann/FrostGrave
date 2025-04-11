@@ -25,6 +25,11 @@ class World {
     snow2 = new Audio('audio/snow2.mp3');
     slashSound = new Audio('audio/slash.mp3');
     ouch = new Audio('audio/wilhelm.mp3');
+    hurt = new Audio('audio/bossPain.mp3');
+    dying = new Audio('audio/bossDies.mp3');
+    bossTheme = new Audio('audio/bossTheme.mp3');
+    slash = new Audio('audio/bossSlash.mp3');
+    stomp = new Audio('audio/stomp.mp3'); 
 
 constructor(canvas, keyboard) {
     animatedArea.style.display = 'grid';
@@ -347,10 +352,12 @@ constructor(canvas, keyboard) {
     endGame() {
         this.isRunnig = !this.isRunnig;
         if (!this.isRunnig) {
-            //clearInterval(this.runInterval);
-            //clearInterval(this.slowInterval);
             clearInterval(this.drawInterval);
+            clearInterval(this.runInterval);
+            clearInterval(this.slowInterval);
             this.backGrndMusic.pause();
+            this.slash.pause();
+            this.stomp.pause();
             this.backGrndMusic.currentTime = 0;
         };
     }
@@ -364,12 +371,12 @@ constructor(canvas, keyboard) {
         win();
     }
 
-    initWorld() {
+    initWorld() {            
         initLevel();
         this.spawnBoss();
     }
 
-    spawnBoss() {
+     spawnBoss() {
         let boss = new Boss(this);
         level1.boss.push(boss);
     }
@@ -378,10 +385,6 @@ constructor(canvas, keyboard) {
         this.checkHardHit();
         this.char.charBounce();
         console.log('HIT HARD!');
-    }
-
-    stopDraw() {
-        clearInterval(this.drawInterval);
     }
 
     mute() {
@@ -395,6 +398,7 @@ constructor(canvas, keyboard) {
             this.winMusic.muted = true;
             this.slashSound.muted = true;
             this.ouch.muted = true;
+            this.bossTheme.muted = true;
             this.isMuted = true;
             console.log(this.isMuted);
         } else {
@@ -407,6 +411,7 @@ constructor(canvas, keyboard) {
             this.winMusic.muted = false;
             this.slashSound.muted = false;
             this.ouch.muted = false;
+            this.bossTheme.muted = false;
             this.isMuted = false;
         }
     }
