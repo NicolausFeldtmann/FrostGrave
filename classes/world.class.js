@@ -53,8 +53,7 @@ constructor(canvas, keyboard) {
      */
     setWorld() {
         this.char.world = this;
-        console.log(this.isMuted);
-        
+        console.log(this.isMuted);  
     }
 
     /**
@@ -348,8 +347,9 @@ constructor(canvas, keyboard) {
     endGame() {
         this.isRunnig = !this.isRunnig;
         if (!this.isRunnig) {
-            clearInterval(this.runInterval);
-            clearInterval(this.slowInterval);
+            //clearInterval(this.runInterval);
+            //clearInterval(this.slowInterval);
+            clearInterval(this.drawInterval);
             this.backGrndMusic.pause();
             this.backGrndMusic.currentTime = 0;
         };
@@ -360,7 +360,8 @@ constructor(canvas, keyboard) {
     }
 
     winGame() {
-        window.location = 'winGame.html'
+        this.endGame();
+        win();
     }
 
     initWorld() {

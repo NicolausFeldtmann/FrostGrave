@@ -1,0 +1,8 @@
+.winScreen{
+    background: transparent;
+    backdrop-filter: blur(5px);
+}
+
+.message{
+    background-color: #85f0cc;
+}

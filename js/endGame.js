@@ -5,7 +5,9 @@ function gameOver() {
     lostSound.play();
 }
 
-function winGame() {
+function win() {
+    let contentRef = document.getElementById('gameScreen');
+    contentRef.innerHTML += getWinTemplate();
     winSound.play();
 }
 

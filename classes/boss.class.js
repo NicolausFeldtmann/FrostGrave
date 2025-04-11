@@ -190,7 +190,7 @@ class Boss extends MoObject {
                 setTimeout(() => {
                     this.bossDies();
                     clearInterval(this.reactInterval);
-                    world.endGame();
+                    //world.endGame();
                     world.winGame();
                 }, 500);
             } else if (this.isHurt()) {
@@ -259,7 +259,6 @@ class Boss extends MoObject {
     }
 
     bossDies() {
-        world.stopDraw();
         this.isAlive = false;
         this.dying.play(); 
     }

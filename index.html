@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/mobile.css">
     <link rel="stylesheet" href="./styles/animation.css">
-    <link rel="stylsheet" href="./styles/snow.css">
+    <link rel="stylesheet" href="./styles/endGame.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@
     <script src="./js/mobile.js"></script>
     <script src="./js/toggle.js"></script>
     <script src="./js/endGame.js"></script>
-    <script src="./js/snow.js"></script>
+    <script src="./js/templates.js"></script>
     
 </head>
 <body onload="loadStart()">
@@ -52,7 +52,6 @@
     </div>
 
     <div class="fullscreen" id="fullscreen">
-
         <div class="startScreen" id="startScreen">
             <h1 class="startH1">FROST GRAVE!</h1>
             <img class="backGrnImg" src="img/backgrounds/2/5.png">
@@ -95,21 +94,16 @@
             </div>
 
         </div>
-
         <div class="gameScreen" id="gameScreen">
-
             <h1>Frost Grave!</h1>
-
             <canvas width="720" height="480" id="canvas"></canvas>
             <img class="backGrnImg" src="img/backgrounds/4/5.png">
             <div class="more-snow" id="moreSnow"></div>
-
             <div class="optionBtnTop">
                 <div class="btnBoxTop">
                     <img class="optImg btnMute" onclick="world.mute()" src="./img/mute.jpg">
                 </div>
             </div>
-
             <div class="btnArea" id="btnArea">
                 <div class="btnLeft">
                     <img class="controllBtn" id="btnLeft" src="img/buttons/arrow-left.png">
@@ -122,24 +116,19 @@
                     <img class="controllBtn right" id="btnSlash" src="img/buttons/slash.png">
                 </div>
             </div>
-
             <div class="mobileTurnScreen">
                 <div class="turnImg">
                     <img class="turnIcon" src="./img/buttons/phone.png">
                     <p class="turnText">please turn phone.</p>
                 </div>
             </div>
-
             <div class="optionBtnArea">
                 <div class="optBtn">
                     <img class="optImg btnFullScreen" id="btnFullGame" onclick="fullscreen()" src="./img/fullscreen.png">
                     <img class="optImg btnSmallScreen" id="btnSmallGame" onclick="smallscreen()" src="./img/smallscreen.png">
                 </div>
             </div>
-            
         </div>
-
     </div>
-    
 </body>
 </html>
