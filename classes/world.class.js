@@ -384,6 +384,7 @@ constructor(canvas, keyboard) {
     }
 
     mute() {
+        if (!this.isMuted) {
             this.backGrndMusic.muted = true;
             this.snow1.muted = true;
             this.snow2.muted = true;
@@ -395,6 +396,17 @@ constructor(canvas, keyboard) {
             this.ouch.muted = true;
             this.isMuted = true;
             console.log(this.isMuted);
-
+        } else {
+            this.backGrndMusic.muted = false;
+            this.snow1.muted = false;
+            this.snow2.muted = false;
+            this.spell.muted = false;
+            this.crystal.muted = false;
+            this.gameOverSound.muted = false;
+            this.winMusic.muted = false;
+            this.slashSound.muted = false;
+            this.ouch.muted = false;
+            this.isMuted = false;
+        }
     }
 }
