@@ -92,7 +92,7 @@ class MoObject extends DrawObjects{
      * handles damage when collision with mele hitbox is deteckted
      */
     gotSlashed() {
-        this.energy -= 25;
+        this.energy -= 24;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -105,7 +105,7 @@ class MoObject extends DrawObjects{
      */
     foeHurt() {
         if (this.isCool) {
-            this.energy -= 50;
+            this.energy -= 51;
             if (this.energy < 0) {
                 this.energy = 0;
             } else {
@@ -210,13 +210,13 @@ class MoObject extends DrawObjects{
      * throw enemy back, after mele collision
      */
     bounceBack() {
-        this.x += 250;
+        this.x += 150;
     }
 
     charBounce() {
         this.speedY = 5;
         if (this.isAboveGround()) {
-            this.x -= 50;
+            this.x -= 150;
         }
     }
 

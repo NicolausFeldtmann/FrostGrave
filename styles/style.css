@@ -4,6 +4,7 @@ body{
     flex-direction: column;
     align-items: center;
     font-family: creepster;
+    overflow: hidden;
 }
 
 .fullscreen{
@@ -16,6 +17,10 @@ h1{
     top: 64px;
 }
 
+p{
+    margin: 18px 0px 0px 0px;
+}
+
 canvas{
     background-color: black;
     display: none;
@@ -24,6 +29,14 @@ canvas{
 
 .showCanvas{
     display: flex;
+}
+
+.more-snow{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: transparent;
+    z-index: 10d;
 }
 
 .startScreen{
@@ -86,7 +99,7 @@ canvas{
 
 .backGrnImg{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: -1;
 }
 
@@ -184,6 +197,18 @@ canvas{
 
 .btnBox{
     position: absolute;
+    bottom: 48px;
+    border: solid 2px #85f0cc;
+    background-color: #568d8f;
+    padding: 4px 8px 4px 8px;
+    border-radius: 10px;
+    box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
+    transition: 0.5s ease;
+}
+
+.btnBoxTop{
     bottom: 48px;
     border: solid 2px #85f0cc;
     background-color: #568d8f;
@@ -301,6 +326,14 @@ canvas{
 .optionBtnArea{
     position: absolute;
     bottom: 28px;
+    right: 72px;
+    border: solid 2px #85f0cc;
+    border-radius: 10px;
+}
+
+.optionBtnTop{
+    position: absolute;
+    top: 28px;
     right: 72px;
     border: solid 2px #85f0cc;
     border-radius: 10px;

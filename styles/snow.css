@@ -1,0 +1,6 @@
+.snowflake {
+    width: 20px; /* Adjust size as needed */
+    height: 20px; /* Adjust size as needed */
+    opacity: 0.8;
+    pointer-events: none; /* Prevent clicking on the snowflakes */
+}

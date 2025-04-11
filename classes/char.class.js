@@ -148,10 +148,6 @@ class Char extends MoObject{
     isAlive = true;
     world;
     speed = 10;
-    snow1 = new Audio('audio/snow1.mp3');
-    snow2 = new Audio('audio/snow2.mp3');
-    slashSound = new Audio('audio/slash.mp3');
-    ouch = new Audio('audio/wilhelm.mp3');
 
     offset = {
         top: 35,
@@ -205,8 +201,8 @@ class Char extends MoObject{
                  */
                 if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround()) {
                     this.playAnimation(this.IMAGES_WALKING);
-                    //this.snow1.play();
-                    //this.snow2.play();
+                    world.snow1.play();
+                    world.snow2.play();
                 }
 
                 /**
@@ -222,7 +218,7 @@ class Char extends MoObject{
                 if(this.world.keyboard.SLASH && !this.isAboveGround()) {
                     this.playAnimation(this.IMAGES_SLASHING);
                     this.slash();
-                    this.slashSound.play();
+                    world.slashSound.play();
                 }
 
                 /**
@@ -231,7 +227,7 @@ class Char extends MoObject{
                 if(this.world.keyboard.SLASH && this.isAboveGround()) {
                     this.playAnimation(this.IMAGES_SLASH_MIDAIR);
                     this.slash();
-                    this.slashSound.play();
+                    world.slashSound.play();
                 }
 
                 /**
@@ -263,7 +259,7 @@ class Char extends MoObject{
                  * focus camera on character
                  */
                 this.world.camera_x = -this.x + 100;
-            }, 30);
+            }, 1000 / 30);
         }
         /**
          * character animation depending on helth satus
@@ -276,7 +272,7 @@ class Char extends MoObject{
             if(this.isDeadAgain()) {
                 if (this.isAlive) {
                     this.playAnimation(this.IMAGES_DYING);
-                    this.ouch.play();
+                    world.ouch.play();
                     this.isDead();
                     world.endGame();
                     world.lostGame();

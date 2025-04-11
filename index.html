@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/mobile.css">
     <link rel="stylesheet" href="./styles/animation.css">
+    <link rel="stylsheet" href="./styles/snow.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +39,7 @@
     <script src="./js/mobile.js"></script>
     <script src="./js/toggle.js"></script>
     <script src="./js/endGame.js"></script>
+    <script src="./js/snow.js"></script>
     
 </head>
 <body onload="loadStart()">
@@ -84,12 +86,14 @@
             <div class="btnBox">
                 <div class="btn" onclick="init()">Start Game!</div>
             </div>
+
             <div class="optionBtnArea">
                 <div class="optBtn">
                     <img class="optImg btnFullScreen" id="btnFullStart" onclick="fullscreen()" src="./img/fullscreen.png">
                     <img class="optImg btnSmallScreen" id="btnSmallStart" onclick="smallscreen()" src="./img/smallscreen.png">
                 </div>
             </div>
+
         </div>
 
         <div class="gameScreen" id="gameScreen">
@@ -98,6 +102,13 @@
 
             <canvas width="720" height="480" id="canvas"></canvas>
             <img class="backGrnImg" src="img/backgrounds/4/5.png">
+            <div class="more-snow" id="moreSnow"></div>
+
+            <div class="optionBtnTop">
+                <div class="btnBoxTop">
+                    <img class="optImg btnMute" onclick="world.mute()" src="./img/mute.jpg">
+                </div>
+            </div>
 
             <div class="btnArea" id="btnArea">
                 <div class="btnLeft">

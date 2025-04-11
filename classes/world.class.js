@@ -3,6 +3,7 @@ class World {
     isCool = true;
     isLoaded = false;
     isRunnig = true;
+    isMuted = false;
     char = new Char();
     level = level1;
     canvas;
@@ -20,6 +21,10 @@ class World {
     backGrndMusic = new Audio('audio/backgroundMusic.mp3');
     gameOverSound = new Audio('audio/backgroundAudio.mp3');
     winMusic = new Audio('audio/winMusic.mp3');
+    snow1 = new Audio('audio/snow1.mp3');
+    snow2 = new Audio('audio/snow2.mp3');
+    slashSound = new Audio('audio/slash.mp3');
+    ouch = new Audio('audio/wilhelm.mp3');
 
 constructor(canvas, keyboard) {
     animatedArea.style.display = 'grid';
@@ -48,6 +53,8 @@ constructor(canvas, keyboard) {
      */
     setWorld() {
         this.char.world = this;
+        console.log(this.isMuted);
+        
     }
 
     /**
@@ -170,12 +177,18 @@ constructor(canvas, keyboard) {
 
     checkHardHit() {
         this.level.boss.forEach((boss, idx) => {
-            if (boss.isDeadAgain()) {
-                console.log('NOOOOOO!');
-            } else if (this.char.isCollidingMele(boss)) {
-                this.char.gotSlashed();
-                this.statusBar.setPercentage(this.char.energy);
-                console.log('PAAM!');  
+            if (this.isCool) {
+                if (boss.isDeadAgain()) {
+                    console.log('NOOOOOO!');
+                } else if (this.char.isCollidingMele(boss)) {
+                    this.char.gotSlashed();
+                    this.statusBar.setPercentage(this.char.energy);
+                    console.log('PAAM!');  
+                }
+                this.isCool = false;
+                setTimeout(() => {
+                    this.isCool = true;
+                }, 1000);
             }
         })
     }
@@ -368,5 +381,20 @@ constructor(canvas, keyboard) {
 
     stopDraw() {
         clearInterval(this.drawInterval);
+    }
+
+    mute() {
+            this.backGrndMusic.muted = true;
+            this.snow1.muted = true;
+            this.snow2.muted = true;
+            this.spell.muted = true;
+            this.crystal.muted = true;
+            this.gameOverSound.muted = true;
+            this.winMusic.muted = true;
+            this.slashSound.muted = true;
+            this.ouch.muted = true;
+            this.isMuted = true;
+            console.log(this.isMuted);
+
     }
 }

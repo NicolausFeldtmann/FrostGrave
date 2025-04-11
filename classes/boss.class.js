@@ -178,7 +178,6 @@ class Boss extends MoObject {
             clearInterval(this.spawnInterval);
             this.bossTheme.pause();
             this.bossAnimation();
-            console.log('Bin da!');
         } else {
             this.firstEncounter = false;
         }
@@ -213,12 +212,10 @@ class Boss extends MoObject {
             let bossPos = this.x;
             let charPos = world.char.x;
             let spaceBetween = bossPos - charPos;
-            console.log(spaceBetween);
             
             if (spaceBetween >= 5) {
                 this.persueChar();
             } else {
-                console.log('KASALLA!');
                 this.attack();
             }
        // }
@@ -252,8 +249,7 @@ class Boss extends MoObject {
     moveIn() {
         if (this.x > 5040) {
             this.playAnimation(this.IMAGES_WAKLING);
-            this.x -= this.speed; 
-            console.log('first Encounter');            
+            this.x -= this.speed;            
         }
     }
 
@@ -265,7 +261,6 @@ class Boss extends MoObject {
     bossDies() {
         world.stopDraw();
         this.isAlive = false;
-        console.log('thats the end!');
         this.dying.play(); 
     }
 
