@@ -1,5 +1,6 @@
 class Boss extends MoObject {
 
+    static instance = null;
     isAlive = true;
     firstEncounter = false;
     world;
@@ -15,6 +16,8 @@ class Boss extends MoObject {
         right: 120,
         bottom: 80, 
     };
+    intervalIds = [];
+    i = 0;
 
     IMAGES_START_ATTACK = [
         'img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_009.png',
@@ -140,6 +143,10 @@ class Boss extends MoObject {
 
     constructor(world) {
         super().loadImg('img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Idle Blinking/0_Zombie_Villager_Idle Blinking_000.png');
+        if (Boss.instance) {
+            return Boss.instance;
+        }
+        Boss.instance = this;
         this.world = world;
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_HURT);
@@ -149,7 +156,7 @@ class Boss extends MoObject {
         this.loadImages(this.IMAGES_SLAY);
         this.loadImages(this.IMAGES_START_ATTACK);
         this.spawnAnimation();
-        this.reactInterval();
+        this.react();
         this.x = 5500;
         this.otherDirection = true;
     }
@@ -189,6 +196,7 @@ class Boss extends MoObject {
                 clearInterval(this.spawnInterval);
                 setTimeout(() => {
                     world.winGame();
+                    this.bossDies();
                 }, 500);
             } else if (this.isHurt()) {
                 this.bossHurt();
@@ -198,10 +206,10 @@ class Boss extends MoObject {
         }
     }
 
-    reactInterval() {
-        console.log(this.isAlive);
+    react() {
         this.reactInterval = setInterval(() => {
             this.checkBossState();
+            console.log('react running');
         }, 60);
     }
 
@@ -263,14 +271,17 @@ class Boss extends MoObject {
 
     bossDies() {
         this.isAlive = false;
-        world.dying.play(); 
+        world.dying.play();
+        setInterval(() => { 
         clearInterval(this.reactInterval);
         clearInterval(this.spawnInterval);
+        }, 30);
     }
 
     bossHurt()  {
         this.playAnimation(this.IMAGES_HURT);
         world.hurt.play();
     }
+
 
 }

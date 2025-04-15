@@ -58,7 +58,7 @@ class Walker extends MoObject{
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DYING);
-        this.x = 500 + Math.random() * 5040;
+        this.x = x;
         this.reanimate();
         this.otherDirection = true;
     }

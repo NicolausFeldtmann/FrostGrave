@@ -31,6 +31,9 @@ class World {
     slash = new Audio('audio/bossSlash.mp3');
     stomp = new Audio('audio/stomp.mp3'); 
 
+    intervalIds = [];
+    i = 0;
+
 constructor(canvas, keyboard) {
     animatedArea.style.display = 'grid';
     this.keyboard = keyboard;
@@ -57,15 +60,14 @@ constructor(canvas, keyboard) {
      * 
      */
     setWorld() {
-        this.char.world = this;
-        console.log(this.isMuted);  
+        this.char.world = this; 
     }
 
     /**
      * execute check functions every 100ms
      */
     run() {
-        this.runInterval = setInterval(() => {
+        this.runInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
             this.checkCollMana();
             this.checkCollJewel();
@@ -79,7 +81,7 @@ constructor(canvas, keyboard) {
      * execute check functions every 400ms
      */
     runSlow() {
-        this.slowInterval = setInterval(() => {
+        this.slowInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
             this.checkCollEnemys();
             this.checkCollBoss();
@@ -138,7 +140,7 @@ constructor(canvas, keyboard) {
             if (boss.isDeadAgain()) {
                 setTimeout(() => {
                     this.level.boss.splice(index, 1);
-                }, 800)
+                }, 400)
             } else if (this.char.isCollidingMo(boss)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
@@ -248,7 +250,7 @@ constructor(canvas, keyboard) {
      * draws movable and static objects on canvas
     */
     draw() {
-        this.drawInterval = setInterval(() => {
+        this.drawInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.translate(this.camera_x, 0);
@@ -352,9 +354,7 @@ constructor(canvas, keyboard) {
     endGame() {
         this.isRunnig = !this.isRunnig;
         if (!this.isRunnig) {
-            clearInterval(this.drawInterval);
-            clearInterval(this.runInterval);
-            clearInterval(this.slowInterval);
+            this.stop();
             this.backGrndMusic.pause();
             this.slash.pause();
             this.stomp.pause();
@@ -373,13 +373,13 @@ constructor(canvas, keyboard) {
 
     initWorld() {            
         initLevel();
-        this.spawnBoss();
+        //this.spawnBoss();
     }
 
-     spawnBoss() {
-        let boss = new Boss(this);
-        level1.boss.push(boss);
-    }
+    //spawnBoss() {
+    //    let boss = new Boss(this);
+    //    level1.boss.push(boss);
+    //}
 
     hitHard() {
         this.checkHardHit();
@@ -399,8 +399,8 @@ constructor(canvas, keyboard) {
             this.slashSound.muted = true;
             this.ouch.muted = true;
             this.bossTheme.muted = true;
+            this,this.hurt.muted = true;
             this.isMuted = true;
-            console.log(this.isMuted);
         } else {
             this.backGrndMusic.muted = false;
             this.snow1.muted = false;
@@ -412,7 +412,18 @@ constructor(canvas, keyboard) {
             this.slashSound.muted = false;
             this.ouch.muted = false;
             this.bossTheme.muted = false;
+            this.hurt.muted = false;
             this.isMuted = false;
         }
+    }
+
+    setEndInterval (fn, time) {
+        let id = setInterval(fn, time);
+        this.intervalIds.push(id);
+        console.log(this.intervalIds);
+    }
+
+    stop() {
+        this.intervalIds.forEach(clearInterval);
     }
 }
