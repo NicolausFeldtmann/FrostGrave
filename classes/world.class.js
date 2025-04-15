@@ -363,7 +363,8 @@ constructor(canvas, keyboard) {
     }
 
     lostGame() {
-        window.location = 'gameOver.html';
+        this.endGame();
+        gameOver();
     }
 
     winGame() {

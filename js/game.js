@@ -34,10 +34,12 @@ function startGame() {
     showCanvas();
 }
 
-function winGame() {
-    let contentRef = document.getElementById('gameScreen');
-    contentRef.innerHTML = "";
-    contentRef.innerHTML += getWinTemplate();
+function backToStart() {
+    location.reload();
+}
+
+function restart() {
+    startGame();
 }
 
 /**

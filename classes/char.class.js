@@ -274,8 +274,9 @@ class Char extends MoObject{
                     this.playAnimation(this.IMAGES_DYING);
                     world.ouch.play();
                     this.isDead();
-                    world.endGame();
-                    world.lostGame();
+                    setTimeout(() => {
+                        world.lostGame();
+                    }, 500);
                 };
                 /**
                  * detects if character got demage / plays hurt animation

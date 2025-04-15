@@ -10,6 +10,37 @@ function getWinTemplate() {
                     If you maybe see more of my work, follow the link to my...<br>
                     <a herf="#">portfolio</a> 
                 </p>
+                <div class="endBtnArea">
+                    <div class="endBtnBox">
+                        <div class="btn" onclick="backToStart()">Back to Titel Screen</div>
+                    </div>
+                    <div class="endBtnBox">
+                        <div class="btn" onclick="restart">Restat</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function getLostTemplate() {
+
+    return `
+        <div class="lostScreen">
+            <div class="message">
+                <h2>GAME OVER</h2>
+                <p>
+                    Sadly you died the final death...<br>
+                    Good luck next time.
+                </p>
+                <div class="endBtnArea">
+                    <div class="endBtnBox">
+                        <div class="btn" onclick="backToStart()">Back to Titel Screen</div>
+                    </div>
+                    <div class="endBtnBox">
+                        <div class="btn" onclick="restart()">Restart</div>
+                    </div>
+                </div>
             </div>
         </div>
     `;
