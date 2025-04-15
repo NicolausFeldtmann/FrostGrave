@@ -34,12 +34,20 @@ function startGame() {
     showCanvas();
 }
 
-function backToStart() {
-    location.reload();
+function winGame() {
+    let contentRef = document.getElementById('gameScreen');
+    contentRef.innerHTML = "";
+    contentRef.innerHTML += getWinTemplate();
 }
 
-function restart() {
-    startGame();
+function lostGame() {
+    let contentRef = document.getElementById('gameScreen');
+    contentRef.innerHTML = "";
+    contentRef.innerHTML += getLostTemplate();
+}
+
+function backToStart() {
+    location.reload();
 }
 
 /**

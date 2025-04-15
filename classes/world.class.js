@@ -1,5 +1,6 @@
 class World {
 
+    isOver = false
     isCool = true;
     isLoaded = false;
     isRunnig = true;
@@ -42,7 +43,6 @@ constructor(canvas, keyboard) {
     this.initWorld();
     this.setWorld();
     this.loadGame();
-    this.playMusic();
 }
 
     loadGame() {
@@ -61,6 +61,7 @@ constructor(canvas, keyboard) {
      */
     setWorld() {
         this.char.world = this; 
+        this.backGrndMusic.play();
     }
 
     /**
@@ -86,13 +87,6 @@ constructor(canvas, keyboard) {
             this.checkCollEnemys();
             this.checkCollBoss();
         }, 400)
-    }
-
-    /**
-     * play Background Music
-     */
-    playMusic() {
-        this.backGrndMusic.play();
     }
 
     /**
@@ -273,10 +267,6 @@ constructor(canvas, keyboard) {
 
             this.ctx.translate(-this.camera_x, 0);
         }, 1000 / 30);
-        //let self = this;  
-        //requestAnimationFrame(function() {
-        //    self.draw();
-        //});
     }
 
     /**
@@ -363,29 +353,27 @@ constructor(canvas, keyboard) {
     }
 
     lostGame() {
-        this.endGame();
-        gameOver();
+        if (!this.isOver) {
+            this.isOver = true;
+            this.endGame();
+            gameOver();
+        }
     }
 
     winGame() {
-        this.endGame();
-        win();
+        if (!this.isOver) {
+            this.endGame();
+            win();
+        }
     }
 
     initWorld() {            
-        initLevel();
-        //this.spawnBoss();
+        ;
     }
-
-    //spawnBoss() {
-    //    let boss = new Boss(this);
-    //    level1.boss.push(boss);
-    //}
 
     hitHard() {
         this.checkHardHit();
         this.char.charBounce();
-        console.log('HIT HARD!');
     }
 
     mute() {

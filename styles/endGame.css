@@ -27,9 +27,13 @@
 .endBtnArea{
     display: flex;
     justify-content: center;
+    margin: 24px 0px 0px 0px;
 }
 
 .endBtnBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50vh;
     bottom: 48px;
     border: solid 2px #85f0cc;

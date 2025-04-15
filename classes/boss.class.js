@@ -197,7 +197,7 @@ class Boss extends MoObject {
                 setTimeout(() => {
                     world.winGame();
                     this.bossDies();
-                }, 500);
+                }, 1000);
             } else if (this.isHurt()) {
                 this.bossHurt();
             } else {

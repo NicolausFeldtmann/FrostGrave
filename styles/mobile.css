@@ -1,3 +1,10 @@
+@media screen and (max-width: 975px) {
+
+    .message{
+        width: 75vw;
+    }
+}
+
 @media screen and (max-width: 500px) {
 
     .mobileTurnScreen{
@@ -17,6 +24,17 @@
     }
 }
 
+@media (max-height: 500px) {
+
+    .endBtnBox{
+        height: 36px;
+    }
+
+    .btn{
+        font-size: 24px;
+    }
+}
+
 @media (max-height: 450px) {
 
     canvas{
@@ -32,7 +50,18 @@
         font-size: 16px;
     }
 
-    p{margin: 0px;}
+    p{
+        margin: 0px;
+        font-size: 28px;
+    }
+
+    .message{
+        height: 75vh;
+    }
+
+    h2{
+        font-size: 40px;
+    }
 }
 
 @media (max-height: 415px) {
