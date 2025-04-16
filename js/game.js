@@ -7,10 +7,10 @@ let backGrndSound = new Audio('audio/backgroundAudio.mp3');
  * Shown animation wihle start screen is loading
  */
 function loadStart() {
-    animatedArea.style.display = 'grid';
-    setTimeout(() => {
-        animatedArea.style.display = 'none';
-    }, 2000);
+    //animatedArea.style.display = 'grid';
+    //setTimeout(() => {
+    //    animatedArea.style.display = 'none';
+    //}, 2000);
 }
 /**
  * functioin to initialize thw game
@@ -48,6 +48,13 @@ function lostGame() {
 
 function backToStart() {
     location.reload();
+}
+
+function runAgain() {
+    location.reload();
+    setTimeout(() => {
+        init();
+    }, 1000);
 }
 
 /**

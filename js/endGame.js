@@ -17,3 +17,7 @@ function toTitle() {
     window.location = 'index.html';
 }
 
+function restart() {
+    world.ctx.clearRect(0, 0, world.canvas.width, world.canvas.height);
+}
+

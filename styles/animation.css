@@ -11,7 +11,7 @@
 }
 
 .animatedArea{
-    display: grid;
+    display: none;
     justify-content: center;
     position: fixed;
     z-index: 11;

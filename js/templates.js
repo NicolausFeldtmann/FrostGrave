@@ -1,7 +1,7 @@
 function getWinTemplate() {
 
     return `
-        <div class="winScreen">
+        <div class="endScreen">
             <div class="message">
                 <h2>YOU MADE IT!</h2>
                 <p>
@@ -15,7 +15,7 @@ function getWinTemplate() {
                         <div class="btn" onclick="backToStart()">Back to Titel Screen</div>
                     </div>
                     <div class="endBtnBox">
-                        <div class="btn" onclick="restart">Restat</div>
+                        <div class="btn" onclick="restart()">Restat</div>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@ function getWinTemplate() {
 function getLostTemplate() {
 
     return `
-        <div class="lostScreen">
+        <div class="endScreen">
             <div class="message">
                 <h2>GAME OVER</h2>
                 <p>
@@ -35,10 +35,10 @@ function getLostTemplate() {
                 </p>
                 <div class="endBtnArea">
                     <div class="endBtnBox">
-                        <div class="btn" onclick="backToStart()">Back to Titel Screen</div>
+                        <div class="btn" onclick="runAgain()">Back to Titel Screen</div>
                     </div>
                     <div class="endBtnBox">
-                        <div class="btn" onclick="restart()">Restart</div>
+                        <div class="btn" onclick="runAgain()">Restart</div>
                     </div>
                 </div>
             </div>

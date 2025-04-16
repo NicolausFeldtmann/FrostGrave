@@ -86,7 +86,7 @@ constructor(canvas, keyboard) {
             if (!this.isRunnig) return;
             this.checkCollEnemys();
             this.checkCollBoss();
-        }, 400)
+        }, 600)
     }
 
     /**

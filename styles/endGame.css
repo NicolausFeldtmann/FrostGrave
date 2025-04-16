@@ -1,9 +1,5 @@
-.winScreen{
-    background: transparent;
-    backdrop-filter: blur(5px);
-}
 
-.lostScreen{
+.endScreen{
     background: transparent;
     backdrop-filter: blur(5px);
     font-size: 48px;
@@ -45,4 +41,8 @@
     -moz-box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
     transition: 0.5s ease;
     margin: 0px 8px 0px 8px;
+}
+
+.hide{
+    display: none;
 }
