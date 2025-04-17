@@ -15,7 +15,7 @@ function getWinTemplate() {
                         <div class="btn" onclick="backToStart()">Back to Titel Screen</div>
                     </div>
                     <div class="endBtnBox">
-                        <div class="btn" onclick="restart()">Restat</div>
+                        <div class="btn" onclick="runAgain()">Restat</div>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@ function getLostTemplate() {
                 </p>
                 <div class="endBtnArea">
                     <div class="endBtnBox">
-                        <div class="btn" onclick="runAgain()">Back to Titel Screen</div>
+                        <div class="btn" onclick="backToStart()">Back to Titel Screen</div>
                     </div>
                     <div class="endBtnBox">
                         <div class="btn" onclick="runAgain()">Restart</div>

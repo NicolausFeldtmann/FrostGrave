@@ -46,17 +46,6 @@ function lostGame() {
     contentRef.innerHTML += getLostTemplate();
 }
 
-function backToStart() {
-    location.reload();
-}
-
-function runAgain() {
-    location.reload();
-    setTimeout(() => {
-        init();
-    }, 1000);
-}
-
 /**
  * eventlistner for pressed keys on keyboard
  */
