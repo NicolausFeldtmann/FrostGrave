@@ -19,10 +19,11 @@ function backToStart() {
 
 function runAgain() {
     if (world) {
-        world.endGame(); // Stoppt die alte Welt
-        world = null;    // Setzt die Referenz auf null
+        world.endGame(); 
+        world = null;    
     }
 
+    addLoadingScreen();
     let canvas = document.getElementById('canvas');
     canvas.innerHTML = "";
     let endScreen = document.getElementById('endScreenArea');
@@ -30,7 +31,11 @@ function runAgain() {
 
     initLevel();
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard); // Erstellt eine neue Instanz von World
+    world = new World(canvas, keyboard); 
+    setTimeout(() => {
+        let animation = document.getElementById('animation');
+        animation.innerHTML ="";
+    }, 5000);
 }
 
 function removeCanvas() {

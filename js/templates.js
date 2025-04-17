@@ -45,3 +45,15 @@ function getLostTemplate() {
         </div>
     `;
 }
+
+function getLoadingScreen() {
+
+    return`
+        <div class="blurEffeckt" style="display: none;"></div>
+        <div class="animatedArea" id="animatedArea">
+            <div class="spinnigObject">
+                <img class="spinningFlake" src="./img/frost.png">
+            </div>
+        </div>
+    `;
+}

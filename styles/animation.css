@@ -5,13 +5,20 @@
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.5); 
-    backdrop-filter: blur(10px); 
-    display: none; 
+    backdrop-filter: blur(10px);  
     z-index: 10; 
 }
 
+.animation{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 .animatedArea{
-    display: none;
+    display: flex;
+    align-items: center;
     justify-content: center;
     position: fixed;
     z-index: 11;
@@ -27,7 +34,7 @@
     justify-content: center;
 }
 
-.spinningBall{
+.spinningFlake{
     animation-name: spin;
     animation-duration: 1500ms;
     animation-iteration-count: infinite;

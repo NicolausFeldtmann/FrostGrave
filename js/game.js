@@ -27,11 +27,15 @@ function init() {
  * function to start the actual game
  */
 function startGame() {
-    animatedArea.style.display = 'grid';
+    addLoadingScreen();
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     showCanvas();
+    setTimeout(() => {
+        let animation = document.getElementById('animation');
+        animation.innerHTML = "";
+    }, 5000);
 }
 
 function winGame() {
@@ -44,6 +48,17 @@ function lostGame() {
     let contentRef = document.getElementById('gameScreen');
     contentRef.innerHTML = "";
     contentRef.innerHTML += getLostTemplate();
+}
+
+function addLoadingScreen() {
+    let contentRef = document.getElementById('endScreen');
+    contentRef.innerHTML = "";
+    contentRef.innerHTML += getLo
+}
+
+function addLoadingScreen() {
+    let contentRef = document.getElementById('animation');
+    contentRef.innerHTML += getLoadingScreen();
 }
 
 /**

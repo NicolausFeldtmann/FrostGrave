@@ -36,7 +36,6 @@ class World {
     i = 0;
 
 constructor(canvas, keyboard) {
-    animatedArea.style.display = 'grid';
     this.keyboard = keyboard;
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
@@ -52,7 +51,6 @@ constructor(canvas, keyboard) {
             console.log('ist geladen');
             
         }, 5000);
-        animatedArea.style.display = 'none';
         this.run();
         this.runSlow();
     }
