@@ -7,18 +7,14 @@ let backGrndSound = new Audio('audio/backgroundAudio.mp3');
  * Shown animation wihle start screen is loading
  */
 function loadStart() {
-    //animatedArea.style.display = 'grid';
-    //setTimeout(() => {
-    //    animatedArea.style.display = 'none';
-    //}, 2000);
+    detectMob();
+    decideControls();
+    mobileBtnEventListner();
 }
 /**
  * functioin to initialize thw game
  */
 function init() {
-    detectMob();
-    decideControls();
-    mobileBtnEventListner();
     hideStartScreen();
     startGame();
 }

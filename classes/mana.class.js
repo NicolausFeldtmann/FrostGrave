@@ -10,9 +10,9 @@ class Mana extends MoObject {
     width = 80;
     height = 80;
     y = 320;
-    constructor(imagePath, y) {
+    constructor(imagePath, x, y) {
         super().loadImg(imagePath);
         this.y = y;
-        this.x = 400 + Math.random() * 4400;
+        this.x = x;
     }
 }
