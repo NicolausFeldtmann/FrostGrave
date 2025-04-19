@@ -192,8 +192,8 @@ class Boss extends MoObject {
             if (this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
                 this.isAlive = false;
-                clearInterval(this.reactInterval);
-                clearInterval(this.spawnInterval);
+                //clearInterval(this.reactInterval);
+                //clearInterval(this.spawnInterval);
                 setTimeout(() => {
                     world.winGame();
                     this.bossDies();

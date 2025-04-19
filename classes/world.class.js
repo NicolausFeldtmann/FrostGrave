@@ -179,14 +179,14 @@ constructor(canvas, keyboard) {
                 if (boss.isDeadAgain()) {
                     console.log('NOOOOOO!');
                 } else if (this.char.isCollidingMele(boss)) {
-                    this.char.gotSlashed();
+                    this.char.gotHitHard();
                     this.statusBar.setPercentage(this.char.energy);
                     console.log('PAAM!');  
                 }
                 this.isCool = false;
                 setTimeout(() => {
                     this.isCool = true;
-                }, 1000);
+                }, 500);
             }
         })
     }
@@ -343,9 +343,9 @@ constructor(canvas, keyboard) {
         this.isRunnig = !this.isRunnig;
         if (!this.isRunnig) {
             this.stop();
+            this.stomp.muted = true;
+            this.slash.muted = true;
             this.backGrndMusic.pause();
-            this.slash.pause();
-            this.stomp.pause();
             this.backGrndMusic.currentTime = 0;
         };
     }
@@ -360,6 +360,7 @@ constructor(canvas, keyboard) {
 
     winGame() {
         if (!this.isOver) {
+            this.isOver = true;
             this.endGame();
             win();
         }
@@ -386,7 +387,9 @@ constructor(canvas, keyboard) {
             this.slashSound.muted = true;
             this.ouch.muted = true;
             this.bossTheme.muted = true;
-            this,this.hurt.muted = true;
+            this.hurt.muted = true;
+            this.stomp.muted = true;
+            this.slash.muted = true;
             this.isMuted = true;
         } else {
             this.backGrndMusic.muted = false;
@@ -400,6 +403,8 @@ constructor(canvas, keyboard) {
             this.ouch.muted = false;
             this.bossTheme.muted = false;
             this.hurt.muted = false;
+            this.stomp.muted = false;
+            this.slash.muted = false;
             this.isMuted = false;
         }
     }

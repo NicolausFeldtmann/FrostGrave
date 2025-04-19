@@ -56,7 +56,7 @@ class DrawObjects {
      * draws dev tool fram around declared mele hitbox
      */
     drawMeleFrame(ctx) {
-        if (this instanceof Char) {
+        if (this instanceof Char || this instanceof Boss) {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'orange';

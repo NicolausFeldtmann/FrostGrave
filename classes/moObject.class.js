@@ -100,6 +100,15 @@ class MoObject extends DrawObjects{
         }
     }
 
+    gotHitHard() {
+        this.energy -= 24;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lasHit = new Date().getTime();
+        }
+    }
+
     /**
      * handles demage of enemies
      */
