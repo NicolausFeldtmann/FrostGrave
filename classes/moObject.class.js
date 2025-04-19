@@ -219,6 +219,7 @@ class MoObject extends DrawObjects{
      * throw enemy back, after mele collision
      */
     bounceBack() {
+        this.speedY = 5;
         this.x += 100;
     }
 
@@ -226,6 +227,17 @@ class MoObject extends DrawObjects{
         this.speedY = 5;
         if (this.isAboveGround()) {
             this.x -= 150;
+        }
+    }
+
+    charBounceLittel() {
+        this.speedY = 5;
+        if (this.isAboveGround()) {
+            if (!this.otherDirection) {
+                this.x -= 100;
+            } else {
+                this.x += 100;
+            }
         }
     }
 

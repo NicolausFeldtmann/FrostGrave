@@ -73,6 +73,7 @@ constructor(canvas, keyboard) {
             this.checkGotHit();
             this.checkImpact();
             this.checkThorw();
+            this.checkCollBoss();
         }, 100)
     }
 
@@ -82,8 +83,7 @@ constructor(canvas, keyboard) {
     runSlow() {
         this.slowInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
-            this.checkCollEnemys();
-            this.checkCollBoss();
+                this.checkCollEnemys();
         }, 600)
     }
 
@@ -118,6 +118,7 @@ constructor(canvas, keyboard) {
                     }, 400)
                 } else if (this.char.isCollidingMo(enemy)) {
                     this.char.gotHurt();
+                    this.char.charBounceLittel();
                     this.statusBar.setPercentage(this.char.energy);
                 }
             });
@@ -345,7 +346,7 @@ constructor(canvas, keyboard) {
             this.stop();
             this.stomp.muted = true;
             this.slash.muted = true;
-            this.backGrndMusic.pause();
+            this.backGrndMusic.muted = true;
             this.backGrndMusic.currentTime = 0;
         };
     }

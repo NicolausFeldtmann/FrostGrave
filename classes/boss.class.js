@@ -168,7 +168,8 @@ class Boss extends MoObject {
                 this.firstEncounter = true;
                 if (this.firstEncounter) {
                     this.moveIn();
-                    world.bossTheme.volume = 0.2;
+                    world.backGrndMusic.pause();
+                    world.bossTheme.volume = 0.3;
                     world.bossTheme.play();
                 }
             }
@@ -181,6 +182,7 @@ class Boss extends MoObject {
                 clearInterval(this.spawnInterval);
                 world.bossTheme.pause();
                 this.bossAnimation();
+                world.backGrndMusic.play();
             } else {
                 this.firstEncounter = false;
             }
