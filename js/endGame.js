@@ -24,6 +24,7 @@ function runAgain() {
     }
 
     addLoadingScreen();
+    lostSound.pause();
     let canvas = document.getElementById('canvas');
     canvas.innerHTML = "";
     let endScreen = document.getElementById('endScreenArea');

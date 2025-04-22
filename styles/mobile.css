@@ -15,12 +15,12 @@
 @media (max-height: 660px) {
 
     .starterImg{
-        width: 128px;
+        
     }
 
     .boss{
-        right: 8px;
-        width: 228px;
+        bottom: 148px;
+        left: 792px;
     }
 }
 
@@ -32,6 +32,15 @@
 
     .btn{
         font-size: 24px;
+    }
+
+    h1{
+        top: 12px;
+
+    }
+
+    .instrucktions{
+        margin: 128px 0px 0px 0px;
     }
 }
 
@@ -68,5 +77,33 @@
 
     .btnArea{
         display: flex;
+    }
+
+    .instrucktions{
+        margin: 72px 0px 0px 0px;
+    }
+}
+
+@media (max-height: 325px) {
+
+    h1{
+        font-size: 32px;
+    }
+
+    .instrucktions{
+        margin: 48px 0px 0px 0px;
+    }
+
+    p{
+        font-size: 12px;
+    }
+
+    .letterBox{
+        font-size: 12px;
+        margin: 2px 4px 2px 4px;
+    }
+
+    .btnBox{
+        bottom: 12px;
     }
 }

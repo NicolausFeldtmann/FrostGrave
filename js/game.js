@@ -57,6 +57,50 @@ function addLoadingScreen() {
     contentRef.innerHTML += getLoadingScreen();
 }
 
+function mute() {
+    if (!world.isMuted) {
+        world.backGrndMusic.muted = true;
+        world.snow1.muted = true;
+        world.snow2.muted = true;
+        world.spell.muted = true;
+        world.crystal.muted = true;
+        world.gameOverSound.muted = true;
+        world.winMusic.muted = true;
+        world.slashSound.muted = true;
+        world.ouch.muted = true;
+        world.bossTheme.muted = true;
+        world.hurt.muted = true;
+        world.stomp.muted = true;
+        world.slash.muted = true;
+        world.walkerHurt.muted = true;
+        world.walkerDying.muted = true;
+        world.isMuted = true;
+    } else {
+        unmuted();
+    }
+}
+
+function unmuted() {
+    if (world.isMuted) {
+        world.backGrndMusic.muted = false;
+        world.snow1.muted = false;
+        world.snow2.muted = false;
+        world.spell.muted = false;
+        world.crystal.muted = false;
+        world.gameOverSound.muted = false;
+        world.winGame.muted = false;
+        world.slashSound.muted = false;
+        world.ouch.muted = false;
+        world.bossTheme.muted = false;
+        world.hurt.muted = false;
+        world.stomp.muted = false;
+        world.slash.muted = false;
+        world.walkerHurt.muted = false;
+        world.walkerDying.muted = false;
+        world.isMuted = false;
+    }
+}
+
 /**
  * eventlistner for pressed keys on keyboard
  */
@@ -89,13 +133,7 @@ window.addEventListener('keydown', (e) => {
     
     if (e.keyCode == 81) {
         keyboard.THROW = true;
-    }
-
-    if (e.keyCode == 80) {
-        keyboard.PAUSE = !keyboard.PAUSE;
-        world.stopGame();
-    }
-    
+    }  
 })
 
 /**
@@ -131,8 +169,4 @@ window.addEventListener('keyup', (e) => {
     if (e.keyCode == 81) {
         keyboard.THROW = false;
     }
-
-    if (e.keyCode == 80) {
-        keyboard.PAUSE = false;
-        }
 })

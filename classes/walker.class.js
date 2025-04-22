@@ -8,8 +8,6 @@ class Walker extends MoObject{
         right: 25,
         bottom: 25, 
     };
-    hurt = new Audio('audio/gotHrut.mp3');
-    dying = new Audio('audio/walkerPain.mp3');
 
     IMAGES_WALKING = [
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Running/0_Zombie_Villager_Running_000.png',
@@ -70,13 +68,13 @@ class Walker extends MoObject{
         this.reanimateInterval = setInterval(() => {
             if (this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
-                this.dying.play();
+                world.walkerDying.play();
                 setTimeout(() => {
                     clearInterval(this.reanimateInterval);
                 }, 500)
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                this.hurt.play();
+                world.walkerHurt.play();
             } else {
                 this.walkLeft();
                 this.playAnimation(this.IMAGES_WALKING);

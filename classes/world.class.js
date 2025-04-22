@@ -31,6 +31,8 @@ class World {
     bossTheme = new Audio('audio/bossTheme.mp3');
     slash = new Audio('audio/bossSlash.mp3');
     stomp = new Audio('audio/stomp.mp3'); 
+    walkerHurt = new Audio('audio/gotHrut.mp3');
+    walkerDying = new Audio('audio/walkerPain.mp3');
 
     intervalIds = [];
     i = 0;
@@ -39,7 +41,6 @@ constructor(canvas, keyboard) {
     this.keyboard = keyboard;
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.initWorld();
     this.setWorld();
     this.loadGame();
 }
@@ -322,22 +323,6 @@ constructor(canvas, keyboard) {
     }
 
     /**
-     * pauses the game
-     */
-    stopGame() {
-        this.isRunnig = !this.isRunnig;
-        if (this.isRunnig) {
-            this.run();
-            this.draw();
-            console.log('WEITER!');
-        } else {
-            clearInterval(this.runInterval);
-            clearInterval(this.slowInterval);
-            console.log('PAUSE!');
-        }
-    }
-
-    /**
      * frezzes the game
      */
     endGame() {
@@ -367,47 +352,9 @@ constructor(canvas, keyboard) {
         }
     }
 
-    initWorld() {            
-        ;
-    }
-
     hitHard() {
         this.checkHardHit();
         this.char.charBounce();
-    }
-
-    mute() {
-        if (!this.isMuted) {
-            this.backGrndMusic.muted = true;
-            this.snow1.muted = true;
-            this.snow2.muted = true;
-            this.spell.muted = true;
-            this.crystal.muted = true;
-            this.gameOverSound.muted = true;
-            this.winMusic.muted = true;
-            this.slashSound.muted = true;
-            this.ouch.muted = true;
-            this.bossTheme.muted = true;
-            this.hurt.muted = true;
-            this.stomp.muted = true;
-            this.slash.muted = true;
-            this.isMuted = true;
-        } else {
-            this.backGrndMusic.muted = false;
-            this.snow1.muted = false;
-            this.snow2.muted = false;
-            this.spell.muted = false;
-            this.crystal.muted = false;
-            this.gameOverSound.muted = false;
-            this.winMusic.muted = false;
-            this.slashSound.muted = false;
-            this.ouch.muted = false;
-            this.bossTheme.muted = false;
-            this.hurt.muted = false;
-            this.stomp.muted = false;
-            this.slash.muted = false;
-            this.isMuted = false;
-        }
     }
 
     setEndInterval (fn, time) {
