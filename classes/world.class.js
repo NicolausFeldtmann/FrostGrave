@@ -31,8 +31,6 @@ class World {
     bossTheme = new Audio('audio/bossTheme.mp3');
     slash = new Audio('audio/bossSlash.mp3');
     stomp = new Audio('audio/stomp.mp3'); 
-    walkerHurt = new Audio('audio/gotHrut.mp3');
-    walkerDying = new Audio('audio/walkerPain.mp3');
 
     intervalIds = [];
     i = 0;
@@ -85,7 +83,7 @@ constructor(canvas, keyboard) {
         this.slowInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
                 this.checkCollEnemys();
-        }, 600)
+        }, 500)
     }
 
     /**
@@ -320,6 +318,22 @@ constructor(canvas, keyboard) {
         setTimeout(() => {
             this.projectile.splice(proIdx, 1);
         }, 500);
+    }
+
+    /**
+     * pauses the game
+     */
+    stopGame() {
+        this.isRunnig = !this.isRunnig;
+        if (this.isRunnig) {
+            this.run();
+            this.draw();
+            console.log('WEITER!');
+        } else {
+            clearInterval(this.runInterval);
+            clearInterval(this.slowInterval);
+            console.log('PAUSE!');
+        }
     }
 
     /**
