@@ -193,11 +193,10 @@ class Boss extends MoObject {
         if (this.isAlive) {
             if (this.isDeadAgain()) {
                 this.playAnimation(this.IMAGES_DYING);
-                this.isAlive = false;
-                //clearInterval(this.reactInterval);
-                //clearInterval(this.spawnInterval);
                 setTimeout(() => {
-                    world.winGame();
+                    this.isAlive = false;
+                    //world.winGame();
+                    this.dropKeyStone();
                     this.bossDies();
                 }, 1000);
             } else if (this.isHurt()) {
@@ -211,7 +210,6 @@ class Boss extends MoObject {
     react() {
         this.reactInterval = setInterval(() => {
             this.checkBossState();
-            console.log('react running');
         }, 60);
     }
 
@@ -236,8 +234,6 @@ class Boss extends MoObject {
             setTimeout(() => {
                 world.hitHard();
             }, 100);
-        } else {
-            console.log('attack attempted, but boss id daed');
         }
     }
 
@@ -285,5 +281,11 @@ class Boss extends MoObject {
         world.hurt.play();
     }
 
-
+    dropKeyStone() {
+        if (!this.isAlive) {
+            this.keyStone = new KeyStone(this.x + 150);
+            world.keyStone.push(this.keyStone);
+            console.log('key stone dropped', this.x, this.y);
+        }
+    }
 }

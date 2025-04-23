@@ -218,7 +218,7 @@ class Char extends MoObject{
                 if(this.world.keyboard.SLASH && !this.isAboveGround()) {
                     this.playAnimation(this.IMAGES_SLASHING);
                     this.slash();
-                    this.left.slashSound.play();
+                    world.slashSound.play();
                 }
 
                 /**
