@@ -255,6 +255,12 @@ class Char extends MoObject{
                          }, 1000);
                     }
                 }
+
+                if (this.world.keyboard.OVERKILL && !this.isAboveGround()) {
+                    if (this.isCool) {
+                        this.playAnimation(this.IMAGES_THROW);
+                    }
+                }
                 /**
                  * focus camera on character
                  */

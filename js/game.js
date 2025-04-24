@@ -140,7 +140,12 @@ window.addEventListener('keydown', (e) => {
     
     if (e.keyCode == 81) {
         keyboard.THROW = true;
-    }  
+    } 
+    
+    if (e.keyCode == 67) {
+        keyboard.OVERKILL = true;
+    } 
+    
 })
 
 /**
@@ -175,5 +180,9 @@ window.addEventListener('keyup', (e) => {
 
     if (e.keyCode == 81) {
         keyboard.THROW = false;
+    }
+
+    if (e.keyCode == 67) {
+        keyboard.OVERKILL = false;
     }
 })

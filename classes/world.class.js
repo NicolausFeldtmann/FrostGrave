@@ -15,6 +15,7 @@ class World {
     greenBar = new GreenBar();
     orangeBar = new OrangeBar();
     projectile = [];
+    overkill = [];
     keyStone = [];
     spell = new Audio('audio/spell.mp3');
     crystal = new Audio('audio/crystal.mp3');
@@ -73,6 +74,7 @@ constructor(canvas, keyboard) {
             this.checkGotHit();
             this.checkImpact();
             this.checkThorw();
+            this.checkOverkill();
             this.checkCollBoss();
         }, 100)
     }
@@ -102,6 +104,20 @@ constructor(canvas, keyboard) {
                 setTimeout(() => {
                     this.isCool = true;
                 }, 1000);
+            }
+        }
+    }
+
+    checkOverkill() {
+        if (this.isCool) {
+            if (this.keyboard.OVERKILL && this.char.jewel > 0) {
+                let overkill = new Overkill(this.char.x - 55, this.char.y);
+                this.overkill.push(overkill);
+                this.char.jewel = 0;
+                this.orangeBar.setPercentage(this.char.jewel);
+                setTimeout(() => {
+                    this.isCool = false;
+                }, 1000); 
             }
         }
     }
@@ -145,11 +161,15 @@ constructor(canvas, keyboard) {
      * check if enemy or boss are colliding with projectile
      */
     checkImpact() {
-        this.projectile.forEach((projectile) => {
+        this.projectile.forEach((projectile, overkill) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy.isCollidingPro(projectile)) {
                     projectile.impact();
                     this.removeProjectile(); 
+                }
+
+                if (enemy.isCollidingPro(overkill)) {
+                    overkill.impact();
                 }
             });
     
@@ -157,6 +177,12 @@ constructor(canvas, keyboard) {
                 if (boss.isCollidingPro(projectile)) {
                     projectile.impact();
                     this.removeProjectile();
+                }
+
+                if (boss.isCollidingPro(overkill)) {
+                    overkill.impact();
+                    console.log('overkill impact');
+                    
                 }
             });
         });
@@ -257,6 +283,7 @@ constructor(canvas, keyboard) {
             this.addObjToMap(this.level.jewel);
             this.addObjToMap(this.level.frontObj);
             this.addObjToMap(this.projectile);
+            this.addObjToMap(this.overkill);
             this.addObjToMap(this.keyStone);
             //------Space for fixed objects-----//
             this.ctx.translate(-this.camera_x, 0);

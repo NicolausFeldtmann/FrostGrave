@@ -29,7 +29,7 @@ class DrawObjects {
      * draws dev tool fram around image 
      */
     drawFrame(ctx) {
-        if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel || this instanceof Projectile) {
+        if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel || this instanceof Projectile || this instanceof Overkill) {
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'blue';
@@ -43,7 +43,7 @@ class DrawObjects {
      * draws dev tool frame aorund declared hitbox
      */
     drawHitFrame(ctx) {
-        if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel || this instanceof Projectile) {
+        if (this instanceof Char || this instanceof Walker || this instanceof Boss || this instanceof Mana || this instanceof Jewel || this instanceof Projectile || this instanceof Overkill) {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'red';

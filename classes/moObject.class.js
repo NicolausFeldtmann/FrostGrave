@@ -64,6 +64,15 @@ class MoObject extends DrawObjects{
         );
     }
 
+    isCollidingOver(overkill) {
+        return (
+            this.x + this.width - this.offset.right > overkill.x + overkill.offset.left &&
+            this.y + this.height - this.offset.bottom > overkill.y + overkill.offset.top &&
+            this.x + this.offset.left < overkill.x + overkill.width - overkill.offset.right &&
+            this.y + this.offset.top < overkill.y + overkill.height - overkill.offset.bottom
+        );
+    }
+
     /**
      * Defines mele hitbox, wile character is executing mele attack
      */
