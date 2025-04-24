@@ -36,7 +36,7 @@ class Overkill extends MoObject {
         this.loadImages(this.IMAGES_IMPACT);
         this.x = x;
         this.y = y;
-        this.width = 250;
+        this.width = 150;
         this.height = 120;
         this.cast();
     }
@@ -44,16 +44,24 @@ class Overkill extends MoObject {
     cast() {
         this.castInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_FIRE);
+            world.cast.play();
             this.x += 10;
         }, 1000 / 30);
     }
 
     impact() {
+        clearInterval(this.castInterval);
         this.speedx = 0;
         this.impactAnimation();
+        world.baam.play();
     }
 
     impactAnimation() {
-        this.playAnimation(this.IMAGES_IMPACT);
+        this.impactInterval = setInterval(() => {
+            this.playAnimation(this.IMAGES_IMPACT);
+            this.width = 500;
+            this.height = 440;
+            this.y = 150;
+        },1000 / 1.5);
     }
 }

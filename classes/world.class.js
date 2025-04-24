@@ -33,6 +33,8 @@ class World {
     stomp = new Audio('audio/stomp.mp3'); 
     walkerHurt = new Audio('audio/walkerPain.mp3');
     walkerDying = new Audio('audio/walkerPain2.mp3');
+    cast = new Audio('audio/overkill.mp3');
+    baam = new Audio('audio/baam.mp3');
 
     intervalIds = [];
     i = 0;
@@ -73,6 +75,7 @@ constructor(canvas, keyboard) {
             this.checkCollJewel();
             this.checkGotHit();
             this.checkImpact();
+            this.checkImpactOverkill();
             this.checkThorw();
             this.checkOverkill();
             this.checkCollBoss();
@@ -161,15 +164,11 @@ constructor(canvas, keyboard) {
      * check if enemy or boss are colliding with projectile
      */
     checkImpact() {
-        this.projectile.forEach((projectile, overkill) => {
+        this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy.isCollidingPro(projectile)) {
                     projectile.impact();
                     this.removeProjectile(); 
-                }
-
-                if (enemy.isCollidingPro(overkill)) {
-                    overkill.impact();
                 }
             });
     
@@ -178,14 +177,26 @@ constructor(canvas, keyboard) {
                     projectile.impact();
                     this.removeProjectile();
                 }
-
-                if (boss.isCollidingPro(overkill)) {
-                    overkill.impact();
-                    console.log('overkill impact');
-                    
-                }
             });
         });
+    }
+
+    checkImpactOverkill() {
+        this.overkill.forEach((overkill) => {
+            this.level.enemies.forEach((enemy) => {
+                if (enemy.isCollidingOver(overkill)) {
+                    overkill.impact();
+                    this.removeOverkill();
+                }
+            })
+
+            this.level.boss.forEach((boss) => {
+                if (boss.isCollidingOver(overkill)) {
+                    overkill.impact();
+                    this.removeOverkill();
+                }
+            })
+        })
     }
 
     /**
@@ -347,6 +358,12 @@ constructor(canvas, keyboard) {
         setTimeout(() => {
             this.projectile.splice(proIdx, 1);
         }, 500);
+    }
+
+    removeOverkill(overIdx) {
+        setTimeout(() => {
+            this.overkill.splice(overIdx, 1);
+        }, 1500);
     }
 
     /**

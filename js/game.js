@@ -81,6 +81,8 @@ function mute() {
         world.slash.muted = true;
         world.walkerHurt.muted = true;
         world.walkerDying.muted = true;
+        world.cast.muted = true;
+        world.baam.muted = true
         world.isMuted = true;
     } else {
         unmuted();
@@ -104,6 +106,8 @@ function unmuted() {
         world.slash.muted = false;
         world.walkerHurt.muted = false;
         world.walkerDying.muted = false;
+        world.cast.muted = false;
+        world.baam.muted = false;
         world.isMuted = false;
     }
 }
