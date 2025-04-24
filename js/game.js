@@ -34,6 +34,13 @@ function startGame() {
     }, 5000);
 }
 
+function startLevel2() {
+    world.endGame();
+    initLevel2();
+    canvas = document.getElementById('canvas');
+    world = new World2(canvas, keyboard);
+}
+
 function winGame() {
     let contentRef = document.getElementById('gameScreen');
     contentRef.innerHTML = "";

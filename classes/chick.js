@@ -21,7 +21,7 @@ class Chick extends MoObject {
         'img/enemys/chicken/chicken_normal/2_dead/dead.png',
     ]
 
-    constructor() {
+    constructor(imagePath, x) {
         super().loadImg('img/enemys/chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGE_WALKING);
         this.loadImages(this.IMAGES_DEAD);
@@ -34,7 +34,7 @@ class Chick extends MoObject {
             if (this.isDead) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else {
-                walkLeft();
+                this.walkLeft();
             }
         })
     }
