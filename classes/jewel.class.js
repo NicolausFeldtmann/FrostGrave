@@ -10,8 +10,8 @@ class Jewel extends MoObject {
         bottom: 15, 
     };
 
-    constructor(imagePath,x, y) {
-        super().loadImg(imagePath);
+    constructor(x, y) {
+        super().loadImg('img/objects/simple/11.png');
         this.y = y;
         this.x = x;
     }

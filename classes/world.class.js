@@ -183,16 +183,10 @@ constructor(canvas, keyboard) {
 
     checkImpactOverkill() {
         this.overkill.forEach((overkill) => {
-            this.level.enemies.forEach((enemy) => {
-                if (enemy.isCollidingOver(overkill)) {
-                    overkill.impact();
-                    this.removeOverkill();
-                }
-            })
-
             this.level.boss.forEach((boss) => {
                 if (boss.isCollidingOver(overkill)) {
                     overkill.impact();
+                    boss.foeHurt();
                     this.removeOverkill();
                 }
             })

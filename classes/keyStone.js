@@ -13,7 +13,7 @@ class KeyStone extends MoObject {
     y = 320;
 
     constructor(x, y) {
-        super().loadImg('img/objects/shiny/13.png');
+        super().loadImg('img/objects/shiny/14.png');
         this.y = 320;
         this.x = x;
         this.starFly();
