@@ -242,7 +242,11 @@ class MoObject extends DrawObjects{
      */
     bounceBack() {
         this.speedY = 5;
-        this.x += 100;
+        if (world.char.x < this.x) {
+            this.x += 100;
+        } else {
+            this.x -= 100;
+        }
     }
 
     charBounce() {

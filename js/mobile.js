@@ -48,6 +48,7 @@ function mobileBtnEventListner() {
     let btnFire = document.getElementById('btnFire');
     let btnJump = document.getElementById('btnJump');
     let btnSlash = document.getElementById('btnSlash');
+    let btnOverkill = document.getElementById('btnOverkill');
 
     btnLeft.addEventListener('touchstart', (event) => (event.preventDefault(), handleTouchStart('LEFT')));
     btnLeft.addEventListener('touchend', (event) => (event.preventDefault(), handleTouchEnd('LEFT')));
@@ -63,4 +64,7 @@ function mobileBtnEventListner() {
 
     btnSlash.addEventListener('touchstart', (event) => (event.preventDefault(), handleTouchStart('SLASH')));
     btnSlash.addEventListener('touchend', (event) => (event.preventDefault(), handleTouchEnd('SLASH')));
+
+    btnOverkill.addEventListener('touchstart', (event) => (event.preventDefault(), handleTouchStart('OVERKILL')));
+    btnOverkill.addEventListener('touchend', (event) => (event.preventDefault(), handleTouchEnd('OVERKILL')));
 }
