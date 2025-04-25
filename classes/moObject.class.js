@@ -132,6 +132,19 @@ class MoObject extends DrawObjects{
         }
     }
 
+    instaKill() {
+        if (this.isCool) {
+            this.energy -= 500;
+            if (this.energy < 0) {
+                this.energy = 0;
+            } else {
+                this.lasHit = new Date().getTime();
+                console.log('!!!DIE!!!');
+                
+            }
+        }
+    }
+
     /**
      * sets cooldown
      */

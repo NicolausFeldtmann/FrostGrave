@@ -1,46 +1,7 @@
-class World {
-
-    isOver = false
-    isCool = true;
-    isLoaded = false;
-    isRunnig = true;
-    isMuted = false;
-    char = new Char();
-    level = level1;
-    canvas;
-    ctx;
-    keyboard;
-    camera_x = 0;
-    statusBar = new Status();
-    greenBar = new GreenBar();
-    orangeBar = new OrangeBar();
-    projectile = [];
-    overkill = [];
-    keyStone = [];
-    star = [];
-    spell = new Audio('audio/spell.mp3');
-    crystal = new Audio('audio/crystal.mp3');
-    backGrndMusic = new Audio('audio/backgroundMusic.mp3');
-    gameOverSound = new Audio('audio/backgroundAudio.mp3');
-    winMusic = new Audio('audio/winMusic.mp3');
-    snow1 = new Audio('audio/snow1.mp3');
-    snow2 = new Audio('audio/snow2.mp3');
-    slashSound = new Audio('audio/slash.mp3');
-    ouch = new Audio('audio/wilhelm.mp3');
-    hurt = new Audio('audio/bossPain.mp3');
-    dying = new Audio('audio/bossDies.mp3');
-    bossTheme = new Audio('audio/bossTheme.mp3');
-    slash = new Audio('audio/bossSlash.mp3');
-    stomp = new Audio('audio/stomp.mp3'); 
-    walkerHurt = new Audio('audio/walkerPain.mp3');
-    walkerDying = new Audio('audio/walkerPain2.mp3');
-    cast = new Audio('audio/overkill.mp3');
-    baam = new Audio('audio/baam.mp3');
-
-    intervalIds = [];
-    i = 0;
+class World extends Extensions{
 
 constructor(canvas, keyboard) {
+    super();
     this.keyboard = keyboard;
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
@@ -73,14 +34,14 @@ constructor(canvas, keyboard) {
     run() {
         this.runInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
-            this.checkCollMana();
-            this.checkCollStar();
-            this.checkGotHit();
-            this.checkImpact();
-            this.checkImpactOverkill();
-            this.checkThorw();
-            this.checkOverkill();
-            this.checkCollBoss();
+                this.checkCollMana();
+                this.checkCollStar();
+                this.checkGotHit();
+                this.checkImpact();
+                this.checkImpactOverkill();
+                this.checkThorw();
+                this.checkOverkill();
+                this.checkCollBoss();
         }, 100)
     }
 
@@ -91,7 +52,6 @@ constructor(canvas, keyboard) {
         this.slowInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
                 this.checkCollEnemys();
-                //this.starFall();
         }, 500)
     }
 
@@ -119,12 +79,12 @@ constructor(canvas, keyboard) {
         this.fallIntervall = setInterval(() => {
             let star = new Star();
             this.star.push(star);
-        }, 1000);
+        }, 2000);
     }
 
     checkOverkill() {
         if (this.isCool) {
-            if (this.keyboard.OVERKILL && this.char.jewel > 0) {
+            if (this.keyboard.OVERKILL && this.char.jewel > 99) {
                 let overkill = new Overkill(this.char.x - 55, this.char.y);
                 this.overkill.push(overkill);
                 this.char.jewel = 0;
@@ -197,7 +157,7 @@ constructor(canvas, keyboard) {
             this.level.boss.forEach((boss) => {
                 if (boss.isCollidingOver(overkill)) {
                     overkill.impact();
-                    boss.foeHurt();
+                    boss.instaKill();
                     this.removeOverkill();
                 }
             })
@@ -247,20 +207,6 @@ constructor(canvas, keyboard) {
             }
         });
     };
-
-    /**
-     * check if character is picking up jewlery
-     */
-    checkCollJewel() {
-        this.level.jewel.forEach((jewel, idx) => {
-            if (this.char.isCollidingMo(jewel)) {
-                this.crystal.play();
-                this.char.gotJewel();
-                this.orangeBar.setPercentage(this.char.jewel);
-                this.level.jewel.splice(idx, 1);
-            }
-        });
-    }
 
     checkCollStar() {
         this.star.forEach((star, idx) => {
