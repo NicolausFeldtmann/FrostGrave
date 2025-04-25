@@ -1,5 +1,5 @@
-class Jewel extends MoObject {
-    
+class Star extends MoObject{
+
     width = 80;
     height = 80;
     y = 320;

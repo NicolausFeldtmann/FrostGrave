@@ -77,13 +77,5 @@ function initLevel(){
         new Mana('img/objects/shiny/8.png',3400, 380),
         new Mana('img/objects/shiny/8.png',4000, 380),
     ],
-    [
-        new Jewel(1200, 250),
-        new Jewel(2000, 250),
-        new Jewel(2800, 250),
-        new Jewel(3400, 250),
-        new Jewel(4000, 250),
-        new Jewel(4400, 250),
-    ],
     );
 };

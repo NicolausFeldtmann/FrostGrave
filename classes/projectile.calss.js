@@ -2,7 +2,7 @@ class Projectile extends MoObject {
 
 
     smashed;
-    speddy = 30;
+    speedy = 25;
     speedx = 20;
     offset = {
         top: 80,

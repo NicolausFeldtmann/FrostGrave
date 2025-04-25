@@ -17,6 +17,7 @@ class World {
     projectile = [];
     overkill = [];
     keyStone = [];
+    star = [];
     spell = new Audio('audio/spell.mp3');
     crystal = new Audio('audio/crystal.mp3');
     backGrndMusic = new Audio('audio/backgroundMusic.mp3');
@@ -45,6 +46,7 @@ constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
     this.setWorld();
     this.loadGame();
+    this.starFall();
 }
 
     loadGame() {
@@ -72,7 +74,7 @@ constructor(canvas, keyboard) {
         this.runInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
             this.checkCollMana();
-            this.checkCollJewel();
+            this.checkCollStar();
             this.checkGotHit();
             this.checkImpact();
             this.checkImpactOverkill();
@@ -89,6 +91,7 @@ constructor(canvas, keyboard) {
         this.slowInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
                 this.checkCollEnemys();
+                //this.starFall();
         }, 500)
     }
 
@@ -109,6 +112,14 @@ constructor(canvas, keyboard) {
                 }, 1000);
             }
         }
+    }
+
+    starFall() {
+        if (!this.isRunnig) return
+        this.fallIntervall = setInterval(() => {
+            let star = new Star();
+            this.star.push(star);
+        }, 1000);
     }
 
     checkOverkill() {
@@ -251,6 +262,17 @@ constructor(canvas, keyboard) {
         });
     }
 
+    checkCollStar() {
+        this.star.forEach((star, idx) => {
+            if (this.char.isCollidingMo(star)) {
+                this.crystal.play();
+                this.char.gotJewel();
+                this.orangeBar.setPercentage(this.char.jewel);
+                this.star.splice(idx, 1);
+            }
+        })
+    }
+
     /**
      * check if enemy or boss are colliding with projectile
      */
@@ -285,10 +307,10 @@ constructor(canvas, keyboard) {
             this.addObjToMap(this.level.boss);
             this.addToMap(this.char);
             this.addObjToMap(this.level.mana);
-            this.addObjToMap(this.level.jewel);
             this.addObjToMap(this.level.frontObj);
             this.addObjToMap(this.projectile);
             this.addObjToMap(this.overkill);
+            this.addObjToMap(this.star);
             this.addObjToMap(this.keyStone);
             //------Space for fixed objects-----//
             this.ctx.translate(-this.camera_x, 0);
