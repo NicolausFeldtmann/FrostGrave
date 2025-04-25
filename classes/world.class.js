@@ -36,6 +36,7 @@ constructor(canvas, keyboard) {
             if (!this.isRunnig) return;
                 this.checkCollMana();
                 this.checkCollStar();
+                this.checkCollKeystone();
                 this.checkGotHit();
                 this.checkImpact();
                 this.checkImpactOverkill();
@@ -215,6 +216,15 @@ constructor(canvas, keyboard) {
                 this.char.gotJewel();
                 this.orangeBar.setPercentage(this.char.jewel);
                 this.star.splice(idx, 1);
+            }
+        })
+    }
+
+    checkCollKeystone() {
+        this.keyStone.forEach((keyStone, idx) => {
+            if (this.char.isCollidingMo(keyStone)) {
+                this.winGame();
+                this.keyStone.splice(idx, 1);
             }
         })
     }

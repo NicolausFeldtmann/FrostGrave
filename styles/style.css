@@ -17,6 +17,10 @@ h1{
     top: 64px;
 }
 
+h2{
+    margin: 0;
+}
+
 p{
     margin: 18px 0px 0px 0px;
 }
@@ -196,6 +200,7 @@ canvas{
 }
 
 .btnBox{
+    z-index: 100;
     position: absolute;
     bottom: 48px;
     border: solid 2px #85f0cc;
@@ -328,6 +333,7 @@ canvas{
 }
 
 .optionBtnArea{
+    z-index: 100;
     position: absolute;
     bottom: 28px;
     right: 72px;
