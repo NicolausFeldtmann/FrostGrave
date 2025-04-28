@@ -53,6 +53,7 @@ class Overkill extends MoObject {
         clearInterval(this.castInterval);
         this.speedx = 0;
         this.impactAnimation();
+        world.baam.volume = 0.3;
         world.baam.play();
     }
 

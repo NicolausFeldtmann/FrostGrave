@@ -102,17 +102,16 @@ constructor(canvas, keyboard) {
      * check if Character is colliding with alive enemy
      */
     checkCollEnemys() {
-            this.level.enemies.forEach((enemy, index) => {
-                if (enemy.isDeadAgain()) {
-                    setTimeout(() => {
-                        this.level.enemies.splice(index, 1);
-                    },);
-                } else if (this.char.isCollidingMo(enemy)) {
-                    this.char.gotHurt();
-                    this.char.charBounceLittel();
-                    this.statusBar.setPercentage(this.char.energy);
-                }
-            });
+        this.level.enemies.forEach((enemy, index) => {
+            if (enemy.isDeadAgain()) {
+                setTimeout(() => {
+                    //this.level.enemies.splice(index, 1);
+                },);
+            } else if (this.char.isCollidingMo(enemy)) {
+                this.char.gotHurt();
+                this.statusBar.setPercentage(this.char.energy);
+            }
+        });
     }
 
     /**
@@ -153,6 +152,9 @@ constructor(canvas, keyboard) {
         });
     }
 
+    /**
+     * Chek collision between Boss and overkill ray
+     */
     checkImpactOverkill() {
         this.overkill.forEach((overkill) => {
             this.level.boss.forEach((boss) => {
@@ -177,6 +179,9 @@ constructor(canvas, keyboard) {
         });
     }
 
+    /**
+     * check if char is hit by Boss
+     */
     checkHardHit() {
         this.level.boss.forEach((boss, idx) => {
             if (this.isCool) {
@@ -209,6 +214,9 @@ constructor(canvas, keyboard) {
         });
     };
 
+    /**
+     * check if char is colliding with star
+     */
     checkCollStar() {
         this.star.forEach((star, idx) => {
             if (this.char.isCollidingMo(star)) {
@@ -220,6 +228,9 @@ constructor(canvas, keyboard) {
         })
     }
 
+    /**
+     * check if char is colliding with keySone 
+     */
     checkCollKeystone() {
         this.keyStone.forEach((keyStone, idx) => {
             if (this.char.isCollidingMo(keyStone)) {
@@ -265,10 +276,9 @@ constructor(canvas, keyboard) {
             this.frontFlip(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
-        mo.drawHitFrame(this.ctx);
-        mo.drawMeleFrame(this.ctx);
-
+        //mo.drawFrame(this.ctx);
+        //mo.drawHitFrame(this.ctx);
+        //mo.drawMeleFrame(this.ctx);
         if(mo.otherDirection) {
             this.backFlip(mo);
         }
@@ -301,6 +311,9 @@ constructor(canvas, keyboard) {
         }, 500);
     }
 
+    /**
+     * remove overkill ray 
+     */
     removeOverkill(overIdx) {
         setTimeout(() => {
             this.overkill.splice(overIdx, 1);
@@ -339,6 +352,9 @@ constructor(canvas, keyboard) {
         };
     }
 
+    /**
+     * end game as "Gamoe Over"
+     */
     lostGame() {
         if (!this.isOver) {
             this.isOver = true;
@@ -347,6 +363,9 @@ constructor(canvas, keyboard) {
         }
     }
 
+    /**
+     * end game succeesfull
+     */
     winGame() {
         if (!this.isOver) {
             this.isOver = true;
@@ -355,17 +374,26 @@ constructor(canvas, keyboard) {
         }
     }
 
+    /**
+     * initialize Boss hit char
+     */
     hitHard() {
         this.checkHardHit();
         this.char.charBounce();
     }
 
+    /**
+     * set endable Intervals
+     */
     setEndInterval (fn, time) {
         let id = setInterval(fn, time);
         this.intervalIds.push(id);
         console.log(this.intervalIds);
     }
 
+    /**
+     * end specific game Intervals
+     */
     stop() {
         this.intervalIds.forEach(clearInterval);
     }
