@@ -25,7 +25,6 @@ function decideControls() {
 
     if (detectMob()) {
         mobileBtn.style.display = 'flex';
-        fullscreen();
     } else {
         mobileBtn.style.display = 'none';
     }

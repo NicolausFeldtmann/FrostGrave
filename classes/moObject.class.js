@@ -257,12 +257,14 @@ class MoObject extends DrawObjects{
     }
 
     charBounceLittel() {
-        this.speedY = 5;
-        if (this.isAboveGround()) {
-            if (!this.otherDirection) {
-                this.x -= 100;
-            } else {
-                this.x += 100;
+        if (this.x > 200) {
+            this.speedY = 5;
+            if (this.isAboveGround()) {
+                if (!this.otherDirection) {
+                    this.x -= 100;
+                } else {
+                    this.x += 100;
+                }
             }
         }
     }

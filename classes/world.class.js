@@ -53,7 +53,7 @@ constructor(canvas, keyboard) {
         this.slowInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
                 this.checkCollEnemys();
-        }, 500)
+        }, 100)
     }
 
     /**
@@ -106,7 +106,7 @@ constructor(canvas, keyboard) {
                 if (enemy.isDeadAgain()) {
                     setTimeout(() => {
                         this.level.enemies.splice(index, 1);
-                    }, 400)
+                    },);
                 } else if (this.char.isCollidingMo(enemy)) {
                     this.char.gotHurt();
                     this.char.charBounceLittel();
@@ -124,7 +124,7 @@ constructor(canvas, keyboard) {
             if (boss.isDeadAgain()) {
                 setTimeout(() => {
                    // this.level.boss.splice(index, 1);
-                }, 400)
+                })
             } else if (this.char.isCollidingMo(boss)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
@@ -246,37 +246,6 @@ constructor(canvas, keyboard) {
                 }
             });
         });
-    }
-    
-    /**
-     * draws movable and static objects on canvas
-    */
-    draw() {
-        this.drawInterval = this.setEndInterval(() => {
-            if (!this.isRunnig) return;
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.translate(this.camera_x, 0);
-            this.addObjToMap(this.level.blueSky);
-            this.addObjToMap(this.level.backgrounds);
-            this.addObjToMap(this.level.clouds);
-            this.addObjToMap(this.level.enemies);
-            this.addObjToMap(this.level.boss);
-            this.addToMap(this.char);
-            this.addObjToMap(this.level.mana);
-            this.addObjToMap(this.level.frontObj);
-            this.addObjToMap(this.projectile);
-            this.addObjToMap(this.overkill);
-            this.addObjToMap(this.star);
-            this.addObjToMap(this.keyStone);
-            //------Space for fixed objects-----//
-            this.ctx.translate(-this.camera_x, 0);
-            this.addToMap(this.statusBar);
-            this.addToMap(this.greenBar);
-            this.addToMap(this.orangeBar);
-            this.ctx.translate(this.camera_x, 0);
-
-            this.ctx.translate(-this.camera_x, 0);
-        }, 1000 / 30);
     }
 
     /**

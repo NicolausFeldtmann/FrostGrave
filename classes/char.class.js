@@ -155,7 +155,6 @@ class Char extends MoObject{
         right: 25,
         bottom: 25, 
     };
-    //doSlash = false;
     slashTimeout;
 
 

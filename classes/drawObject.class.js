@@ -75,5 +75,6 @@ class DrawObjects {
             this.imgCache[path] = img;
         });
     }
+
     
 }
