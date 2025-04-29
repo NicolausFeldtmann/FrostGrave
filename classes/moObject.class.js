@@ -256,11 +256,13 @@ class MoObject extends DrawObjects{
      * throw enemy back, after mele collision
      */
     bounceBack() {
-        this.speedY = 5;
-        if (world.char.x < this.x) {
-            this.x += 100;
-        } else {
-            this.x -= 100;
+        if (this.energy > 0) {
+            this.speedY = 5;
+            if (world.char.x < this.x) {
+                this.x += 100;
+            } else {
+                this.x -= 100;
+            }
         }
     }
 
