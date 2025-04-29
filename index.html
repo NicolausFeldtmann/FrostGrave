@@ -54,25 +54,7 @@
             <h1 class="startH1">FROST GRAVE!</h1>
             <img class="backGrnImg" src="img/backgrounds/2/5.png">
 
-            <div class="instrucktions">
-                <div class="row">
-                    <div class="letterBox">A</div>
-                    <div class="letterBox">D</div>
-                    <p>to move Character</p>
-                </div>
-                <div class="row">
-                    <div class="letterBox">E</div>
-                    <p>for mele attack</p>
-                </div>
-                <div class="row">
-                    <div class="letterBox">Q</div>
-                    <p>to throw magic attack</p>
-                </div>
-                <div class="row">
-                    <div class="letterBox">SPACEBAR</div>
-                    <p>to jump</p>
-                </div>
-            </div>
+            <div class="instrucktions" id="instructions"></div>
 
             <img class="starterImg char" src="img/witheWalker/Skeleton_Warrior_1/PNG/PNG Sequences/Slashing/0_Skeleton_Warrior_Slashing_004.png">
             <img class="starterImg walker" src="img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_004.png">
@@ -108,12 +90,12 @@
                     <img class="optImg btnSmallScreen" id="btnSmallGame" onclick="smallscreen()" src="./img/smallscreen.png">
                 </div>
             </div>
+            <div class="controllContent" id="controllContent"></div>
             <div class="btnArea" id="btnArea">
                 <div class="btnLeft">
                     <img class="controllBtn" id="btnLeft" src="img/buttons/arrow-left.png">
                     <img class="controllBtn" id="btnRight" src="img/buttons/arrow-right.png">
                 </div>
-
                 <div class="btnRight">
                     <img class="controllBtn right" id="btnFire" src="img/buttons/fireball.jpg">
                     <img class="controllBtn right" id="btnJump" src="img/buttons/arrow-up.png">

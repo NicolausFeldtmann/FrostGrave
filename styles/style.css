@@ -132,18 +132,26 @@ canvas{
 
 .instrucktions{
     margin: 128px 0px 0px 0px;
-    width: 448px;
-    height: 248px;
-    backdrop-filter: blur(5px);
+    width: 480px;
+    height: 270px;
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: baseline;
     justify-content: center;
-    box-shadow: 12px 11px 19px 4px rgba(0,0,0,0.75) inset;
-    -webkit-box-shadow: 12px 11px 19px 4px rgba(0,0,0,0.75) inset;
-    -moz-box-shadow: 12px 11px 19px 4px rgba(0,0,0,0.75) inset;
+    text-align: center;
+    box-shadow: 12px 11px 19px 4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 12px 11px 19px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 12px 11px 19px 4px rgba(0,0,0,0.75);
     border-radius: 10px;
+    background-color: #568d8f;
+    border: solid 2px #85f0cc;
+    padding: 8px 12px 8px 12px;
+    font-size: 20px;
+}
+
+.instrucH3{
+    font-size: 24px;
 }
 
 .starterImg{
@@ -381,4 +389,34 @@ canvas{
 .btnHide{
     opacity: 1;
     display: none;
+}
+
+.controlls{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 720px;
+    margin: 0px 0px 14px 0px;
+    
+}
+
+.controllsBox{
+    background-color: #568d8f;
+    border: solid 2px #85f0cc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 12px 0px 12px;
+    padding: 8px 8px 8px 7px;
+}
+
+.controllsPara{
+    margin: 0;
+}
+
+.controllContent{
+    position: absolute;
+    bottom: 12px;
 }

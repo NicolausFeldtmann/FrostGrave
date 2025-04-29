@@ -10,6 +10,7 @@ function loadStart() {
     detectMob();
     decideControls();
     mobileBtnEventListner();
+    renderInstructions();
 }
 /**
  * functioin to initialize thw game
@@ -55,6 +56,18 @@ function addLoadingScreen() {
 function addLoadingScreen() {
     let contentRef = document.getElementById('animation');
     contentRef.innerHTML += getLoadingScreen();
+}
+
+function renderInstructions() {
+    let contentRef = document.getElementById('instructions');
+    contentRef.innerHTML = "";
+    contentRef.innerHTML += getInstructions();
+}
+
+function renderControlls() {
+    let contentRef = document.getElementById('controllContent');
+    contentRef.innerHTML = "";
+    contentRef.innerHTML += getControllsTemplate();
 }
 
 function mute() {

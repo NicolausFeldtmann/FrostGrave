@@ -57,3 +57,50 @@ function getLoadingScreen() {
         </div>
     `;
 }
+
+function getInstructions() {
+
+    return`
+        <div class="instrucTxt">
+            <h3 class="instrucH3">The Kingdome is frozen...</h3>
+            <p>
+                For over than 1.000 years youre kingdome is frozen im time by black magic.<br> 
+                But now you're reanimated by the life spending sunlight... 
+                Undead villagers stray the land. 
+                Lead by the icegigant Eisenhorn, invulnerable by men made weapons and lower magic.
+                <br>
+                <br>
+                Collect 5 falling stars to be able to cast an anicent und powerfull spell...
+            </p>
+        </div>
+    `;
+}
+
+function getControllsTemplate() {
+
+    return`
+        <div class="controlls">
+            <div class="controllsBox">
+                <p class="controllsPara">To Move</p>
+                <div class="letterBox">A</div>
+                <div class="letterBox">D</div>
+            </div>
+            <div class="controllsBox">
+                <p class="controllsPara">To jump</p>
+                <div class="letterBox">SPACE</div>
+            </div>
+            <div class="controllsBox">
+                <p class="controllsPara">Mele attack</p>
+                <div class="letterBox">E</div>     
+            </div>
+            <div class="controllsBox">
+                <p class="controllsPara">Cast spell</p>
+                <div class="letterBox">Q</div>
+            </div>
+            <div class="controllsBox">
+                <p class="controllsPara">Cast anicent spell</p>
+                <div class="letterBox">C</div>
+            </div>
+        </div>
+    `;
+}

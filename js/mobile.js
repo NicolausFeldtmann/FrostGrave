@@ -27,6 +27,7 @@ function decideControls() {
         mobileBtn.style.display = 'flex';
     } else {
         mobileBtn.style.display = 'none';
+        renderControlls();
     }
 }
 

@@ -50,6 +50,12 @@ class Walker extends MoObject{
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_012.png',
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_013.png',
         'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png',
+        'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png',
+        'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png',
+        'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png',
+        'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png',
+        'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png',
+        'img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png',
     ];
 
     constructor(imagePath, x) {
@@ -92,6 +98,6 @@ class Walker extends MoObject{
         world.walkerDying.play();
         setTimeout(() => {
             clearInterval(this.reanimateInterval);
-        }, 500);
+        }, 1000);
     }
 }
