@@ -34,13 +34,6 @@ function startGame() {
     }, 5000);
 }
 
-function startLevel2() {
-    world.endGame();
-    initLevel2();
-    canvas = document.getElementById('canvas');
-    world = new World2(canvas, keyboard);
-}
-
 function winGame() {
     let contentRef = document.getElementById('gameScreen');
     contentRef.innerHTML = "";
@@ -83,6 +76,7 @@ function mute() {
         world.walkerDying.muted = true;
         world.cast.muted = true;
         world.baam.muted = true
+        world.boom.muted = true;
         world.isMuted = true;
     } else {
         unmuted();
@@ -108,6 +102,7 @@ function unmuted() {
         world.walkerDying.muted = false;
         world.cast.muted = false;
         world.baam.muted = false;
+        world.boom.muted = false;
         world.isMuted = false;
     }
 }

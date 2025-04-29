@@ -39,6 +39,7 @@ class Extensions {
     walkerDying = new Audio('audio/walkerPain2.mp3');
     cast = new Audio('audio/overkill.mp3');
     baam = new Audio('audio/baam.mp3');
+    boom = new Audio('audio/boom2.mp3');
 
         /**
      * draws movable and static objects on canvas

@@ -10,7 +10,6 @@ class Projectile extends MoObject {
         right: 100,
         bottom: 40,
     };
-    boom = new Audio('audio/boom2.mp3');
 
     IMAGES_IMPACT = [
         'img/effects/Explosion_5/Explosion_1.png',
@@ -39,11 +38,11 @@ class Projectile extends MoObject {
      * Defines physics of prjctile
      */
     throw () {
-        this.speedY = 25;
+        this.speedY = 20;
         this.alppyGravity();
         this.throwInterval = setInterval (() => {
-            this.x += 12;
-        }, 25)
+            this.x += 20;
+        }, 1000 / 30);
     }
 
     /**
@@ -56,7 +55,7 @@ class Projectile extends MoObject {
         clearInterval(this.throwInterval);
         clearInterval(this.gravityInterval);
         this.impactAnimation();
-        this.boom.play();
+        world.boom.play();
         world.removeProjectile();
     }
 

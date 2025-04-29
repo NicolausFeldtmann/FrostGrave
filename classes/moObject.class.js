@@ -13,6 +13,7 @@ class MoObject extends DrawObjects{
 
     constructor(world) {
         super();
+        this.currentImage = 0;
         this.world = world;
     }
 

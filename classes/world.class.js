@@ -18,7 +18,6 @@ constructor(canvas, keyboard) {
             
         }, 5000);
         this.run();
-        this.runSlow();
     }
     /**
      * 
@@ -43,15 +42,6 @@ constructor(canvas, keyboard) {
                 this.checkThorw();
                 this.checkOverkill();
                 this.checkCollBoss();
-        });
-    }
-
-    /**
-     * execute check functions every 400ms
-     */
-    runSlow() {
-        this.slowInterval = this.setEndInterval(() => {
-            if (!this.isRunnig) return;
                 this.checkCollEnemys();
         });
     }
@@ -105,8 +95,9 @@ constructor(canvas, keyboard) {
         this.level.enemies.forEach((enemy, index) => {
             if (enemy.isDeadAgain()) {
                 setTimeout(() => {
+                    console.log(index); 
                     //this.level.enemies.splice(index, 1);
-                },);
+                }, 500);
             } else if (this.char.isCollidingMo(enemy)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
@@ -390,7 +381,6 @@ constructor(canvas, keyboard) {
     setEndInterval (fn, time) {
         let id = setInterval(fn, time);
         this.intervalIds.push(id);
-        console.log(this.intervalIds);
     }
 
     /**

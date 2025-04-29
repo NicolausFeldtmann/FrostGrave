@@ -1,5 +1,6 @@
 class Walker extends MoObject{
 
+    currentImage = 0;
     x = 150;
     speed = 2.5;
     offset = {
@@ -67,11 +68,7 @@ class Walker extends MoObject{
     reanimate() {
         this.reanimateInterval = setInterval(() => {
             if (this.isDeadAgain()) {
-                this.playAnimation(this.IMAGES_DYING);
-                world.walkerDying.play();
-                setTimeout(() => {
-                    clearInterval(this.reanimateInterval);
-                }, 500)
+                this.walkerDies();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 world.walkerHurt.play();
@@ -88,5 +85,13 @@ class Walker extends MoObject{
     walkLeft() {
         this.x -= this.speed;
         this.otherDirection = true;
+    }
+
+    walkerDies() {
+        this.playAnimation(this.IMAGES_DYING);
+        world.walkerDying.play();
+        setTimeout(() => {
+            clearInterval(this.reanimateInterval);
+        }, 500);
     }
 }
