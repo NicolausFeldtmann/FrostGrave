@@ -81,10 +81,10 @@ class MoObject extends DrawObjects{
      */
     isCollidingMele(mele) {
         return (
-            this.x + this.offset.left < mele.x + mele.width - mele.offset.right &&
-            this.x + this.width - this.offset.right > mele.x + mele.offset.left &&
-            this.y + this.offset.top < mele.y + mele.height - mele.offset.bottom &&
-            this.y + this.height - this.offset.bottom > mele.y + mele.offset.top
+            this.x + this.width - this.offset.right + 35 > mele.x + mele.offset.left &&
+            this.y + this.height - this.offset.bottom > mele.y + mele.offset.top &&
+            this.x + this.offset.left < mele.x + mele.width - mele.offset.right + 35 &&
+            this.y + this.offset.top < mele.y + mele.height - mele.offset.bottom
         );
     }
 

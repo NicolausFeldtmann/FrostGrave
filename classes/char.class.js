@@ -151,8 +151,8 @@ class Char extends MoObject{
 
     offset = {
         top: 35,
-        left: 25,
-        right: 25,
+        left: 35,
+        right: 35,
         bottom: 25, 
     };
     slashTimeout;

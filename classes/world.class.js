@@ -43,7 +43,7 @@ constructor(canvas, keyboard) {
                 this.checkThorw();
                 this.checkOverkill();
                 this.checkCollBoss();
-        }, 100)
+        });
     }
 
     /**
@@ -53,7 +53,7 @@ constructor(canvas, keyboard) {
         this.slowInterval = this.setEndInterval(() => {
             if (!this.isRunnig) return;
                 this.checkCollEnemys();
-        }, 100)
+        });
     }
 
     /**
@@ -137,7 +137,7 @@ constructor(canvas, keyboard) {
     checkImpact() {
         this.projectile.forEach((projectile) => {
             this.level.enemies.forEach((enemy) => {
-                if (enemy.isCollidingPro(projectile)) {
+                if (enemy.isCollidingPro(projectile) && !enemy.isDeadAgain()) {
                     projectile.impact();
                     this.removeProjectile(); 
                 }
@@ -175,7 +175,9 @@ constructor(canvas, keyboard) {
             if (this.char.isCollidingMele(enemy)) {
                 enemy.gotSlashed(); 
                 enemy.bounceBack();
-            }
+       console.log('CHECK MELE');
+                        }
+     
         });
     }
 
@@ -276,9 +278,9 @@ constructor(canvas, keyboard) {
             this.frontFlip(mo);
         }
         mo.draw(this.ctx);
-        //mo.drawFrame(this.ctx);
-        //mo.drawHitFrame(this.ctx);
-        //mo.drawMeleFrame(this.ctx);
+        mo.drawFrame(this.ctx);
+        mo.drawHitFrame(this.ctx);
+        mo.drawMeleFrame(this.ctx);
         if(mo.otherDirection) {
             this.backFlip(mo);
         }
@@ -308,7 +310,7 @@ constructor(canvas, keyboard) {
     removeProjectile(proIdx) {
         setTimeout(() => {
             this.projectile.splice(proIdx, 1);
-        }, 500);
+        }, 1000);
     }
 
     /**
@@ -317,7 +319,7 @@ constructor(canvas, keyboard) {
     removeOverkill(overIdx) {
         setTimeout(() => {
             this.overkill.splice(overIdx, 1);
-        }, 1500);
+        }, 2000);
     }
 
     /**

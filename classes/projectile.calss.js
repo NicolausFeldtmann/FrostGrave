@@ -57,6 +57,7 @@ class Projectile extends MoObject {
         clearInterval(this.gravityInterval);
         this.impactAnimation();
         this.boom.play();
+        world.removeProjectile();
     }
 
     /**

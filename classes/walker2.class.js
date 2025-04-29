@@ -4,8 +4,8 @@ class Walker2 extends MoObject{
     speed = 2.5;
     offset = {
         top: 35,
-        left: 25,
-        right: 25,
+        left: 35,
+        right: 35,
         bottom: 25, 
     };
 

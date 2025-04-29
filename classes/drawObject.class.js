@@ -60,7 +60,7 @@ class DrawObjects {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'orange';
-            ctx.rect(this.x + this.offset.right, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.top - this.offset.bottom);
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right + 35 -this.offset.left, this.height - this.offset.top - this.offset.bottom);
             ctx.stroke();
         }
     }
