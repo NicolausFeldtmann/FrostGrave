@@ -195,7 +195,6 @@ class Boss extends MoObject {
                 this.playAnimation(this.IMAGES_DYING);
                 setTimeout(() => {
                     this.isAlive = false;
-                    //world.winGame();
                     this.dropKeyStone();
                     this.bossDies();
                 }, 1000);

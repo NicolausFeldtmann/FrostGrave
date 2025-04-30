@@ -63,7 +63,7 @@ function getInstructions() {
     return`
         <div class="instrucTxt">
             <h3 class="instrucH3">The Kingdome is frozen...</h3>
-            <p>
+            <p class="startPara">
                 For over than 1.000 years youre kingdome is frozen im time by black magic.<br> 
                 But now you're reanimated by the life spending sunlight... 
                 Undead villagers stray the land. 

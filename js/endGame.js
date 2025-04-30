@@ -1,16 +1,15 @@
-let lostSound = new Audio('audio/backgroundAudio.mp3');
-let winSound = new  Audio('audio/winMusic.mp3');
+
 
 function gameOver() {
     let contentRef = document.getElementById('endScreenArea');
     contentRef.innerHTML += getLostTemplate();
-    lostSound.play();
+    world.lostSound.play();
 }
 
 function win() {
     let contentRef = document.getElementById('endScreenArea');
     contentRef.innerHTML += getWinTemplate();
-    winSound.play();
+    world.winSound.play();
 }
 
 function backToStart() {
@@ -19,12 +18,13 @@ function backToStart() {
 
 function runAgain() {
     if (world) {
-        world.endGame(); 
+        world.endGame();
+        world.lostSound.pause(); 
         world = null;    
     }
 
     addLoadingScreen();
-    lostSound.pause();
+
     let canvas = document.getElementById('canvas');
     canvas.innerHTML = "";
     let endScreen = document.getElementById('endScreenArea');

@@ -16,23 +16,51 @@
     }
 }
 
+@media screen and (max-width: 950px) {
+
+    .controllContent{
+        margin:0;
+        width: 100%;
+    }
+
+    .controlls{
+        flex-direction: row;
+        right: 448px;
+    }
+
+    .letterBox{
+        margin: 1px;
+    }
+
+    .controllsBox{
+        height: 48px;
+        margin: 4px 4px 4px 4px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+
+    .boss{
+        width: 500px;
+    }
+}
+
 @media screen and (max-width: 500px) {
 
     .mobileTurnScreen{
         display: flex;
+    }
+
+    .startPara{
+        font-size: 12px;
     }
 }
 
 @media (max-height: 660px) {
 
 
-    .boss{
-        bottom: 48px;
-        left: 1058px;
-    }
-
-    .walker{
-        z-index: 1;
+    .starterImg {
+        display: none;
     }
 }
 
@@ -53,6 +81,14 @@
 
     .instrucktions{
         margin: 128px 0px 0px 0px;
+    }
+
+    .startPara{
+        font-size: 12px;
+    }
+
+    .controllsBox{
+        padding: 4px 4px 4px 4px;
     }
 }
 

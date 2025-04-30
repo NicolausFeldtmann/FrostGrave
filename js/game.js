@@ -90,6 +90,9 @@ function mute() {
         world.cast.muted = true;
         world.baam.muted = true
         world.boom.muted = true;
+        world.winSound.muted = true;
+        world.lostSound.muted = true;
+        world.dying.muted = true;
         world.isMuted = true;
     } else {
         unmuted();
@@ -116,6 +119,9 @@ function unmuted() {
         world.cast.muted = false;
         world.baam.muted = false;
         world.boom.muted = false;
+        world.winSound.muted = false;
+        world.lostSound.muted = false;
+        world.dying.muted = false;
         world.isMuted = false;
     }
 }

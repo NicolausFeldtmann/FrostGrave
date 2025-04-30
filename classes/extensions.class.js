@@ -40,6 +40,8 @@ class Extensions {
     cast = new Audio('audio/overkill.mp3');
     baam = new Audio('audio/baam.mp3');
     boom = new Audio('audio/boom2.mp3');
+    lostSound = new Audio('audio/backgroundAudio.mp3');
+    winSound = new  Audio('audio/winMusic.mp3');
 
         /**
      * draws movable and static objects on canvas
