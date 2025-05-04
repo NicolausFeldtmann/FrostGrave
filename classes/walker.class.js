@@ -94,10 +94,13 @@ class Walker extends MoObject{
     }
 
     walkerDies() {
-        this.playAnimation(this.IMAGES_DYING);
+        this.loadImg('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png');
+        //this.playAnimation(this.IMAGES_DYING);
         world.walkerDying.play();
         setTimeout(() => {
             clearInterval(this.reanimateInterval);
-        }, 1000);
+            this.loadImg('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png');
+        }, 700);
+        
     }
 }

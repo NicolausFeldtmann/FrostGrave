@@ -94,10 +94,7 @@ constructor(canvas, keyboard) {
     checkCollEnemys() {
         this.level.enemies.forEach((enemy, index) => {
             if (enemy.isDeadAgain()) {
-                setTimeout(() => {
-                    console.log(index); 
-                    //this.level.enemies.splice(index, 1);
-                }, 1000);
+
             } else if (this.char.isCollidingMo(enemy)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);

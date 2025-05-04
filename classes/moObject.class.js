@@ -114,6 +114,7 @@ class MoObject extends DrawObjects{
         this.energy -= 51;
         if (this.energy < 0) {
             this.energy = 0;
+            this.lastAllive = new Date().getTime();
         } else {
             this.lasHit = new Date().getTime();
         }
@@ -154,9 +155,7 @@ class MoObject extends DrawObjects{
             if (this.energy < 0) {
                 this.energy = 0;
             } else {
-                this.lasHit = new Date().getTime();
-                console.log('!!!DIE!!!');
-                
+                this.lasHit = new Date().getTime(); 
             }
         }
     }
@@ -178,8 +177,21 @@ class MoObject extends DrawObjects{
      */
     isHurt() {
         let timePassed = new Date().getTime() - this.lasHit;
-        timePassed = timePassed / 500
-        return timePassed < 1;
+        timePassed = timePassed / 1000
+        return timePassed < 0.8;
+    }
+
+    isDying() {
+        let timePassed = new Date().getTime() - this.lastAllive;
+        timePassed = timePassed / 1000;
+        return timePassed < 0.8;
+    }
+
+    /**
+     * detecs if character or enemy is out of energy
+     */
+    isDeadAgain() {
+        return this.energy == 0;
     }
 
     /**
@@ -207,17 +219,17 @@ class MoObject extends DrawObjects{
     }
 
     /**
-     * detecs if character or enemy is out of energy
-     */
-    isDeadAgain() {
-        return this.energy == 0;
-    }
-
-    /**
      * player for invoked animation 
      */
     playAnimation(images) {
         let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imgCache[path];
+        this.currentImage++;
+    }
+
+    playDieAnimation(images) {
+        let i = this.currentImage % this.IMAGES_DYING.length;
         let path = images[i];
         this.img = this.imgCache[path];
         this.currentImage++;
