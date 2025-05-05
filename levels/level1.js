@@ -71,11 +71,11 @@ function initLevel(){
         new FrontObj('img/backgrounds/3/9.png',3500, 190),
     ],
     [
-        new Mana('img/objects/shiny/8.png',850, 380),
-        new Mana('img/objects/shiny/8.png',1200, 380),
-        new Mana('img/objects/shiny/8.png',2200, 380),
-        new Mana('img/objects/shiny/8.png',3400, 380),
-        new Mana('img/objects/shiny/8.png',4000, 380),
+        new Mana('img/objects/shiny/8.png',850, 180),
+        new Mana('img/objects/shiny/8.png',1200, 180),
+        new Mana('img/objects/shiny/8.png',2200, 180),
+        new Mana('img/objects/shiny/8.png',3400, 180),
+        new Mana('img/objects/shiny/8.png',4000, 180),
     ],
     );
 };

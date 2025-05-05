@@ -287,13 +287,10 @@ class Boss extends MoObject {
         this.bossDies();
         let i = 0;
         let totalFrames = 14;
-
         this.dieInterval = setInterval(() => {
             let frmNumbrStr = String(i).padStart(3, '0');
             let imagePath = `img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_${frmNumbrStr}.png`;
-
             this.loadImg(imagePath);
-
             i++;
             if (frmNumbrStr >= totalFrames) {
                 clearInterval(this.dieInterval);

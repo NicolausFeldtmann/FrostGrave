@@ -3,6 +3,18 @@ let world;
 let keyboard = new Keyboard();
 let backGrndSound = new Audio('audio/backgroundAudio.mp3');
 
+function checkOrientation() {
+    if (window.matchMedia("(orientation: landscape)").matches) {
+        if (window.innerHeight < 480) {
+            newHeight = window.innerHeight;
+            document.getElementById('canvas').style.height = `${newHeight}px`;
+        }
+    }
+    else {
+        document.getElementById('canvas').style.height = `100%`;
+    }
+}
+
 /**
  * Shown animation wihle start screen is loading
  */

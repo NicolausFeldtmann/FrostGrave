@@ -74,7 +74,7 @@ class Walker extends MoObject{
     reanimate() {
         this.reanimateInterval = setInterval(() => {
             if (this.isDeadAgain()) {
-                this.walkerDies();
+                this.playDieAnimation();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 world.walkerHurt.play();
@@ -97,13 +97,20 @@ class Walker extends MoObject{
      * carry out death of walker
      */
 
-    walkerDies() {
-        this.playAnimation(this.IMAGES_HURT);
+
+    playDieAnimation() {
+        clearInterval(this.reanimateInterval);
         world.walkerDying.play();
-        setTimeout(() => {
-            clearInterval(this.reanimateInterval);
-            this.loadImg('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png');
-        }, 700);
-        
+        let i = 0;
+        let totalFrame = 14;
+        this.dieInterval = setInterval(() => {
+            let frmNumbrStr = String(i).padStart(3, '0');
+            let imagePath = `img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_${frmNumbrStr}.png`;
+            this.loadImg(imagePath);
+            i++;
+            if (frmNumbrStr >= totalFrame) {
+                clearInterval(this.dieInterval);
+            }
+        }, 50);
     }
 }
