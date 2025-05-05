@@ -31,7 +31,15 @@ class Projectile extends MoObject {
         this.y = y;
         this.width = 250;
         this.height = 180;
-        this.throw();
+        this.checkPosCahr();
+    }
+
+    checkPosCahr() {
+        if (!world.char.otherDirection) {
+            this.throw();
+        } else {
+            this.throwBack();
+        }
     }
     
     /**
@@ -43,6 +51,14 @@ class Projectile extends MoObject {
         this.throwInterval = setInterval (() => {
             this.x += 20;
         }, 1000 / 30);
+    }
+ 
+    throwBack() {
+        this.speedY = 20;
+        this.alppyGravity();
+        this.throwInterval = setInterval(() => {
+            this.x -= 20; 
+        }, 1000 / 30); 
     }
 
     /**

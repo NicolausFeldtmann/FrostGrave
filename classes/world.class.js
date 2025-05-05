@@ -51,18 +51,26 @@ constructor(canvas, keyboard) {
      */
     checkThorw() {
         if (this.isCool) {
-            if (this.keyboard.THROW && this.char.mana > 0) { 
+            if (this.keyboard.THROW && this.char.mana > 0 && !this.char.otherDirection) { 
                 let projectile = new Projectile(this.char.x - 55, this.char.y);
                 this.projectile.push(projectile);
-                this.char.mana -= 11; 
-                this.spell.play();
-                this.greenBar.setPercentage(this.char.mana);
-                this.isCool = false;
-                setTimeout(() => {
-                    this.isCool = true;
-                }, 1000);
+                this.projectileFired();
+            } else if (this.keyboard.THROW && this.char.mana > 0 && this.char.otherDirection) {
+                let projectile = new Projectile(this.char.x -110, this.char.y);
+                this.projectile.push(projectile);
+                this.projectileFired();
             }
         }
+    }
+
+    projectileFired() {
+        this.char.mana -= 11; 
+        this.spell.play();
+        this.greenBar.setPercentage(this.char.mana);
+        this.isCool = false;
+        setTimeout(() => {
+            this.isCool = true;
+        }, 1000);
     }
 
     starFall() {
@@ -128,7 +136,7 @@ constructor(canvas, keyboard) {
                     projectile.impact();
                     this.removeProjectile();
                 };
-            });
+            })
         });
     }
 
