@@ -34,6 +34,9 @@ class Projectile extends MoObject {
         this.checkPosCahr();
     }
 
+    /**
+     * detects view direction of char when projectile fired
+     */
     checkPosCahr() {
         if (!world.char.otherDirection) {
             this.throw();
@@ -43,7 +46,7 @@ class Projectile extends MoObject {
     }
     
     /**
-     * Defines physics of prjctile
+     * Defines physics of projctile
      */
     throw () {
         this.speedY = 20;
@@ -53,6 +56,9 @@ class Projectile extends MoObject {
         }, 1000 / 30);
     }
  
+    /**
+     * Defines physics of projectile
+     */
     throwBack() {
         this.speedY = 20;
         this.alppyGravity();

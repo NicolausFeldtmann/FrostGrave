@@ -228,13 +228,6 @@ class MoObject extends DrawObjects{
         this.currentImage++;
     }
 
-    playDieAnimation(images) {
-        let i = this.currentImage % this.IMAGES_DYING.length;
-        let path = images[i];
-        this.img = this.imgCache[path];
-        this.currentImage++;
-    }
-
     /**
      * moves character from left to right
      */

@@ -192,12 +192,7 @@ class Boss extends MoObject {
     bossAnimation() {
         if (this.isAlive) {
             if (this.isDeadAgain()) {
-                this.playAnimation(this.IMAGES_DYING);
-                setTimeout(() => {
-                    this.isAlive = false;
-                    this.dropKeyStone();
-                    this.bossDies();
-                }, 700);
+                this.playDieAnimation();
             } else if (this.isHurt()) {
                 this.bossHurt();
             } else {
@@ -272,7 +267,6 @@ class Boss extends MoObject {
         setInterval(() => { 
         clearInterval(this.reactInterval);
         clearInterval(this.spawnInterval);
-        this.loadImg('img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png');
         }, 30);
     }
 
@@ -287,5 +281,25 @@ class Boss extends MoObject {
             world.keyStone.push(this.keyStone);
             console.log('key stone dropped', this.x, this.y);
         }
+    }
+
+    playDieAnimation() {
+        this.bossDies();
+        let i = 0;
+        let totalFrames = 14;
+
+        this.dieInterval = setInterval(() => {
+            let frmNumbrStr = String(i).padStart(3, '0');
+            let imagePath = `img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_${frmNumbrStr}.png`;
+
+            this.loadImg(imagePath);
+
+            i++;
+            if (frmNumbrStr >= totalFrames) {
+                clearInterval(this.dieInterval);
+            }
+        }, 100);
+        this.isAlive = false;
+        this.dropKeyStone();
     }
 }

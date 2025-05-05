@@ -222,6 +222,7 @@ constructor(canvas, keyboard) {
     checkCollKeystone() {
         this.keyStone.forEach((keyStone, idx) => {
             if (this.char.isCollidingMo(keyStone)) {
+                this.tadda.play();
                 setTimeout(() => {
                     this.winGame();
                     this.keyStone.splice(idx, 1);
