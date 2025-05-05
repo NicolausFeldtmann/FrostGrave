@@ -42,6 +42,7 @@ class Extensions {
     boom = new Audio('audio/boom2.mp3');
     lostSound = new Audio('audio/backgroundAudio.mp3');
     winSound = new  Audio('audio/winMusic.mp3');
+    tadda = new Audio('audio/tadda.mp3');
 
         /**
      * draws movable and static objects on canvas

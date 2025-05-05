@@ -93,6 +93,7 @@ function mute() {
         world.winSound.muted = true;
         world.lostSound.muted = true;
         world.dying.muted = true;
+        world.tadaa.muted = true;
         world.isMuted = true;
     } else {
         unmuted();
@@ -122,6 +123,7 @@ function unmuted() {
         world.winSound.muted = false;
         world.lostSound.muted = false;
         world.dying.muted = false;
+        world.tadaa.muted = false;
         world.isMuted = false;
     }
 }

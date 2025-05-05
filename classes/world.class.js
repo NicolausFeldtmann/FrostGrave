@@ -88,14 +88,11 @@ constructor(canvas, keyboard) {
     }
 
     /**
-     * check if enemy is dead and removes it.
      * check if Character is colliding with alive enemy
      */
     checkCollEnemys() {
         this.level.enemies.forEach((enemy, index) => {
-            if (enemy.isDeadAgain()) {
-
-            } else if (this.char.isCollidingMo(enemy)) {
+            if (this.char.isCollidingMo(enemy)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
             }
@@ -103,16 +100,11 @@ constructor(canvas, keyboard) {
     }
 
     /**
-     * check if boss is dead and removes it.
      * check if Character is colliding with alive boss
      */
     checkCollBoss() {
         this.level.boss.forEach((boss, index) => {
-            if (boss.isDeadAgain()) {
-                setTimeout(() => {
-                   // this.level.boss.splice(index, 1);
-                })
-            } else if (this.char.isCollidingMo(boss)) {
+            if (this.char.isCollidingMo(boss)) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
             }
@@ -128,7 +120,14 @@ constructor(canvas, keyboard) {
                 if (enemy.isCollidingPro(projectile) && !enemy.isDeadAgain()) {
                     projectile.impact();
                     this.removeProjectile(); 
-                }
+                };
+            });
+
+            this.level.boss.forEach((boss) => {
+                if (boss.isCollidingPro(projectile)) {
+                    projectile.impact();
+                    this.removeProjectile();
+                };
             });
         });
     }
@@ -215,8 +214,10 @@ constructor(canvas, keyboard) {
     checkCollKeystone() {
         this.keyStone.forEach((keyStone, idx) => {
             if (this.char.isCollidingMo(keyStone)) {
-                this.winGame();
-                this.keyStone.splice(idx, 1);
+                setTimeout(() => {
+                    this.winGame();
+                    this.keyStone.splice(idx, 1);
+                },3000);
             }
         })
     }
@@ -229,12 +230,6 @@ constructor(canvas, keyboard) {
             this.level.enemies.forEach((enemy) => {
                 if (enemy.isCollidingPro(projectile)) {
                     enemy.foeHurt();
-                }
-        });
-            
-            this.level.boss.forEach((boss) => {
-                if (boss.isCollidingPro(projectile)) {
-                    boss.foeHurt();
                 }
             });
         });
