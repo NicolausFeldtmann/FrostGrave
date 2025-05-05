@@ -15,12 +15,15 @@ class Star extends MoObject{
         super().loadImg('img/objects/simple/11.png');
         this.y = 1;
         this.x = 400 + Math.random() * 4400;
-        this.fallimgStar();
+        this.fallingStar();
     }
 
-    fallimgStar() {
+    /**
+     * defines how star fall
+     */
+    fallingStar() {
         setInterval(() => {
             this.y += 2;
-        },1000 / 30)
+        }, 1000 / 30)
     }
 }

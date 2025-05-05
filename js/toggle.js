@@ -48,10 +48,6 @@ function fullscreen() {
     toggleBtn();
 }
 
-function gameFullscreen() {
-    let fullScreen = document.getElementById('overFullscreen');
-}
-
 /**
  * back to smallscreen mode
  */

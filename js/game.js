@@ -3,6 +3,9 @@ let world;
 let keyboard = new Keyboard();
 let backGrndSound = new Audio('audio/backgroundAudio.mp3');
 
+/**
+ * assured correckt display with opera browser
+ */
 function checkOrientation() {
     if (window.matchMedia("(orientation: landscape)").matches) {
         if (window.innerHeight < 480) {
@@ -47,41 +50,53 @@ function startGame() {
     }, 5000);
 }
 
+/**
+ * shows win screen 
+ */
 function winGame() {
     let contentRef = document.getElementById('gameScreen');
     contentRef.innerHTML = "";
     contentRef.innerHTML += getWinTemplate();
 }
 
+/**
+ * shows game over screen
+ */
 function lostGame() {
     let contentRef = document.getElementById('gameScreen');
     contentRef.innerHTML = "";
     contentRef.innerHTML += getLostTemplate();
 }
 
-function addLoadingScreen() {
-    let contentRef = document.getElementById('endScreen');
-    contentRef.innerHTML = "";
-    contentRef.innerHTML += getLo
-}
-
+/**
+ * shows loading screen
+ */
 function addLoadingScreen() {
     let contentRef = document.getElementById('animation');
     contentRef.innerHTML += getLoadingScreen();
 }
 
+/**
+ * shows instructions
+ */
 function renderInstructions() {
     let contentRef = document.getElementById('instructions');
     contentRef.innerHTML = "";
     contentRef.innerHTML += getInstructions();
 }
 
+/**
+ * shows game controlls
+ */
 function renderControlls() {
     let contentRef = document.getElementById('controllContent');
     contentRef.innerHTML = "";
     contentRef.innerHTML += getControllsTemplate();
 }
 
+/**
+ * mutes the game audios
+ */
 function mute() {
     if (!world.isMuted) {
         world.backGrndMusic.muted = true;
@@ -112,6 +127,9 @@ function mute() {
     }
 }
 
+/**
+ * unmutes the game audios
+ */
 function unmuted() {
     if (world.isMuted) {
         world.backGrndMusic.muted = false;

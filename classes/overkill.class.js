@@ -41,6 +41,9 @@ class Overkill extends MoObject {
         this.cast();
     }
 
+    /**
+     * defines cast event
+     */
     cast() {
         this.castInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_FIRE);
@@ -49,6 +52,9 @@ class Overkill extends MoObject {
         }, 1000 / 30);
     }
 
+    /**
+     * execute overkill impact
+     */
     impact() {
         clearInterval(this.castInterval);
         this.speedx = 0;
@@ -57,6 +63,9 @@ class Overkill extends MoObject {
         world.baam.play();
     }
 
+    /**
+     * exectue impact animation
+     */
     impactAnimation() {
         this.impactInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_IMPACT);

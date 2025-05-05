@@ -10,6 +10,9 @@ constructor(canvas, keyboard) {
     this.starFall();
 }
 
+    /**
+     * load game and start game
+     */
     loadGame() {
         setTimeout(() => {
             this.draw();
@@ -51,11 +54,11 @@ constructor(canvas, keyboard) {
      */
     checkThorw() {
         if (this.isCool) {
-            if (this.keyboard.THROW && this.char.mana > 0 && !this.char.otherDirection) { 
+            if (this.canThrow()) { 
                 let projectile = new Projectile(this.char.x - 55, this.char.y);
                 this.projectile.push(projectile);
                 this.projectileFired();
-            } else if (this.keyboard.THROW && this.char.mana > 0 && this.char.otherDirection) {
+            } else if (this.canThrowOtherDirection()) {
                 let projectile = new Projectile(this.char.x -110, this.char.y);
                 this.projectile.push(projectile);
                 this.projectileFired();
@@ -63,6 +66,9 @@ constructor(canvas, keyboard) {
         }
     }
 
+    /**
+     * fires projectile and removes char mana
+     */
     projectileFired() {
         this.char.mana -= 11; 
         this.spell.play();
@@ -73,6 +79,9 @@ constructor(canvas, keyboard) {
         }, 1000);
     }
 
+    /**
+     * let sarts fall to ground
+     */
     starFall() {
         if (!this.isRunnig) return
         this.fallIntervall = setInterval(() => {
@@ -81,9 +90,12 @@ constructor(canvas, keyboard) {
         }, 2000);
     }
 
+    /**
+     * fires overkill ray
+     */
     checkOverkill() {
         if (this.isCool) {
-            if (this.keyboard.OVERKILL && this.char.jewel > 99) {
+            if (this.canOverkill()) {
                 let overkill = new Overkill(this.char.x - 55, this.char.y);
                 this.overkill.push(overkill);
                 this.char.jewel = 0;
@@ -380,5 +392,17 @@ constructor(canvas, keyboard) {
      */
     stop() {
         this.intervalIds.forEach(clearInterval);
+    }
+
+    canThrow() {
+        return this.keyboard.THROW && this.char.mana > 0 && !this.char.otherDirection;
+    }
+
+    canThrowOtherDirection() {
+        return this.keyboard.THROW && this.char.mana > 0 && this.char.otherDirection;
+    }
+
+    canOverkill() {
+        return this.keyboard.OVERKILL && this.char.jewel > 99;
     }
 }

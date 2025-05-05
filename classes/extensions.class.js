@@ -44,7 +44,7 @@ class Extensions {
     winSound = new  Audio('audio/winMusic.mp3');
     tadda = new Audio('audio/tadda.mp3');
 
-        /**
+    /**
      * draws movable and static objects on canvas
     */
     draw() {

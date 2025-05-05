@@ -21,12 +21,18 @@ class OrangeBar extends DrawObjects {
         this.setPercentage();
     }
 
+    /**
+     * set actual presentage
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_ORANGE[this.resolveImagesIdx()];
         this.img = this.imgCache[path];
     }
 
+    /**
+     *  retruns bar image concerning actual presentag
+     */
     resolveImagesIdx() {
         if(this.percentage == 100) {
             return 5;

@@ -1,3 +1,7 @@
+
+/**
+ * template for beat game event
+ */
 function getWinTemplate() {
 
     return `
@@ -23,6 +27,9 @@ function getWinTemplate() {
     `;
 }
 
+/**
+ * template for game over event
+ */
 function getLostTemplate() {
 
     return `
@@ -46,6 +53,9 @@ function getLostTemplate() {
     `;
 }
 
+/**
+ * template for loading screen
+ */
 function getLoadingScreen() {
 
     return`
@@ -58,6 +68,9 @@ function getLoadingScreen() {
     `;
 }
 
+/**
+ * template for game instrunctions
+ */
 function getInstructions() {
 
     return`
@@ -76,6 +89,9 @@ function getInstructions() {
     `;
 }
 
+/**
+ * template for game controlls 
+ */
 function getControllsTemplate() {
 
     return`

@@ -21,12 +21,18 @@ class GreenBar extends DrawObjects {
         this.setPercentage(20);
     }
 
+    /**
+    * set actual presentage
+    */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_GREEN[this.resolveImagesIdx()];
         this.img = this.imgCache[path];
     }
 
+    /**
+    *  retruns bar image concerning actual presentag
+    */
     resolveImagesIdx() {
         if(this.percentage == 100) {
             return 5;

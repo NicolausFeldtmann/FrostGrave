@@ -96,8 +96,6 @@ class Walker extends MoObject{
     /**
      * carry out death of walker
      */
-
-
     playDieAnimation() {
         clearInterval(this.reanimateInterval);
         world.walkerDying.play();

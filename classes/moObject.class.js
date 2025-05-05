@@ -181,12 +181,6 @@ class MoObject extends DrawObjects{
         return timePassed < 0.8;
     }
 
-    isDying() {
-        let timePassed = new Date().getTime() - this.lastAllive;
-        timePassed = timePassed / 1000;
-        return timePassed < 0.8;
-    }
-
     /**
      * detecs if character or enemy is out of energy
      */

@@ -161,6 +161,9 @@ class Boss extends MoObject {
         this.otherDirection = true;
     }
 
+    /**
+     * executes boss spawn event
+     */
     spawnAnimation() {
         let i = 0;
         this.spawnInterval = setInterval(() => {
@@ -176,6 +179,9 @@ class Boss extends MoObject {
         }, 60)
     }
 
+    /**
+     * detects current boss status
+     */
     checkBossState() {
         if (this.isAlive) {
             if (this.x <= 5040) {
@@ -189,6 +195,7 @@ class Boss extends MoObject {
         }
     }
 
+    /**animates boss depending on status */
     bossAnimation() {
         if (this.isAlive) {
             if (this.isDeadAgain()) {
@@ -201,12 +208,18 @@ class Boss extends MoObject {
         }
     }
 
+    /**
+     * start boss react to char interval
+     */
     react() {
         this.reactInterval = setInterval(() => {
             this.checkBossState();
         }, 60);
     }
 
+    /**
+     * check distance between boss and char
+     */
     checkDistance() {
         if (this.isAlive) {
             let bossPos = this.x;
@@ -221,6 +234,9 @@ class Boss extends MoObject {
         }
     }
 
+    /**
+     * attacks char
+     */
     attack() {
         if (this.isAlive) {
             this.playAnimation(this.IMAGES_SLAY);
@@ -231,6 +247,9 @@ class Boss extends MoObject {
         }
     }
 
+    /**
+     * persus char, when distanc ist to big
+     */
     persueChar() {
         if (this.isAlive) {
             let bossPos = this.x;
@@ -246,6 +265,9 @@ class Boss extends MoObject {
         }
     }
 
+    /**
+     * move into canvas animation
+     */
     moveIn() {
         if (this.x > 5040) {
             this.playAnimation(this.IMAGES_WAKLING);
@@ -253,6 +275,9 @@ class Boss extends MoObject {
         }
     }
 
+    /**
+     * executs walk event
+     */
     walk() {
         if (this.isAlive) {
             this.playAnimation(this.IMAGES_WAKLING);
@@ -261,6 +286,9 @@ class Boss extends MoObject {
         }
     }
 
+    /**
+     * executs boss dying event
+     */
     bossDies() {
         this.isAlive = false;
         world.dying.play();
@@ -270,11 +298,17 @@ class Boss extends MoObject {
         }, 30);
     }
 
+    /**
+     * executs boss hurt event
+     */
     bossHurt()  {
         this.playAnimation(this.IMAGES_HURT);
         world.hurt.play();
     }
 
+    /**
+     * drops keystone after death
+     */
     dropKeyStone() {
         if (!this.isAlive) {
             this.keyStone = new KeyStone(this.x + 150);
@@ -283,6 +317,9 @@ class Boss extends MoObject {
         }
     }
 
+    /**
+     * executs dying animation
+     */
     playDieAnimation() {
         this.bossDies();
         let i = 0;
