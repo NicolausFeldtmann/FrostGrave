@@ -175,8 +175,7 @@ constructor(canvas, keyboard) {
             if (this.char.isCollidingMele(enemy)) {
                 enemy.gotSlashed(); 
                 enemy.bounceBack();
-       console.log('CHECK MELE');
-                        }
+            }
      
         });
     }
@@ -189,8 +188,7 @@ constructor(canvas, keyboard) {
             if (this.isCool) {
                 if (this.char.isCollidingMele(boss)) {
                     this.char.gotHitHard();
-                    this.statusBar.setPercentage(this.char.energy);
-                    console.log('PAAM!');  
+                    this.statusBar.setPercentage(this.char.energy);  
                 }
                 this.isCool = false;
                 setTimeout(() => {
@@ -273,9 +271,9 @@ constructor(canvas, keyboard) {
             this.frontFlip(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
-        mo.drawHitFrame(this.ctx);
-        mo.drawMeleFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
+        //mo.drawHitFrame(this.ctx);
+        //mo.drawMeleFrame(this.ctx);
         if(mo.otherDirection) {
             this.backFlip(mo);
         }
@@ -315,22 +313,6 @@ constructor(canvas, keyboard) {
         setTimeout(() => {
             this.overkill.splice(overIdx, 1);
         }, 2000);
-    }
-
-    /**
-     * pauses the game
-     */
-    stopGame() {
-        this.isRunnig = !this.isRunnig;
-        if (this.isRunnig) {
-            this.run();
-            this.draw();
-            console.log('WEITER!');
-        } else {
-            clearInterval(this.runInterval);
-            clearInterval(this.slowInterval);
-            console.log('PAUSE!');
-        }
     }
 
     /**

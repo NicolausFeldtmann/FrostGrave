@@ -24,7 +24,7 @@ function decideControls() {
     let mobileBtn = document.getElementById('btnArea');
 
     if (detectMob()) {
-        mobileBtn.style.display = 'flex';
+        
     } else {
         mobileBtn.style.display = 'none';
         renderControlls();

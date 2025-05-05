@@ -1,9 +1,5 @@
 @media screen and (max-width: 1470px) {
 
-    .boss{
-        
-    }
-
     .effeck1{
         z-index: 1;
     }
@@ -45,11 +41,22 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 750px) {
 
     .mobileTurnScreen{
         display: flex;
     }
+
+    .btnArea{
+        display: flex;
+    }
+
+    .spinnigObject{
+        width: 188px;
+    }
+}
+
+@media screen and (max-width: 500px) {
 
     .startPara{
         font-size: 12px;
@@ -58,13 +65,16 @@
 
 @media (max-height: 660px) {
 
+    h1{
+        display: none;
+    }
 
     .starterImg {
         display: none;
     }
 }
 
-@media (max-height: 500px) {
+@media (max-height: 525px) {
 
     .endBtnBox{
         height: 36px;

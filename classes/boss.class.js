@@ -313,7 +313,6 @@ class Boss extends MoObject {
         if (!this.isAlive) {
             this.keyStone = new KeyStone(this.x + 150);
             world.keyStone.push(this.keyStone);
-            console.log('key stone dropped', this.x, this.y);
         }
     }
 
