@@ -22,7 +22,7 @@ class Status extends DrawObjects {
     }
 
     /**
-     * 
+     * set actual presentage
      */
     setPercentage(percentage) {
         this.percentage = percentage;
@@ -30,6 +30,9 @@ class Status extends DrawObjects {
         this.img = this.imgCache[path];
     }
 
+    /**
+     *  retruns bar image concerning actual presentag
+     */
     resolveImagesIdx() {
         if(this.percentage == 100) {
             return 5;

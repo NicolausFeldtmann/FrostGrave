@@ -8,7 +8,7 @@ class Boss extends MoObject {
     width = 400;
     y = 35;
     energy = 1000;
-    speed = 4;
+    speed = 6;
     lastHit = 0;
     offset = {
         top: 120,
@@ -311,8 +311,10 @@ class Boss extends MoObject {
      */
     dropKeyStone() {
         if (!this.isAlive) {
-            this.keyStone = new KeyStone(this.x + 150);
-            world.keyStone.push(this.keyStone);
+            setTimeout(() => {
+                this.keyStone = new KeyStone(this.x + 150);
+                world.keyStone.push(this.keyStone);
+            }, 1000);
         }
     }
 

@@ -41,22 +41,11 @@
     }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 500px) {
 
     .mobileTurnScreen{
         display: flex;
     }
-
-    .btnArea{
-        display: flex;
-    }
-
-    .spinnigObject{
-        width: 188px;
-    }
-}
-
-@media screen and (max-width: 500px) {
 
     .startPara{
         font-size: 12px;
@@ -65,9 +54,6 @@
 
 @media (max-height: 660px) {
 
-    h1{
-        display: none;
-    }
 
     .starterImg {
         display: none;
