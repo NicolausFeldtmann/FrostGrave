@@ -93,9 +93,12 @@ class Walker extends MoObject{
         this.otherDirection = true;
     }
 
+    /**
+     * carry out death of walker
+     */
+
     walkerDies() {
-        this.loadImg('img/enemys/Zombie_Villager_1/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png');
-        //this.playAnimation(this.IMAGES_DYING);
+        this.playAnimation(this.IMAGES_HURT);
         world.walkerDying.play();
         setTimeout(() => {
             clearInterval(this.reanimateInterval);

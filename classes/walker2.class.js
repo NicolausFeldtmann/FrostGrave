@@ -67,11 +67,7 @@ class Walker2 extends MoObject{
     reanimate() {
         this.reanimateInterval = setInterval(() => {
             if (this.isDeadAgain()) {
-                this.playAnimation(this.IMAGES_DYING);
-                world.walkerDying.play();
-                setTimeout(() => {
-                    clearInterval(this.reanimateInterval);
-                }, 500)
+                this.walkerDies();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 world.walkerHurt.play();
@@ -88,5 +84,17 @@ class Walker2 extends MoObject{
     walkLeft() {
         this.x -= this.speed;
         this.otherDirection = true;
+    }
+
+    /**
+     * carry out death of walker
+    */
+    walkerDies() {
+        this.playAnimation(this.IMAGES_HURT);
+        world.walkerDying.play();
+        setTimeout(() => {
+            clearInterval(this.reanimateInterval);
+            this.loadImg('img/enemys/Zombie_Villager_2/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png');
+        }, 700);
     }
 }

@@ -120,7 +120,7 @@ constructor(canvas, keyboard) {
     }
 
     /**
-     * check if enemy or boss are colliding with projectile
+     * check if enemy is colliding with projectile
      */
     checkImpact() {
         this.projectile.forEach((projectile) => {
@@ -128,13 +128,6 @@ constructor(canvas, keyboard) {
                 if (enemy.isCollidingPro(projectile) && !enemy.isDeadAgain()) {
                     projectile.impact();
                     this.removeProjectile(); 
-                }
-            });
-    
-            this.level.boss.forEach((boss) => {
-                if (boss.isCollidingPro(projectile)) {
-                    projectile.impact();
-                    this.removeProjectile();
                 }
             });
         });
@@ -175,9 +168,7 @@ constructor(canvas, keyboard) {
     checkHardHit() {
         this.level.boss.forEach((boss, idx) => {
             if (this.isCool) {
-                if (boss.isDeadAgain()) {
-                    console.log('NOOOOOO!');
-                } else if (this.char.isCollidingMele(boss)) {
+                if (this.char.isCollidingMele(boss)) {
                     this.char.gotHitHard();
                     this.statusBar.setPercentage(this.char.energy);
                     console.log('PAAM!');  

@@ -197,7 +197,7 @@ class Boss extends MoObject {
                     this.isAlive = false;
                     this.dropKeyStone();
                     this.bossDies();
-                }, 1000);
+                }, 700);
             } else if (this.isHurt()) {
                 this.bossHurt();
             } else {
@@ -272,6 +272,7 @@ class Boss extends MoObject {
         setInterval(() => { 
         clearInterval(this.reactInterval);
         clearInterval(this.spawnInterval);
+        this.loadImg('img/enemys/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png');
         }, 30);
     }
 
