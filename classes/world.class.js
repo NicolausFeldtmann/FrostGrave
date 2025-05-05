@@ -99,8 +99,8 @@ constructor(canvas, keyboard) {
      * check if Character is colliding with alive enemy
      */
     checkCollEnemys() {
-        this.level.enemies.forEach((enemy, index) => {
-            if (this.char.isCollidingMo(enemy)) {
+        this.level.enemies.forEach((enemy) => {
+            if (this.char.isCollidingMo(enemy) && !enemy.isDeadAgain()) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
             }
@@ -111,8 +111,8 @@ constructor(canvas, keyboard) {
      * check if Character is colliding with alive boss
      */
     checkCollBoss() {
-        this.level.boss.forEach((boss, index) => {
-            if (this.char.isCollidingMo(boss)) {
+        this.level.boss.forEach((boss) => {
+            if (this.char.isCollidingMo(boss) && !boss.isDeadAgain()) {
                 this.char.gotHurt();
                 this.statusBar.setPercentage(this.char.energy);
             }
