@@ -24,7 +24,7 @@ function checkOrientation() {
 function loadStart() {
     detectMob();
     decideControls();
-    mobileBtnEventListner();
+    
     renderInstructions();
 }
 /**
@@ -42,6 +42,7 @@ function startGame() {
     addLoadingScreen();
     renderControlls();
     renderMobileBtn();
+    mobileBtnEventListner();
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -97,7 +98,7 @@ function renderControlls() {
 }
 
 function renderMobileBtn() {
-    let contentRef = document.getElementById('controllContent');
+    let contentRef = document.getElementById('mobileControll');
     contentRef.innerHTML = "";
     contentRef.innerHTML += getMobileBtnTemplate();
 }

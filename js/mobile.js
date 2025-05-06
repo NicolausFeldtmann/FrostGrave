@@ -23,9 +23,9 @@ function detectMob() {
 function decideControls() {
 
     if (detectMob()) {
-      //  btnArea.style.display = 'flex';
+        mobileControll.style.display = 'flex';
     } else {
-        btnArea.style.display = 'none';
+        mobileControll.style.display = 'none';
     }
 }
 

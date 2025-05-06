@@ -260,7 +260,7 @@ canvas{
 }
 
 .btnArea{
-    display: none;
+    display: flex;
     align-items: center;
     bottom: 0;
     justify-content: space-between;
@@ -418,7 +418,10 @@ canvas{
 }
 
 .controllContent{
+    width: 100%;
+    display: flex;
     position: absolute;
+    bottom: 34px;
     height: 100%;
     margin: 248px 0px 0px 0px;
 }
