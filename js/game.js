@@ -24,7 +24,7 @@ function checkOrientation() {
 function loadStart() {
     detectMob();
     decideControls();
-    
+    renderGameManuell();
     renderInstructions();
 }
 /**
@@ -89,6 +89,15 @@ function renderInstructions() {
 }
 
 /**
+ * render game Manuell
+ */
+function renderGameManuell() {
+    let contentRef = document.getElementById('gameManuell');
+    contentRef.innerHTML = "";
+    contentRef.innerHTML += getManuellTemplate();
+}
+
+/**
  * shows game controlls
  */
 function renderControlls() {
@@ -97,6 +106,9 @@ function renderControlls() {
     contentRef.innerHTML += getControllsTemplate();
 }
 
+/**
+ * shows mobile Buttons
+ */
 function renderMobileBtn() {
     let contentRef = document.getElementById('mobileControll');
     contentRef.innerHTML = "";

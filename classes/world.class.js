@@ -16,9 +16,7 @@ constructor(canvas, keyboard) {
     loadGame() {
         setTimeout(() => {
             this.draw();
-            this.isLoaded = true;
-            console.log('ist geladen');
-            
+            this.isLoaded = true;  
         }, 5000);
         this.run();
     }

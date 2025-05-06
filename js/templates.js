@@ -121,6 +121,9 @@ function getControllsTemplate() {
     `;
 }
 
+/**
+ * Template for mobile buttons
+ */
 function getMobileBtnTemplate() {
 
     return`
@@ -136,5 +139,49 @@ function getMobileBtnTemplate() {
                     <img class="controllBtn right" id="btnOverkill" src="img/buttons/flash.jpg">
                 </div>
             </div>
+    `;
+}
+
+function getManuellTemplate() {
+
+    return`
+        <div class="manuellArea">
+            <h3 class="manuH3">Controlls</h3>
+            <div class="manuTxt">
+                <p class="manuPara">
+                    Collect 5 falling Stars and cast anicent Spell against EISENHORN.<br>
+                    EISENHORN is immune to any other attack 
+                </p>
+                <p class="manuPara">
+                    Kill walkers with mele weapons or Icefire ball.<br>
+                    Any contact with walkers will harm you.
+                </p>
+                <div class="manuControlls">
+                    <div class="controllsBoxManu">
+                        <p class="controllsParaManu">To Move</p>
+                        <div class="letterRow">
+                            <div class="letterBoxManu">A</div>
+                            <div class="letterBoxManu">D</div>
+                        </div>
+                    </div>
+                    <div class="controllsBoxManu">
+                        <p class="controllsParaManu">To jump</p>
+                        <div class="letterBoxManu">SPACE</div>
+                    </div>
+                    <div class="controllsBoxManu">
+                        <p class="controllsParaManu">Mele attack</p>
+                        <div class="letterBoxManu">E</div>     
+                    </div>
+                    <div class="controllsBoxManu">
+                        <p class="controllsParaManu">Cast spell</p>
+                        <div class="letterBoxManu">Q</div>
+                    </div>
+                    <div class="controllsBoxManu">
+                        <p class="controllsParaManu">Cast anicent spell</p>
+                        <div class="letterBoxManu">C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     `;
 }
