@@ -30,7 +30,8 @@ function backToStart() {
 function runAgain() {
     if (world) {
         world.endGame();
-        world.lostSound.pause(); 
+        world.lostSound.pause();
+        world.winSound.pause(); 
         world = null;    
     }
     addLoadingScreen();

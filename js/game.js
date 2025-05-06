@@ -40,6 +40,8 @@ function init() {
  */
 function startGame() {
     addLoadingScreen();
+    renderControlls();
+    renderMobileBtn();
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -92,6 +94,12 @@ function renderControlls() {
     let contentRef = document.getElementById('controllContent');
     contentRef.innerHTML = "";
     contentRef.innerHTML += getControllsTemplate();
+}
+
+function renderMobileBtn() {
+    let contentRef = document.getElementById('controllContent');
+    contentRef.innerHTML = "";
+    contentRef.innerHTML += getMobileBtnTemplate();
 }
 
 /**

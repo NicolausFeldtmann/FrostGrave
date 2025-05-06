@@ -47,6 +47,10 @@
         display: flex;
     }
 
+    .btnArea{
+        display: flex;
+    }
+
     .startPara{
         font-size: 12px;
     }

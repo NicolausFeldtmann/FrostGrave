@@ -12,7 +12,7 @@ class Clouds extends MoObject {
     }
 
     /**
-     * oves clouds friom left to right
+     * moves clouds from left to right
      */
     moveCloud() {
         setInterval( () =>{

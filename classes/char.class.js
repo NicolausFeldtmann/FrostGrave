@@ -181,65 +181,26 @@ class Char extends MoObject {
 
         if (this.isAlive) {
             this.animationInterval = setInterval(() => {
-                /**
-                 * set parameter for moving right
-                 *  */
                 if (this.canMoveRight()) {
                     this.moveRight();
                 }
-
-                /**
-                 * set parameter for moving left
-                 */
                 if (this.canMoveLeft()) {
                     this.moveLeft();
                 }
-
-                /**
-                 * detects character moving leaft/rigth and plays walking animation and sounds
-                 */
                 if (this.canWalk()) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                    world.snow1.play();
-                    world.snow2.play();
+                    this.charWalk();
                 }
-
-                /**
-                 * detects if character is abouve grond and allows jump funktion
-                 */
                 if (this.canJump()) {
                     this.jump();
                 }
-
-                /**
-                 * detects is abouv ground and plays animation and sound
-                 */
                 if (this.canSlash()) {
-                    this.playAnimation(this.IMAGES_SLASHING);
-                    this.slash();
-                    world.slashSound.play();
+                    this.charSlash();
                 }
-
-                /**
-                 * detects is above graound and palys animation slah midair
-                 */
                 if (this.canSlashAir()) {
-                    this.playAnimation(this.IMAGES_SLASH_MIDAIR);
-                    this.slash();
-                    world.slashSound.play();
+                    this.charSlashAir();
                 }
-
-                /**
-                 * detects is above ground and plays animation throw animation
-                 */
                 if (this.canThrow()) {
-                    if (this.isCool) {
-                        this.playAnimation(this.IMAGES_THROW);
-                        this.isCool = false;
-                        setTimeout(() => {
-                            this.isCool = true;
-                        }, 1000);
-                    }
+                    this.charThrow();
                 }
 
                 /**
@@ -306,38 +267,105 @@ class Char extends MoObject {
         world.lostGame();
     }
 
+    /**
+     * executs char walk event
+     */
+    charWalk() {
+        this.playAnimation(this.IMAGES_WALKING);
+        world.snow1.play();
+        world.snow2.play();
+    }
+
+    /**
+     * executs char mele event
+     */
+    charSlash() {
+        this.playAnimation(this.IMAGES_SLASHING);
+        this.slash();
+        world.slashSound.play();
+    }
+
+    /**
+     * executs char mele mid air event
+     */
+    charSlashAir() {
+        this.playAnimation(this.IMAGES_SLASH_MIDAIR);
+        this.slash();
+        world.slashSound.play();
+    }
+
+    /**
+     * executs char throw event
+     */
+    charThrow() {
+        if (this.isCool) {
+            this.playAnimation(this.IMAGES_THROW);
+            this.isCool = false;
+            setTimeout(() => {
+                this.isCool = true;
+            }, 1000);
+        }
+    }
+
+    /**
+     * detects move rigth command
+     */
     canMoveRight() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
     }
 
+    /**
+     * detects move left command
+     */
     canMoveLeft() {
         return this.world.keyboard.LEFT && this.x > 100;
     }
 
+    /**
+     * detects walk command
+     */
     canWalk() {
         return (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround();
     }
 
+    /**
+     * detects jump command
+     */
     canJump() {
         return this.world.keyboard.SPACE && !this.isAboveGround();
     }
 
+    /**
+     * detects mele command
+     */
     canSlash() {
         return this.world.keyboard.SLASH && !this.isAboveGround();
     }
 
+    /**
+     * detects mele command during jump
+     */
     canSlashAir() {
         return this.world.keyboard.SLASH && this.isAboveGround();
     }
 
+    /**
+     * detects throw command
+     */
     canThrow() {
         return this.world.keyboard.THROW && !this.isAboveGround();
     }
 
+    /**
+     * detects throw command during jump
+     */
     canThrowAir() {
         return this.world.keyboard.THROW && this.isAboveGround();
     }
 
+    /**
+     * detects overkill command
+     */
     canOverkill() {
         return this.world.keyboard.OVERKILL && !this.isAboveGround();
     }

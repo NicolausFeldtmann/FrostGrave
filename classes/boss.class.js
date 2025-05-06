@@ -291,6 +291,7 @@ class Boss extends MoObject {
      */
     bossDies() {
         this.isAlive = false;
+        world.backGrndMusic.pause();
         world.dying.play();
         setInterval(() => { 
         clearInterval(this.reactInterval);

@@ -376,14 +376,23 @@ constructor(canvas, keyboard) {
         this.intervalIds.forEach(clearInterval);
     }
 
+    /**
+     * detects throw command
+     */
     canThrow() {
         return this.keyboard.THROW && this.char.mana > 0 && !this.char.otherDirection;
     }
 
+    /**
+     * detects throw command while looking other direction
+     */
     canThrowOtherDirection() {
         return this.keyboard.THROW && this.char.mana > 0 && this.char.otherDirection;
     }
 
+    /**
+     * detects overkill command
+     */
     canOverkill() {
         return this.keyboard.OVERKILL && this.char.jewel > 99;
     }

@@ -120,3 +120,21 @@ function getControllsTemplate() {
         </div>
     `;
 }
+
+function getMobileBtnTemplate() {
+
+    return`
+         <div class="btnArea" id="btnArea">
+                <div class="btnLeft">
+                    <img class="controllBtn" id="btnLeft" src="img/buttons/arrow-left.png">
+                    <img class="controllBtn" id="btnRight" src="img/buttons/arrow-right.png">
+                </div>
+                <div class="btnRight">
+                    <img class="controllBtn right" id="btnFire" src="img/buttons/fireball.jpg">
+                    <img class="controllBtn right" id="btnJump" src="img/buttons/arrow-up.png">
+                    <img class="controllBtn right" id="btnSlash" src="img/buttons/slash.png">
+                    <img class="controllBtn right" id="btnOverkill" src="img/buttons/flash.jpg">
+                </div>
+            </div>
+    `;
+}

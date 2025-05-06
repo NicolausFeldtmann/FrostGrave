@@ -21,13 +21,11 @@ function detectMob() {
  * shows or hide buttons, depending on if mobile device is used or not
  */
 function decideControls() {
-    let mobileBtn = document.getElementById('btnArea');
 
     if (detectMob()) {
-        
+      //  btnArea.style.display = 'flex';
     } else {
-        mobileBtn.style.display = 'none';
-        renderControlls();
+        btnArea.style.display = 'none';
     }
 }
 
