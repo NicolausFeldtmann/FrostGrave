@@ -70,7 +70,7 @@ constructor(canvas, keyboard) {
     projectileFired() {
         this.char.mana -= 11; 
         this.spell.play();
-        this.greenBar.setPercentage(this.char.mana);
+        this.statusBar.setPercentageMana(this.char.mana);
         this.isCool = false;
         setTimeout(() => {
             this.isCool = true;
@@ -97,7 +97,7 @@ constructor(canvas, keyboard) {
                 let overkill = new Overkill(this.char.x - 55, this.char.y);
                 this.overkill.push(overkill);
                 this.char.jewel = 0;
-                this.orangeBar.setPercentage(this.char.jewel);
+                this.statusBar.setPercentageOrange(this.char.jewel);
                 setTimeout(() => {
                     this.isCool = false;
                 }, 1000); 
@@ -124,7 +124,7 @@ constructor(canvas, keyboard) {
         this.level.boss.forEach((boss) => {
             if (this.char.isCollidingMo(boss) && !boss.isDeadAgain()) {
                 this.char.gotHurt();
-                this.statusBar.setPercentage(this.char.energy);
+                this.bar.setPercentage(this.char.energy);
             }
         });
     }
@@ -204,7 +204,7 @@ constructor(canvas, keyboard) {
             if(this.char.isCollidingMo(mana)) {
                 this.crystal.play();
                 this.char.gotMana();
-                this.greenBar.setPercentage(this.char.mana);
+                this.statusBar.setPercentageMana(this.char.mana);
                 this.level.mana.splice(idx, 1);
             }
         });
@@ -218,7 +218,7 @@ constructor(canvas, keyboard) {
             if (this.char.isCollidingMo(star)) {
                 this.crystal.play();
                 this.char.gotJewel();
-                this.orangeBar.setPercentage(this.char.jewel);
+                this.statusBar.setPercentageOrange(this.char.jewel);
                 this.star.splice(idx, 1);
             }
         })

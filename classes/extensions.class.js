@@ -12,8 +12,6 @@ class Extensions {
     keyboard;
     camera_x = 0;
     statusBar = new Status();
-    greenBar = new GreenBar();
-    orangeBar = new OrangeBar();
     projectile = [];
     overkill = [];
     keyStone = [];
@@ -66,9 +64,7 @@ class Extensions {
             this.addObjToMap(this.keyStone);
             //------Space for fixed objects-----//
             this.ctx.translate(-this.camera_x, 0);
-            this.addToMap(this.statusBar);
-            this.addToMap(this.greenBar);
-            this.addToMap(this.orangeBar);
+            this.addToMap(this.statusBar);;
             this.ctx.translate(this.camera_x, 0);
     
             this.ctx.translate(-this.camera_x, 0);
