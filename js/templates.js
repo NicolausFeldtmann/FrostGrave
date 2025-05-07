@@ -36,7 +36,7 @@ function getLostTemplate() {
         <div class="endScreen">
             <div class="message">
                 <h2>GAME OVER</h2>
-                <p>
+                <p class="lostPara">
                     Sadly you died the final death...<br>
                     Good luck next time.
                 </p>

@@ -2,6 +2,7 @@ let canvas;
 let world; 
 let keyboard = new Keyboard();
 let backGrndSound = new Audio('audio/backgroundAudio.mp3');
+let isMuted = false;
 
 /**
  * assured correckt display with opera browser

@@ -4,7 +4,7 @@ class Extensions {
     isCool = true;
     isLoaded = false;
     isRunnig = true;
-    isMuted = false;
+    
     char = new Char();
     level = level1;
     canvas;

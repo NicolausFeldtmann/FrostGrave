@@ -28,8 +28,7 @@
 }
 
 .spinnigObject{
-    height: 480px;
-    margin-top: 48px;
+    height: 320px;
     display: flex;
     justify-content: center;
 }
