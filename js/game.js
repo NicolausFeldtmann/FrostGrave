@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let backGrndSound = new Audio('audio/backgroundAudio.mp3');
 let isMuted = false;
+let muteStatus = false;
 
 /**
  * assured correckt display with opera browser
@@ -142,8 +143,9 @@ function mute() {
         world.winSound.muted = true;
         world.lostSound.muted = true;
         world.dying.muted = true;
-        world.tadaa.muted = true;
+        world.tadda.muted = true;
         world.isMuted = true;
+        muteStatus = true;
     } else {
         unmuted();
     }
@@ -175,8 +177,9 @@ function unmuted() {
         world.winSound.muted = false;
         world.lostSound.muted = false;
         world.dying.muted = false;
-        world.tadaa.muted = false;
+        world.tadda.muted = false;
         world.isMuted = false;
+        muteStatus = false;
     }
 }
 

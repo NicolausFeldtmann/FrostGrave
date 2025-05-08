@@ -5,6 +5,7 @@ constructor(canvas, keyboard) {
     this.keyboard = keyboard;
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
+    this.isMutes = muteStatus;
     this.setWorld();
     this.loadGame();
     this.starFall();

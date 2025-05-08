@@ -70,5 +70,30 @@ class Extensions {
             this.ctx.translate(-this.camera_x, 0);
         }, 1000 / 30);
     }
+
+    muteAudio() {
+        this.backGrndMusic.muted = true;
+        this.snow1.muted = true;
+        this.snow2.muted = true;
+        this.spell.muted = true;
+        this.crystal.muted = true;
+        this.gameOverSound.muted = true;
+        this.winMusic.muted = true;
+        this.slashSound.muted = true;
+        this.ouch.muted = true;
+        this.bossTheme.muted = true;
+        this.hurt.muted = true;
+        this.stomp.muted = true;
+        this.slash.muted = true;
+        this.walkerHurt.muted = true;
+        this.walkerDying.muted = true;
+        this.cast.muted = true;
+        this.baam.muted = true;
+        this.boom.muted = true;
+        this.winSound.muted = true;
+        this.lostSound.muted = true;
+        this.dying.muted = true;
+        this.tadda.muted = true;
+    }
 }
 

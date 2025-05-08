@@ -40,6 +40,9 @@ function runAgain() {
 
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); 
+    if (muteStatus) {
+        world.muteAudio();
+    }
     setTimeout(() => {
         let animation = document.getElementById('animation');
         animation.innerHTML ="";

@@ -227,6 +227,10 @@ canvas{
     transition: 0.5s ease;
 }
 
+.btnBoxTop:hover{
+    cursor: pointer;
+}
+
 .btn{
     font-size: 48px;
     background: radial-gradient(at 76.67025862068965% 24.791666666666668%, #2740e2 0px, transparent 50%), radial-gradient(at 73.97629310344827% 71.25%, #000000 0px, transparent 50%), radial-gradient(at 34.428879310344826% 20.208333333333332%, #001014 0px, transparent 50%), radial-gradient(at 12.661637931034484% 77.5%, #3b4a6b 0px, transparent 50%), #09203f;
@@ -360,6 +364,10 @@ canvas{
     border-radius: 10px;
     display: flex;
     justify-content: center;
+}
+
+.optBtn:hover{
+    cursor: pointer;
 }
 
 .optImg{
