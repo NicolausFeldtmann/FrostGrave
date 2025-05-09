@@ -77,7 +77,7 @@ function getInstructions() {
         <div class="instrucTxt">
             <h3 class="instrucH3">The Kingdome is frozen...</h3>
             <p class="startPara">
-                For over than 1.000 years youre kingdome is frozen im time by black magic.<br> 
+                For over than 1.000 years youre kingdome is frozen in time by black magic.<br> 
                 But now you're reanimated by the life spending sunlight... 
                 Undead villagers stray the land. 
                 Lead by the icegigant Eisenhorn, invulnerable by men made weapons and lower magic.
