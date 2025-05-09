@@ -73,6 +73,10 @@
     h1{
         display: none;
     }
+
+    .bottomBox{
+        bottom: 12px;
+    }
 }
 
 @media (max-height: 600px) {
@@ -90,13 +94,9 @@
         height: 154px;
     }
 
-    .btnBox{
-        bottom: 28px;
-    }
-
     .startTxt{
         margin: 0;
-        bottom: 124px;
+        bottom: 172px;
     }
 }
 
@@ -181,16 +181,21 @@
     .startH1{
         font-size: 24px;
     }
+
+    .startTxt{
+        bottom: inherit;
+        margin: 8px 0px 0px 0px;
+    }
+
+    .instrucktions{
+        margin: 28px 0px 0px 0px;
+    }
 }
 
 @media (max-height: 415px) {
 
     .btnArea{
         display: flex;
-    }
-
-    .instrucktions{
-        margin: 72px 0px 0px 0px;
     }
 
     .btn{
@@ -203,11 +208,6 @@
 
     .instrucktions{
         margin: 0;
-    }
-
-    .startTxt{
-        bottom: inherit;
-        margin: 8px 0px 0px 0px;
     }
 
     .lostPara{
