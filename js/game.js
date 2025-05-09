@@ -157,6 +157,7 @@ function mute() {
         world.isMuted = true;
         muteStatus = true;
         localStorage.setItem('muteStatus', 'true');
+        showActiveBtn();
     } else {
         unmuted();
     }
@@ -192,6 +193,7 @@ function unmuted() {
         world.isMuted = false;
         muteStatus = false;
         localStorage.setItem('muteStatus', "false");
+        showActiveBtn();
     }
 }
 

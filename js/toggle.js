@@ -98,3 +98,8 @@ function showWinScreen() {
     let x = document.getElementById('winScreen');
     x.classList.toggle('show');
 }
+
+function showActiveBtn() {
+    let x = document.getElementById('btnBoxTop');
+    x.classList.toggle('btnBoxTopActive');
+}
