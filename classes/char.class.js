@@ -203,34 +203,25 @@ class Char extends MoObject {
                     this.charThrow();
                 }
 
-                /**
-                 * dectects is above ground and plays animation throw midair
-                 */
                 if (this.canThrowAir()) {
-                    if (this.isCool) {
-                        this.playAnimation(this.IMAGES_THROW_MIDAIR);
-                        this.isCool = false;
-                        setTimeout(() => {
-                            this.isCool = true;
-                        }, 1000);
-                    }
+                    this.charThrowAir();
                 }
 
                 if (this.canOverkill()) {
-                    if (this.isCool) {
-                        this.playAnimation(this.IMAGES_THROW);
-                    }
+                    this.charOverkill();
                 }
-                /**
-                 * focus camera on character
-                 */
+
                 this.world.camera_x = -this.x + 100;
             }, 1000 / 30);
         }
-        /**
-         * character animation depending on helth satus
-         */
-        setInterval(() => {
+        this.setStateInterval();
+    }
+
+    /**
+     * set char state check interval
+     */
+    setStateInterval() {
+        this.stateInterval = setInterval(() => {
             if (this.isDeadAgain()) {
                 if (this.isAlive) {
                     this.charDies();
@@ -304,6 +295,28 @@ class Char extends MoObject {
             setTimeout(() => {
                 this.isCool = true;
             }, 1000);
+        }
+    }
+
+    /**
+     * executs throw event mid air
+     */
+    charThrowAir() {
+        if (this.isCool) {
+            this.playAnimation(this.IMAGES_THROW_MIDAIR);
+            this.isCool = false;
+            setTimeout(() => {
+                this.isCool = true;
+            }, 1000);
+        }
+    }
+
+    /**
+     * executs overkill event
+     */
+    charOverkill() {
+        if (this.isCool) {
+            this.playAnimation(this.IMAGES_THROW);
         }
     }
 
