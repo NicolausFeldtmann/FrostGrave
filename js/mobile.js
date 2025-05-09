@@ -3,18 +3,10 @@
  * dectect if used device is a mobile device 
  */
 function detectMob() {
-    const toMatch = [
-        /Android/i,
-        /webOS/i,
-        /iPhone/i,
-        /iPad/i,
-        /iPod/i,
-    ];
-    
-    return toMatch.some((toMatchItem) => {
-        return navigator.userAgent.match(toMatchItem);
-    }
-    );
+    let userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    let datectMob = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    return detectMob || screenWidth <= 768;
 }
 
 /**
@@ -24,8 +16,11 @@ function decideControls() {
 
     if (detectMob()) {
         mobileControll.style.display = 'flex';
+        console.log('is mobile');
     } else {
         mobileControll.style.display = 'none';
+        console.log('is nich Mobile');
+        
     }
 }
 

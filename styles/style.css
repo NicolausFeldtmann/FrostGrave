@@ -215,6 +215,29 @@ canvas{
     transition: 0.5s ease;
 }
 
+.bottomBox{
+    z-index: 100;
+    position: absolute;
+    bottom: 48px;
+    width: 248px;
+    display: flex;
+    justify-content: center;
+}
+
+.linkBox{
+    border: solid 2px #85f0cc;
+    border-radius: 10px;
+    background-color: #568d8f;
+    padding: 4px 8px 4px 8px;
+}
+
+a{
+    text-decoration: none;
+    background: radial-gradient(at 76.67025862068965% 24.791666666666668%, #2740e2 0px, transparent 50%), radial-gradient(at 73.97629310344827% 71.25%, #000000 0px, transparent 50%), radial-gradient(at 34.428879310344826% 20.208333333333332%, #001014 0px, transparent 50%), radial-gradient(at 12.661637931034484% 77.5%, #3b4a6b 0px, transparent 50%), #09203f;
+    background-clip: text;
+    color: transparent;
+}
+
 .btnBoxTop{
     bottom: 48px;
     border: solid 2px #85f0cc;
@@ -364,6 +387,7 @@ canvas{
     z-index: 5;
     display: flex;
     width: 95%;
+    max-width: 1100px;
     justify-content: space-between;
     position: absolute;
     top: 28px;

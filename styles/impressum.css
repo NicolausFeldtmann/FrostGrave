@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(86, 141, 143);
+    font-family: Open Sans;
+    overflow: scroll;
+}
+
+.content{
+    margin: 8px;
+}
+
+h1{
+ position: inherit;
+}
