@@ -69,7 +69,7 @@ constructor(canvas, keyboard) {
      * fires projectile and removes char mana
      */
     projectileFired() {
-        this.char.mana -= 11; 
+        this.char.mana -= 21; 
         this.spell.play();
         this.statusBar.setPercentageMana(this.char.mana);
         this.isCool = false;

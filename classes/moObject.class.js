@@ -124,7 +124,7 @@ class MoObject extends DrawObjects{
      * handles damage done by Boss
      */
     gotHitHard() {
-        this.energy -= 24;
+        this.energy -= 49;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

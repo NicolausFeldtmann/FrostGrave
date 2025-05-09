@@ -37,7 +37,7 @@ class Overkill extends MoObject {
         this.x = x;
         this.y = y;
         this.width = 150;
-        this.height = 120;
+        this.height = 80;
         this.cast();
     }
 
