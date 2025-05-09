@@ -48,6 +48,7 @@ function startGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    loadMuteState();
     showCanvas();
     setTimeout(() => {
         let animation = document.getElementById('animation');
@@ -117,6 +118,15 @@ function renderMobileBtn() {
     contentRef.innerHTML += getMobileBtnTemplate();
 }
 
+function loadMuteState() {
+    let storedMuteState = localStorage.getItem('muteStatus');
+    if (storedMuteState === 'true') {
+        mute();
+    } else {
+        unmuted();
+    }
+}
+
 /**
  * mutes the game audios
  */
@@ -146,6 +156,7 @@ function mute() {
         world.tadda.muted = true;
         world.isMuted = true;
         muteStatus = true;
+        localStorage.setItem('muteStatus', 'true');
     } else {
         unmuted();
     }
@@ -180,6 +191,7 @@ function unmuted() {
         world.tadda.muted = false;
         world.isMuted = false;
         muteStatus = false;
+        localStorage.setItem('muteStatus', "false");
     }
 }
 
