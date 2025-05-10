@@ -3,7 +3,7 @@
  * dectect if used device is a mobile device 
  */
 function detectMob() {
-    let toMatch = [
+    const toMatch = [
         /Android/i,
         /webOS/i,
         /iPhone/i,
@@ -12,11 +12,23 @@ function detectMob() {
         /BlackBerry/i,
         /Windows Phone/i
     ];
-
-    let isMobile = toMatch.some((toMatchItem) => navigator.userAgent.match(toMatchItem));
-    let specificRes = (window.innerWidth === 820 && window.innerHeight === 1180);
     
-    return isMobile || specificRes;
+    return toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+    });
+}
+
+function detectIOS() {
+    return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+      ].includes(navigator.platform)
+
+      || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
 /**
@@ -24,13 +36,12 @@ function detectMob() {
  */
 function decideControls() {
 
-    if (detectMob()) {
+    if (detectMob() || detectIOS()) {
         mobileControll.style.display = 'flex';
         console.log('is mobile');
     } else {
         mobileControll.style.display = 'none';
-        console.log('is nich Mobile');
-        
+        console.log('is nich Mobile'); 
     }
 }
 
