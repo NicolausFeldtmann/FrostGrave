@@ -229,6 +229,10 @@ canvas{
     border-radius: 10px;
     background-color: #568d8f;
     padding: 4px 8px 4px 8px;
+    box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
+    transition: 0.5s ease;
 }
 
 a{

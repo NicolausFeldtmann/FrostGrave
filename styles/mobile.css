@@ -48,6 +48,29 @@
     }
 }
 
+@media screen and (max-width: 675px) {
+
+    .optImg{
+        width: 24px;
+    }
+
+    .optBtn{
+        width: auto;
+        padding: 4px 8px 4px 8px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .instrucktions{
+        width: 400px;
+    }
+
+    .startPara{
+        font-size: 14px;
+    }
+}
+
 @media screen and (max-width: 500px) {
 
     .mobileTurnScreen{
@@ -190,6 +213,14 @@
     .instrucktions{
         margin: 28px 0px 0px 0px;
     }
+
+    .lostH2{
+        font-size: 18px;
+    }
+
+    .paraLost{
+        font-size: 12px;
+    }
 }
 
 @media (max-height: 415px) {
@@ -203,7 +234,7 @@
     }
 
     .btnBox{
-        bottom: 34px;
+        bottom: 50px;
     }
 
     .instrucktions{
@@ -229,7 +260,14 @@
         padding: 2px 4px 2px 4px;
     }
 
+    .bottomBox{
+        flex-direction: row;
+        display: flex;
+    }
+
     .btnBox{
+        position: unset;
+        margin: 0px 4px 0px 4px;
         bottom: 24px;
     }
 }
