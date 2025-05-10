@@ -3,10 +3,20 @@
  * dectect if used device is a mobile device 
  */
 function detectMob() {
-    let userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    let datectMob = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    return detectMob || screenWidth <= 768;
+    let toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+
+    let isMobile = toMatch.some((toMatchItem) => navigator.userAgent.match(toMatchItem));
+    let specificRes = (window.innerWidth === 820 && window.innerHeight === 1180);
+    
+    return isMobile || specificRes;
 }
 
 /**

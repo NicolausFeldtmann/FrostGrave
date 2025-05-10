@@ -167,7 +167,7 @@ class Boss extends MoObject {
     spawnAnimation() {
         let i = 0;
         this.spawnInterval = setInterval(() => {
-            if (!this.firstEncounter && world.char.x > 4440) {
+            if (!this.firstEncounter && world.char.x > 3040) {
                 this.firstEncounter = true;
                 if (this.firstEncounter) {
                     this.moveIn();

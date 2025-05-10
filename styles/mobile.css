@@ -295,3 +295,10 @@
         bottom: 12px;
     }
 }
+
+@media (width: 1024px) and (height: 1366px) {
+
+    .mobileControll{
+        display: flex;
+    }
+}
