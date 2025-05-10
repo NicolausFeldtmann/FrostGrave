@@ -18,6 +18,9 @@ function detectMob() {
     });
 }
 
+/**
+ * dectects more iOS devices
+ */
 function detectIOS() {
     return [
         'iPad Simulator',
