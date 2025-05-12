@@ -11,3 +11,26 @@ body{
 h1{
  position: inherit;
 }
+
+.backBtnBox{
+    position: fixed;
+    right: 34px;
+    border: solid 2px #85f0cc;
+    border-radius: 10px;
+    background-color: #568d8f;
+    padding: 4px 8px 4px 8px;
+    box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 14px 23px -2px rgba(0,0,0,0.75);
+    transition: 0.5s ease;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #256868;
+    border-radius: 5px;
+}
