@@ -4,7 +4,6 @@ body{
     flex-direction: column;
     align-items: center;
     font-family: creepster;
-    overflow: hidden;
 }
 
 .fullscreen{
@@ -349,7 +348,7 @@ a{
 
 .mobileTurnScreen{
     background-color: #1d1c1c;
-    height: 115%;
+    height: 100%;
     width: 100%;
     position: absolute;
     display: none;
@@ -389,7 +388,7 @@ a{
 
 .optionBtnTop{
     z-index: 5;
-    display: flex;
+    display: none;
     width: 95%;
     max-width: 1100px;
     justify-content: space-between;

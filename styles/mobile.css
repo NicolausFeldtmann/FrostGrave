@@ -48,6 +48,17 @@
     }
 }
 
+@media screen and (max-width: 720px) {
+
+    .mobileTurnScreen{
+        display: flex;
+    }
+
+    .canvas{
+        display: none;
+    }
+}
+
 @media screen and (max-width: 675px) {
 
     .optImg{
@@ -75,6 +86,14 @@
 
     .mobileTurnScreen{
         display: flex;
+    }
+
+    .canvas{
+        display: none;
+    }
+
+    .btnArea{
+        display: none;
     }
 
     .mobileControll{

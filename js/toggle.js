@@ -99,7 +99,16 @@ function showWinScreen() {
     x.classList.toggle('show');
 }
 
+function showOptBtn() {
+    let x = document.getElementById('optBtn');
+    x.classList.toggle('show');
+}
+
+/**
+ * toggle mute button activ/inactiv display
+ */
 function showActiveBtn() {
     let x = document.getElementById('btnBoxTop');
     x.classList.toggle('btnBoxTopActive');
 }
+

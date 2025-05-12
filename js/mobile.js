@@ -41,10 +41,8 @@ function decideControls() {
 
     if (detectMob() || detectIOS()) {
         mobileControll.style.display = 'flex';
-        console.log('is mobile');
     } else {
-        mobileControll.style.display = 'none';
-        console.log('is nich Mobile'); 
+        mobileControll.style.display = 'none'; 
     }
 }
 

@@ -50,6 +50,7 @@ function startGame() {
     world = new World(canvas, keyboard);
     loadMuteState();
     showCanvas();
+    showOptBtn();
     setTimeout(() => {
         let animation = document.getElementById('animation');
         animation.innerHTML = "";
