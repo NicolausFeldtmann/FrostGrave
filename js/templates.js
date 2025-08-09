@@ -12,7 +12,6 @@ function getWinTemplate() {
                     Thank you for playing my litte game!<br>
                     It's only a little demo to show what i can code.<br>
                     If you maybe see more of my work, follow the link to my...<br>
-                    <a herf="#">portfolio</a> 
                 </p>
                 <div class="endBtnArea">
                     <div class="endBtnBox" onclick="backToStart()">

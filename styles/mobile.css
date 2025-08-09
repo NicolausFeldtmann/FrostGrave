@@ -48,18 +48,18 @@
     }
 }
 
-@media screen and (max-width: 720px) {
-
-    .mobileTurnScreen{
-        display: flex;
-    }
+@media screen and (max-width: 725px) {
 
     .canvas{
-        display: none;
+        width: 650px;
     }
 }
 
 @media screen and (max-width: 675px) {
+
+    .canvas{
+        width: 500px;
+    }
 
     .optImg{
         width: 24px;

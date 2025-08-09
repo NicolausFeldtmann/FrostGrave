@@ -41,6 +41,7 @@ function decideControls() {
 
     if (detectMob() || detectIOS()) {
         mobileControll.style.display = 'flex';
+        
     } else {
         mobileControll.style.display = 'none'; 
     }
